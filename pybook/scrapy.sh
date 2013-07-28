@@ -1,4 +1,16 @@
 #! /bin/sh
+for page in $(seq 1 42)
+do
+ scrapy crawl magic -a start_url=http://www.quanben.com/book1/0/$page/ -o magic_$page.json -t json
+done
+for page in $(seq 1 9)
+do
+ scrapy crawl magic -a start_url=http://www.quanben.com/book2/0/$page/ -o sord_$page.json -t json
+done
+for page in $(seq 1 14)
+do
+ scrapy crawl magic -a start_url=http://www.quanben.com/book3/0/$page/ -o dushi_$page.json -t json
+done
 
 for page in $(seq 1 27)
 do

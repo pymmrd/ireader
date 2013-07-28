@@ -26,3 +26,10 @@ class PybookItem(Item):
     txt_link = Field()
     status = Field()
     category = Field()
+
+class PybookItemDetail(Item):
+    name = Field()
+    intro = Field()
+    content = Field()
+    
+    

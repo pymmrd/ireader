@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+
 import chardet
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
