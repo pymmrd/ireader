@@ -15,3 +15,5 @@ NEWSPIDER_MODULE = 'pybook.spiders'
 #USER_AGENT = 'pybook (+http://www.yourdomain.com)'
 DOWNLOAD_DELAY = 2
 USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.97 Safari/537.22 AlexaToolbar/alxg-3.1"
+CONCURRENT_REQUESTS = 64
+CONCURRENT_REQUESTS_PER_DOMAIN = 32

@@ -1,0 +1,47 @@
+# -*- coding:utf-8 -*-
+
+import json
+import urllib
+import chardet
+from scrapy.spider import BaseSpider
+from scrapy.selector import HtmlXPathSelector
+from pybook.items import PybookItemDetail
+
+"""
+Out:{'name': 'hello'
+	 'content': [
+				{'id': 12345,
+				 'content':'/home/zg163/'
+				 'title': 'title1'
+				}
+				]
+	}
+OR OUT:
+"""
+
+DEFAULT_ENCODE = 'utf-8'
+
+class DetailSpider(BaseSpider):
+	name = 'detail'
+
+	def __init__(self, *args, **kwargs):
+		super(DetailSpider, self).__init__(*args, **kwargs)
+		json_file = kwargs.get('json_file')
+		with open(json_file, 'r') as f:
+			datas = json.load(f)
+			start_urls = [data.get('index_link') for data in datas]
+		self.start_urls = start_urls
+
+	def codecs(self, response):
+		encoding = chardet.detect(response.body)['encoding']
+		if encoding != DEFAULT_ENCODE:
+			response.body = response.body.decode(encoding, 'replace').encode(DEFAULT_ENCODE)
+		return response
+	
+	def parse(self, response):
+		response = self.codecs(response)
+		hxs = HtmlXPathSelector(response) 
+		trs = hxs.select("/table/child::tr")
+		trs = trs[:-1] if trs else []
+		for tr in trs:
+			pass
