@@ -138,15 +138,15 @@ class Book(models.Model):
 	category = models.ForeignKey(Category, verbose_name=u'分类')
 	name = models.CharField(max_length=100)
 	author = models.CharField(max_length=30)
-	word_num = models.CharField(max_lenght=15)
-	created_date = models.DatetimeField(auto_now=True)
-	update_date = mdoels.DatetimeField(auto_now=True)
+	word_num = models.CharField(max_length=15)
+	created_date = models.DateTimeField(auto_now=True)
+	update_date = models.DateTimeField(auto_now=True)
 	status = models.BooleanField(
 									choices=BOOK_STATUS, 
-									default=UNFINISHED
-									db_index=True
+									default=UNFINISHED,
+									db_index=True,
 								)
-	weight = models.IntegerField(default=0, index=True)
+	weight = models.IntegerField(default=0, db_index=True)
 	has_part = models.BooleanField(default=False)
 
 	class Meta:
@@ -172,7 +172,7 @@ class BookPart(models.Model):
 
 class BookItem(models.Model):
 	book = models.ForeignKey(Book, verbose_name=u'书籍')
-	part = models.ForeginKey(BookPart, verbose_name=u'部分')
+	part = models.ForeignKey(BookPart, verbose_name=u'部分')
 	name = models.CharField(max_length=80)
 	content = models.CharField(max_length=80)
 	
@@ -183,7 +183,7 @@ class BookItem(models.Model):
 		verbose_name_plural = u'章节'
 
 
-class FeatureBook(models):
+class FeatureBook(models.Model):
 	INDEX = 0
 	MAGIC = 1
 	SORD = 2
@@ -192,18 +192,18 @@ class FeatureBook(models):
 	TIME_TRAVEL = 5
 	GAME = 6
 	MONSTER = 7
-	SICIENCE = 8
+	SCIENCE = 8
 	OTHER = 9
 	PAGE_FEATURE = (
 		(INDEX, 'index'),
 		(MAGIC, 'magic'),
-		(SORD, 'SORD'),
+		(SORD, 'sord'),
 		(DUSHI, 'dushi'),
 		(LOVER, 'lover'),
 		(TIME_TRAVEL, 'time_travel'),
 		(GAME, 'game'),
 		(MONSTER, 'monster'),
-		(SICIENCE, 'sicience'),
+		(SCIENCE, 'science'),
 		(OTHER, 'other'),
 	)
 	book = models.ForeignKey(Book)
@@ -220,5 +220,5 @@ def create_partition_models(base, partition):
 		new_model  = type(name, (base,), {'__module__':__name__})
 		new_model._meta.db_table = name.lower()
 		_current_module.__dict__[name] = new_model
-create_partition_models(BooItem, settings.BOOKITEM_PARTITION)
+create_partition_models(BookItem, settings.BOOKITEM_PARTITION)
 
