@@ -4,6 +4,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Category(models.Model):
 	name = models.CharField(u'标题',
@@ -145,6 +146,9 @@ class Book(models.Model):
 									default=UNFINISHED
 									db_index=True
 								)
+	weight = models.IntegerField(default=0, index=True)
+	has_part = models.BooleanField(default=False)
+
 	class Meta:
 		db_table = 'book'
 		verbose_name = u'书'
@@ -178,6 +182,34 @@ class BookItem(models.Model):
 		verbose_name = u'章节'
 		verbose_name_plural = u'章节'
 
+
+class FeatureBook(models):
+	INDEX = 0
+	MAGIC = 1
+	SORD = 2
+	DUSHI = 3
+	LOVER = 4
+	TIME_TRAVEL = 5
+	GAME = 6
+	MONSTER = 7
+	SICIENCE = 8
+	OTHER = 9
+	PAGE_FEATURE = (
+		(INDEX, 'index'),
+		(MAGIC, 'magic'),
+		(SORD, 'SORD'),
+		(DUSHI, 'dushi'),
+		(LOVER, 'lover'),
+		(TIME_TRAVEL, 'time_travel'),
+		(GAME, 'game'),
+		(MONSTER, 'monster'),
+		(SICIENCE, 'sicience'),
+		(OTHER, 'other'),
+	)
+	book = models.ForeignKey(Book)
+	page = models.IntegerField(choices=PAGE_FEATURE)
+	
+
 def create_partition_models(base, partition):
 	import sys
 	_current_module = sys.modules[__name__]
@@ -189,3 +221,4 @@ def create_partition_models(base, partition):
 		new_model._meta.db_table = name.lower()
 		_current_module.__dict__[name] = new_model
 create_partition_models(BooItem, settings.BOOKITEM_PARTITION)
+
