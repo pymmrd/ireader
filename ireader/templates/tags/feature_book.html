@@ -1,0 +1,13 @@
+<div class="l">
+	{% for object in object_list %}
+	<div class="item">
+		<div class="image"><a href="{% url show-content object.pk %}"><img src="{{ MEDIA_URL }}{{ object.cover }}" alt="{{ object.name }}" height="150" width="120"></a>
+		</div>
+		<dl>
+			<dt><span>{{ object.author }}</span><a href="{% url show-detail object.pk %}">{{ object.name }}</a></dt>
+			<dd>{{ object.intro }}</dd>
+		</dl>
+		<div class="clear"></div>
+	</div>
+	{% endfor %}
+</div>

@@ -1,0 +1,56 @@
+{% extends "base_site.html" %}
+
+{% block content %}
+<div id="main">
+	<div id="hotcontent">
+		{% include "tags/feature_book.html" %} 
+		<div class="clear"></div>
+	</div>
+	<div class="novelslist">
+		<div class="content">
+			<h2>{{ object.name }}</h2>
+			<div class="top">
+				<div class="image"><img src="{{ MEDIA_URL }}{{ object.cover }}" alt="{{ object.name }}" height="82" width="67"></div>
+				<dl><dt><a href="{% url show_detail object.pk %}">{{ object.name }}</a></dt><dd>{{ object.intro }}</dd></dl>
+				<div class="clear"></div>
+			</div>
+			<ul>
+				{% for fb in feature_list %}
+				<li><a href="{% url show_detail object.pk %}">{{ fb.name }}</a>{{ fb.book__author }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="novelslist">
+		<div class="content border">
+			<h2>?苹?小说</h2>
+			<div class="top">
+			<div class="image"><img src="index_files/181s.jpg" alt="????战??" height="82" width="67"></div>
+			<dl><dt><a href="http://www.biquge.com/0_181/">????战??</a></dt><dd>????????士!战????????战????! 
+				来????????????士??战?萍?时???目?战??英?????辖???寻??强??之路??...</dd></dl>
+			<div class="clear"></div></div>
+			<ul>
+			<li>
+				<a href="http://www.biquge.com/0_483/">??魔系统</a>/?什?????</li>
+			</ul>
+		 </div>
+		<div class="clear"></div>
+	</div>
+	<div id="newscontent">
+		<div class="l">
+			<h2>????????小说?斜?</h2>
+			<ul>
+				<li><span class="s1">[????小说]</span><span class="s2"><a href="http://www.biquge.com/4_4594/" target="_blank">末?篮诎???</a></span><span class="s3"><a href="http://www.biquge.com/4_4594/1317520.html" target="_blank">????  726 ??????????</a></span><span class="s4">伟??????</span><span class="s5">08-08</span></li>
+			</ul>
+		</div>
+		<div class="r">
+			<h2>????????小说</h2>
+			<ul>
+			<li><span class="s1">[????]</span><span class="s2"><a href="http://www.biquge.com/5_5199/">盛?拦???</a>(??)</span><span class="s5">????</span></li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+{% endblock %}

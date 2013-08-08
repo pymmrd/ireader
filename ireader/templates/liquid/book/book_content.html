@@ -1,0 +1,36 @@
+{% extends "base_site.html" %}
+
+{% block content %}
+	<div class="box_con">
+		<div class="con_top">
+			<div id="bdshare" class="bdshare_b" style="line-height: 12px;"><img src="content_files/type-button-7.jpg"><a title="?ۼƷ???243??" class="shareCount">243</a></div>
+			<a href="http://www.biquge.com/">??Ȥ??</a> &gt; <a href="http://www.biquge.com/kehuanxiaoshuo/">?ƻ?С˵</a>  &gt; ????ս???????½??б?
+		</div>
+		<div id="maininfo">
+			<div id="info">
+				<h1>{{ object.name }}</h1>
+				<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：{{ object.author }}</p>
+				<p>动&nbsp;&nbsp;&nbsp;&nbsp;作<a href="javascript:;" onclick="showpop('/modules/article/addbookcase.php?bid=181&amp;ajax_request=1');">加入书架</a>,  
+				</p>
+				<p>最后更新：{{ object.update_date|date: "Y-i-j" }}</p>
+			</div>
+			<div id="intro">
+				<p>{{ object.intro }}</p>
+			</div>
+		</div>
+		<div id="sidebar">
+			<div id="fmimg"><img alt="????ս??" src="content_files/181s.jpg" height="150" width="120"><span class="b"></span></div>
+		</div> 
+		<div id="listtj">&nbsp;?Ƽ??Ķ��?<a href="http://www.biquge.com/0_290/" target="_blank">???ս???</a>(??)??<a href="http://www.biquge.com/0_412/" target="_blank"><b>????֮??</b></a>??<a href="http://www.biquge.com/0_190/" target="_blank">?þ?</a>??<a href="http://www.biquge.com/0_8/" target="_blank">?????ǿ?</a>(??)??<a href="http://www.biquge.com/4_4386/" target="_blank">?˻?</a>??<a href="http://www.biquge.com/0_62/" target="_blank">?ٻ?????</a>??<a href="http://www.biquge.com/4_4416/" target="_blank"><b>ĩ?��?????</b></a>??<a href="http://www.biquge.com/0_4427/" target="_blank">?޾?????</a>??<a href="http://www.biquge.com/4_4553/" target="_blank"><b>???ɿ?ͽ</b></a>??<a href="http://www.biquge.com/4_4502/" target="_blank">?ҵ???Ů??ʦ</a>(??)??<a href="http://www.biquge.com/4_4554/" target="_blank">??Ʒа??</a>??<a href="http://www.biquge.com/4_4507/" target="_blank">???????ֱ?</a>??<a href="http://www.biquge.com/4_4389/" target="_blank">?޳?ʬ??</a>
+		</div>
+	</div>
+	<div class="box_con">
+		<div id="list">
+			<dl>
+				<dt><b>??????ս?????????½?</b>????ʾ???????û??漼?????????½ڿ??ܻ???ʱ??ʾ????¼???ܼ???ʵʱ?鿴????</dt>
+					<dd><a href="http://www.biquge.com/0_181/1298323.html">??1130?? - ????????</a></dd>
+				<dt>??????ս??????һ??</dt>
+			</dl>
+		</div>
+	</div>
+{% endblock %}
