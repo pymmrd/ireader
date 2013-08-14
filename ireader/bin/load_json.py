@@ -35,36 +35,42 @@ CATEGORY_MAP = {
 CATEGORY_LIST = [Category.objects.get(pk=pk) for pk in xrange(1,10)] 
 
 def load_json(data_path):
-    print 'data_path------->', data_path
-    file_name = data_path.rsplit('/', 1)[0] 
-    prefix_name = file_name.rsplit('_', 1)[0]
-    try:
-        index = CATEGORY_MAP.get('magic')
-    except KeyError:
-        print 'error:', data_path
-    else:
-        category = CATEGORY_LIST[index-1] 
-        with open(data_path, 'r') as f:
-            try:
-                data = json.load(f)
-            except:
-                print 'error:', data_path
-            else:
-                for item in data:
-                    update_date = datetime.strptime(item.get('update_date'), '%Y-%m-%d')
-                    index_link = item.get('index_link')
-                    word_num = item.get('word_num')
-                    author = item.get('author')
-                    name = item.get('name')[:-4]
+	#print 'data_path------->', data_path
+	file_name = data_path.rsplit('/', 1)[-1] 
+	prefix_name = file_name.rsplit('_', 1)[0]
+	try:
+		index = CATEGORY_MAP.get(prefix_name)
+	except KeyError:
+		print 'error:', data_path
+	else:
+		category = CATEGORY_LIST[index-1] 
+		with open(data_path, 'r') as f:
+			try:
+				data = json.load(f)
+			except:
+				print 'jsonerror:', data_path
+			else:
+				for item in data:
+					update_date = datetime.strptime(item.get('update_date'), '%Y-%m-%d')
+					index_link = item.get('index_link')
+					word_num = item.get('word_num')
+					author = item.get('author')
+					name = item.get('name')[:-4]
+					book = Book()
+					book.name = name
+					book.category = category 
+					book.author = author
+					book.word_num = word_num
+					book.save()
 
 if __name__ == "__main__":
     from django.db import connection
-    for item in glob.iglob(DATA_PATTERN):
-        load_json(item)
-    #pool = threadpool.ThreadPool(10)
-    #requests = threadpool.makeRequests(load_json, glob.glob(DATA_PATTERN))
-    #for req in requests:
-    #    pool.putRequest(req)
-    #pool.wait()
+    #for item in glob.iglob(DATA_PATTERN):
+    #    load_json(item)
+    pool = threadpool.ThreadPool(10)
+    requests = threadpool.makeRequests(load_json, glob.glob(DATA_PATTERN))
+    for req in requests:
+        pool.putRequest(req)
+    pool.wait()
     import pprint
     pprint.pprint(connection.queries)
