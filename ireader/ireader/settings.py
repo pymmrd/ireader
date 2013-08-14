@@ -26,6 +26,9 @@ DATABASES = {
         'PASSWORD': 'admin4u',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+		'OPTIONS': {
+		   'init_command': 'SET storage_engine=MyISAM;',
+		   }
     }
 }
 
@@ -33,11 +36,16 @@ DATABASES = {
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
+
+if DEBUG:
+	DOMAIN = '127.0.0.1:8000'
+else:
+	DOMAIN = 'www.40ye.com'
 
 SITE_ID = 1
 
@@ -50,7 +58,8 @@ USE_I18N = True
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
+
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -116,7 +125,19 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-	pathjoin(CURRENT_PATH, 'templates'),
+	pathjoin(PROJECT_PATH, 'templates'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    #'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    #'django.core.context_processors.tz',
+	'django.core.context_processors.request',
+    #'django.contrib.messages.context_processors.messages',
+	'ireader.ireader_contexts.ireader',
 )
 
 INSTALLED_APPS = (

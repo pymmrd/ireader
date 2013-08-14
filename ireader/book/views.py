@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 # Create your views here.
 
 from django.http import HttpResponse
@@ -6,7 +7,6 @@ from django.shortcuts import render_to_response
 
 def index(request, tmpl='index.html'):
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
-	
 	}))
 
 def show_content(request, tmpl="book/content.html"):
