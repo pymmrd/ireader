@@ -15,8 +15,14 @@ def index(request, tmpl='index.html'):
 	}))
 
 def show_content(request, pk, tmpl="book/content.html"):
+	try:
+		pk = int(pk)
+	except (TypeError, ValueError):
+		pk = 1
+	book, object_list = handler_show_content(pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
-	
+		'book': book,
+		'object_list': object_list,
 	}))
 
 def show_detail(request, pk, tmpl="book/detail.html"):
@@ -30,7 +36,7 @@ def show_category(request, pk, tmpl="book/category.html"):
 		pk = 1
 	feature_list, object_list, hot_list = handler_show_category(pk, page=1)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
+		'hot_list': hot_list,
 		'feature_list': feature_list,
 		'object_list': object_list, 
-		'hot_list': hot_list,
 	}))
