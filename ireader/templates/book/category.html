@@ -4,27 +4,39 @@
 <div id="main">
 	<div id="hotcontent">
 		<div class="ll">
+			{% for object in feature_list %}
 			<div class="item">
-				<div class="image"><a href="http://www.biquge.com/0_2/"><img src="category_files/2s.jpg" alt="" height="150" width="120"></a></div>
+				<div class="image"><a href="{% url show-detail object.book__id %}"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="150" width="120"></a></div>
 				<dl>
-					<dt><span></span><a href="http://www.biquge.com/0_2/"></a></dt>
-					<dd></dd>
+					<dt><span>{{ object.book__author }}</span><a href="{% url show-detail object.book__id %}"></a></dt>
+					<dd>{{ object.book__intro }}</dd>
 				</dl>
 				<div class="clear"></div>
 			</div>
+			{% endfor %}
 		</div>
 	</div>
 	<div id="newscontent">
 		<div class="l">
-			<h2></h2>
+			<h2>好看的{{ name }}小说列表</h2>
 			<ul>
-				<li><span class="s2"><a href="http://www.biquge.com/5_5108/" target="_blank"></a></span><span class="s3"><a href="http://www.biquge.com/5_5108/1274901.html" target="_blank"></a></span><span class="s5">Deathstate</span></li>
+				<li><span class="s2">书名</span><span class="s2">作者</span><span class="s2">更新时间</span><span class="s2">状态</span></li>
+				{% for object in object_list %}
+				<li>
+					<span class="s2"><a href="{% url show-content object.id %}" target="_blank">《{{ object.name }}》</a></span>
+					<span class="s2">{{ object.author }}</span>
+					<span class="s2">{{ object.update_date|date:"Y-m-d" }}</span>
+					<span class="s2">{% if object.status == 0 %}连载{% else %}完结{% endif %}</span>
+				</li>
+				{% endfor %}
 			</ul>
 		</div>
 		<div class="r">
-			<h2></h2>
+			<h2>热度{{ name }}小说列表</h2>
 			<ul>
-				<li><span class="s2"><a href="http://www.biquge.com/0_148/"></a></span><span class="s5"></span></li>
+				{% for object in hot_list %}
+				<li><span class="s2"><a href="{% url show-detail object.id %}" target="_blank">{{ object.name }}</a></span><span class="s5">{{ obect.author }}</span></li>
+				{% endfor %}
 			</ul>
 		</div>
 		<div class="clear"></div>
