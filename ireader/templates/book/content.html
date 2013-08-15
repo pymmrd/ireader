@@ -24,7 +24,7 @@
 						{% if part != 'A' %}
 							<dt>{{ part }}</dt>
 						{% endif %}
-						{% for c in chapaters %}
+						{% for c in chapters %}
 						<dd><a href="http://{{ domain }}{% url show-detail c.id %}">{{ c.name }}</a></dd>
 						{% endfor %}
 					{% endfor %}

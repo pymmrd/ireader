@@ -59,4 +59,5 @@ def get_book_chapters(pk):
 	else:
 		chapters = itemcls.objects.values(*values).filter(book__id=pk)
 		object_list.append({'A': chapters})
+	print object_list
 	return book, object_list
