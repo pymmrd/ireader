@@ -148,7 +148,8 @@ class Book(models.Model):
 								)
 	weight = models.IntegerField(default=0, db_index=True)
 	has_part = models.BooleanField(default=False)
-
+	cover = models.CharField(max_length=15, blank=True)
+	intro = models.TextField(blank=True)
 	class Meta:
 		db_table = 'book'
 		verbose_name = u'书'
