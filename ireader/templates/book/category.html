@@ -6,9 +6,9 @@
 		<div class="ll">
 			{% for object in feature_list %}
 			<div class="item">
-				<div class="image"><a href="{% url show-detail object.book__id %}"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="150" width="120"></a></div>
+				<div class="image"><a href="{% url show-content object.book__id %}"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="150" width="120"></a></div>
 				<dl>
-					<dt><span>{{ object.book__author }}</span><a href="{% url show-detail object.book__id %}"></a></dt>
+					<dt><span>{{ object.book__author }}</span><a href="{% url show-content object.book__id %}"></a></dt>
 					<dd>{{ object.book__intro }}</dd>
 				</dl>
 				<div class="clear"></div>
@@ -35,7 +35,7 @@
 			<h2>热度{{ name }}小说列表</h2>
 			<ul>
 				{% for object in hot_list %}
-				<li><span class="s2"><a href="{% url show-detail object.id %}" target="_blank">{{ object.name }}</a></span><span class="s5">{{ obect.author }}</span></li>
+				<li><span class="s2"><a href="{% url show-content object.id %}" target="_blank">{{ object.name }}</a></span><span class="s5">{{ object.author }}</span></li>
 				{% endfor %}
 			</ul>
 		</div>

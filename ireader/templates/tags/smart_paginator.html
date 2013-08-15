@@ -1,0 +1,8 @@
+<p class="paginator">
+	{% if has_other_pages %}
+		{% if has_previous %}
+			<a href="{{ sub_path }}/{{ previous_page_number }}/{% if params %}?{{ params }}{% endif %}">上一页</a>
+		{% endif %}
+		{% for i in page_range %}
+			{% ifequal i "." %}<span class="dot">...</span>{% else %}{% ifequal i page %}<span class="this_page">{{ i }}</span>{% else %}<a class="link_page" href="{{ sub_path }}/{{ i }}/{% if params %}?{{ params }}{% endif %}" >{{ i }}</a>{% endifequal %}{% endifequal %}{% endfor %}{% if has_next %}<a href="{{ sub_path }}/{{ next_page_number }}/{% if params %}?{{ params }}{% endif %}">下一页</a>{% endif %}{% endif %}</p>
+

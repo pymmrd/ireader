@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import os
+import time
 import sys
 import json
 import glob
@@ -64,63 +65,78 @@ def process_has_part(content, cls, book):
 	for k in content:
 		if k != 'A':
 			sort_value = sorted(content[k], key=lambda a:a['id']) 
-			first = sort_value[0].get('id')
-			sort_ref[first] = k
-			tmp_dict[k] = sort_value
+			if sort_value:
+				first = sort_value[0].get('id')
+				sort_ref[first] = k
+				tmp_dict[k] = sort_value
 	keys = [sort_ref[i] for i in sorted(sort_ref.keys())]
 	for k in keys:
 		result.append({k: tmp_dict[k]}) 
 	for elem in result:
+		count = 0
 		for key, value in elem.iteritems():
+			if count > 0 and count % 10  == 0:
+				time.sleep(0.1)
 			if key != "A":
 				bp = BookPart()
+				bp.book = book
 				bp.name = key
+				bp.save()
 				for item in value:
 					ins = cls()
 					book_url = item.get('book_url')
 					ct = '%s/%s' % (BOOK_DIR, book_url)
 					name = item.get('title')
-					print "name-->", name.encode('utf-8'), "content-->", ct.encode('utf-8')
-					cls.content = ct
-					cls.name = name
-					cls.book = book
-					cls.part = bp
+					if name is None:
+						name = ''
+					ins.content = ct
+					ins.name = name
+					ins.book = book
+					ins.part = bp
+					ins.save()
 
 def process_null_part(content, cls, book):
 	chapters = content.get('A')
+	count = 0
 	for item in sorted(chapters, key=lambda a:a['id']):
+		if count > 0 and count % 10 == 0:
+			time.sleep(0.1)
 		ins = cls()
 		book_url = item.get('book_url')
 		ct = '%s/%s' % (BOOK_DIR, book_url)
 		name = item.get('title')
-		ins.content = content
+		if name is None:
+			name = ''
+		ins.content = ct
 		ins.book = book
 		ins.name = name
+		ins.save()
 
 def load_full_detail(data_path):
 	has_part = False 
-	category = get_category(data_path) 
-	if category:
-		datas = get_data(data_path) 
-		for item in datas:
-			name = item.get('name', '')
-			book = Book.objects.get(name=name)
-			cls = get_bookitem_model("BookItem", book.pk)
-			intro = item.get('intro', '')
-			book.intro = intro
-			content = item.get('content', '')
-			keys = content.keys()
-			if len(keys) > 1:
-				has_part = True
-				pass
-				#process_has_part(content, cls, book)
-			else:
-				process_null_part(content, cls, book)
-			book.has_part = has_part
+	datas = get_data(data_path) 
+	count = 0
+	for item in datas:
+		name = item.get('name', '')
+		book = Book.objects.get(name=name)
+		cls = get_bookitem_model("BookItem", book.pk)
+		intro = item.get('intro', '')
+		book.intro = intro
+		content = item.get('content', '')
+		keys = content.keys()
+		if len(keys) > 1:
+			has_part = True
+			process_has_part(content, cls, book)
+		else:
+			process_null_part(content, cls, book)
+		book.has_part = has_part
+		book.save()
+		count += 1
 
 if __name__ == "__main__":
 	from django.db import connection
 	for item in glob.iglob(DATA_PATTERN):
+		time.sleep(2)
 		load_full_detail(item)
 	#import sys
 	#load_full_detail(sys.argv[1])

@@ -11,7 +11,7 @@
 		<div class="content">
 			<h2>{{ object.name }}</h2>
 			<div class="top">
-				<div class="image"><img src="{{ MEDIA_URL }}{{ object.cover }}" alt="{{ object.name }}" height="82" width="67"></div>
+				<div class="image"><img src="{% if object.cover %}{{ MEDIA_URL }}{{ object.cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.name }}" height="82" width="67"></div>
 				<dl><dt><a href="{% url show-detail object.pk %}">{{ object.name }}</a></dt><dd>{{ object.intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
@@ -29,7 +29,7 @@
 		<div class="content border">
 			<h2>{{ object.name }}</h2>
 			<div class="top">
-				<div class="image"><img src="{{ MEDIA_URL }}{{ object.cover }}" alt="" height="82" width="67"></div>
+				<div class="image"><img src="{% if obejct.cover %}{{ MEDIA_URL }}{{ object.cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.name }}" height="82" width="67"></div>
 				<dl><dt><a href="{% url show_detail object.pk %}">{{ object.name }}</a></dt><dd>{{ object.intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
