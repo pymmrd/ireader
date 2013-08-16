@@ -13,7 +13,7 @@ abspath = os.path.abspath
 dirname = os.path.dirname
 CURRENT_PATH = abspath(dirname(__file__))
 PROJECT_PATH = abspath(dirname(CURRENT_PATH))
-DATA_PATTERN = "/home/zg163/djcode/ireader/pybook/*.json"
+DATA_PATTERN = "/home/zg163/djcode/ireader/pybook/detail/*.json"
 
 sys.path.append(PROJECT_PATH)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
@@ -114,24 +114,23 @@ def process_null_part(content, cls, book):
 
 def load_full_detail(data_path):
 	has_part = False 
-	datas = get_data(data_path) 
+	item = get_data(data_path) 
 	count = 0
-	for item in datas:
-		name = item.get('name', '')
-		book = Book.objects.get(name=name)
-		cls = get_bookitem_model("BookItem", book.pk)
-		intro = item.get('intro', '')
-		book.intro = intro
-		content = item.get('content', '')
-		keys = content.keys()
-		if len(keys) > 1:
-			has_part = True
-			process_has_part(content, cls, book)
-		else:
-			process_null_part(content, cls, book)
-		book.has_part = has_part
-		book.save()
-		count += 1
+	name = item.get('name', '')
+	book = Book.objects.get(name=name)
+	cls = get_bookitem_model(book.pk)
+	intro = item.get('intro', '')
+	book.intro = intro
+	content = item.get('content', '')
+	keys = content.keys()
+	if len(keys) > 1:
+		has_part = True
+		process_has_part(content, cls, book)
+	else:
+		process_null_part(content, cls, book)
+	book.has_part = has_part
+	book.save()
+	count += 1
 
 if __name__ == "__main__":
 	from django.db import connection

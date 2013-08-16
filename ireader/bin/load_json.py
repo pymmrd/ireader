@@ -12,7 +12,7 @@ abspath = os.path.abspath
 dirname = os.path.dirname
 CURRENT_PATH = abspath(dirname(__file__))
 PROJECT_PATH = abspath(dirname(CURRENT_PATH))
-DATA_PATTERN = "/home/zg163/djcode/ireader/pybook/data/*.json"
+DATA_PATTERN = "/home/zg163/djcode/ireader/pybook/new_data/*.json"
 
 sys.path.append(PROJECT_PATH)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
