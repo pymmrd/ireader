@@ -43,7 +43,7 @@ TIME_ZONE = 'Asia/Shanghai'
 LANGUAGE_CODE = 'en-us'
 
 if DEBUG:
-	DOMAIN = '127.0.0.1:8000'
+	DOMAIN = '10.1.0.124:8000'
 else:
 	DOMAIN = 'www.40ye.com'
 
@@ -126,6 +126,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 	pathjoin(PROJECT_PATH, 'templates'),
+	'/home/zg163/data',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -189,3 +190,6 @@ BOOKITEM_PARTITION = 10
 ###################PAGINATION########################
 CATEGORY_BOOKS_PER_PAGE = 24
 CATEGORY_FEATURE_BOOKS = 6
+
+###################BOOk DIRECTORY###################
+BOOK_DIR = '/home/zg163/data'
