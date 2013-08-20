@@ -1,13 +1,13 @@
 # -*- coding:utf-8 -*-
 
-from book.utils import category_feature_books, category_books, category_hot_books, get_book_chapters
+from book.utils import category_feature_books, category_books, category_hot_books, get_book_chapters, get_bookitem
 
 def handler_index():
 	pass
 
 def handler_show_content(pk):
-	book, object_list = get_book_chapters(pk)
-	return book, object_list
+	book, object_list, partition = get_book_chapters(pk)
+	return book, object_list, partition
 
 def handler_show_detail(pk):
 	pass
@@ -20,3 +20,10 @@ def handler_show_category(pk, page=1):
 	# hot books 
 	hot_list = category_hot_books(pk)
 	return feature_list, object_list, hot_list
+
+def handler_show_detail(partition, pk):
+	item= get_bookitem(partition, pk)
+	return item
+	
+	
+	

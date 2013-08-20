@@ -1,11 +1,13 @@
 # -*- coding:utf-8 -*-
 
 #from py
+import os
 import random
 
 #from project
 from django.conf import settings
 from commons.paginate import paginate_util
+from book import models
 from book.models import Book, BookPart, Category, FeatureBook
 from book.klass import get_bookitem_model 
 
@@ -50,6 +52,7 @@ def get_book_chapters(pk):
 	values = ('id', 'name')
 	book = get_single_book(pk)
 	has_part = book.get('has_part', False)
+	partition = pk % settings.BOOKITEM_PARTITION
 	itemcls = get_bookitem_model(pk) 
 	if has_part:
 		bookparts = BookPart.objects.filter(book__id=pk).order_by('pk')
@@ -59,5 +62,11 @@ def get_book_chapters(pk):
 	else:
 		chapters = itemcls.objects.values(*values).filter(book__id=pk)
 		object_list.append({'A': chapters})
-	print object_list
-	return book, object_list
+	return book, object_list, partition
+
+def get_bookitem(partition, pk):
+	base = models.BookItem
+	name = '%s%s' % (base.__name__, partition)
+	itemcls = getattr(models, name)
+	item = itemcls.objects.values('book__category__name', 'book__category__id', 'book__id', 'book__name', 'content', 'name').get(pk=pk)
+	return item

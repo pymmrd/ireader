@@ -135,8 +135,10 @@ def load_full_detail(data_path):
 if __name__ == "__main__":
 	from django.db import connection
 	for item in glob.iglob(DATA_PATTERN):
-		time.sleep(2)
-		load_full_detail(item)
+		try:
+			load_full_detail(item)
+		except:
+			print item
 	#import sys
 	#load_full_detail(sys.argv[1])
 	#pool = threadpool.ThreadPool(10)

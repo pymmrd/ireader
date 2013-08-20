@@ -2,7 +2,7 @@
 # Create your views here.
 
 #from django
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 
@@ -19,14 +19,22 @@ def show_content(request, pk, tmpl="book/content.html"):
 		pk = int(pk)
 	except (TypeError, ValueError):
 		pk = 1
-	book, object_list = handler_show_content(pk)
+	book, object_list, partition = handler_show_content(pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
 		'book': book,
 		'object_list': object_list,
+		'partition': partition,
 	}))
 
-def show_detail(request, pk, tmpl="book/detail.html"):
+def show_detail(request, partition, pk, tmpl="book/detail.html"):
+	try:
+		partition = int(partition)
+		pk = int(pk)
+	except (TypeError, ValueError):
+		raise Http404
+	item = handler_show_detail(partition, pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
+		'object': item,
 	}))
 
 def show_category(request, pk, tmpl="book/category.html"):
