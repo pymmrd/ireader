@@ -10,5 +10,9 @@ regx2 = re.compile(r'%s' % brand)
 
 brand_list = [regx1, regx2]
 
-
+def replace_logo(path):
+	for p, d, f in os.walk(path):
+		if not d:
+			file_path = os.path.join(p, f)
+			
 

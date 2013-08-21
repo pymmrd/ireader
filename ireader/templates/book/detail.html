@@ -11,12 +11,21 @@
 		<div class="bookname">
 			<h1>{{ object.name }}</h1>
 			<div class="bottem1">
-				<a href="">上一章</a>&nbsp;&nbsp;<a href="" title="">目录</a>&nbsp;&nbsp;<a href="http://www.biquge.com/0_181/457855.html">下一章</a> 
+				{% if has_previous %}
+				<a href="http://{{ domain }}{% url show-detail partition previous_to %}">上一章</a>
+				{% endif %}
+				&nbsp;&nbsp;<a href="{% url show-content object.book__id %}" title="{{ object.book__name }}">目录</a>&nbsp;&nbsp;{% if has_next %}<a href="http://{{ domain }}{% url show-detail partition next_to %}">下一章</a>{% endif %} 
 			</div>
 			<div class="lm">&nbsp;热门推荐：
 			</div>
 		</div>
 		<div id="content">{% include object.content %}</div>
+		<div class="bottem2">
+			{% if has_previous %}
+			<a href="http://{{ domain }}{% url show-detail partition previous_to %}">上一章</a>
+			{% endif %}
+			&nbsp;&nbsp;<a href="{% url show-content object.book__id %}" title="{{ object.book__name }}">目录</a>&nbsp;&nbsp;{% if has_next %}<a href="http://{{ domain }}{% url show-detail partition next_to %}">下一章</a>{% endif %} 
+		</div>
 	</div>
 </div>
 {% endblock %}

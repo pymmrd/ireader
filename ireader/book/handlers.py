@@ -1,9 +1,10 @@
 # -*- coding:utf-8 -*-
 
-from book.utils import category_feature_books, category_books, category_hot_books, get_book_chapters, get_bookitem
+from book.utils import category_feature_books, category_books, category_hot_books, get_book_chapters, get_bookitem, process_index_items
 
 def handler_index():
-	pass
+	feature_list,
+	magic
 
 def handler_show_content(pk):
 	book, object_list, partition = get_book_chapters(pk)
@@ -22,8 +23,9 @@ def handler_show_category(pk, page=1):
 	return feature_list, object_list, hot_list
 
 def handler_show_detail(partition, pk):
-	item= get_bookitem(partition, pk)
-	return item
-	
-	
-	
+	(item,
+		has_next, 
+		has_previous, 
+		next_to, 
+		previous_to) = get_bookitem(partition, pk)
+	return item, has_next, has_previous, next_to, previous_to

@@ -32,9 +32,18 @@ def show_detail(request, partition, pk, tmpl="book/detail.html"):
 		pk = int(pk)
 	except (TypeError, ValueError):
 		raise Http404
-	item = handler_show_detail(partition, pk)
+	(item, 
+		has_next, 
+		has_previous, 
+		next_to, 
+		previous_to) = handler_show_detail(partition, pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
 		'object': item,
+		'next_to': next_to,
+		'has_next': has_next,
+		'partition': partition,
+		'previous_to': previous_to,
+		'has_previous': has_previous,
 	}))
 
 def show_category(request, pk, tmpl="book/category.html"):

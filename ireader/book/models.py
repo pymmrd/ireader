@@ -195,6 +195,14 @@ class FeatureBook(models.Model):
 	MONSTER = 7
 	SCIENCE = 8
 	OTHER = 9
+	INDEX_MAGIC = 10
+	INDEX_SORD = 11
+	INDEX_DUSHI = 12 
+	INDEX_LOVER = 13
+	INDEX_TIME_TRAVEL = 14
+	INDEX_GAME = 15
+	INDEX_MONSTER = 16
+	INDEX_SCIENCE = 17
 	PAGE_FEATURE = (
 		(INDEX, 'index'),
 		(MAGIC, 'magic'),
@@ -206,9 +214,23 @@ class FeatureBook(models.Model):
 		(MONSTER, 'monster'),
 		(SCIENCE, 'science'),
 		(OTHER, 'other'),
+		(INDEX_MAGIC, 'index_magic'),
+		(INDEX_SORD, 'index_sord'),
+		(INDEX_DUSHI, 'index_dushi'),
+		(INDEX_LOVER, 'index_lover'),
+		(INDEX_TIME_TRAVEL, 'index_time_travel'),
+		(INDEX_GAME, 'index_game'),
+		(INDEX_MONSTER, 'index_monster'),
+		(INDEX_SCIENCE, 'index_science'),
 	)
 	book = models.ForeignKey(Book)
 	page = models.IntegerField(choices=PAGE_FEATURE)
+
+	class Meta:
+		verbose_name = u'推荐书籍'
+		verbose_name_plural = u'推荐书籍'
+		db_table = 'featurebook'
+		
 	
 
 def create_partition_models(base, partition):
