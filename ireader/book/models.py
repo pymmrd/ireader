@@ -205,6 +205,7 @@ class FeatureBook(models.Model):
 	INDEX_GAME = 15
 	INDEX_MONSTER = 16
 	INDEX_SCIENCE = 17
+	INDEX_OTHER = 18
 	PAGE_FEATURE = (
 		(INDEX, 'index'),
 		(MAGIC, 'magic'),

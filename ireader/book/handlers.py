@@ -2,16 +2,33 @@
 
 from book.utils import category_feature_books, category_books, category_hot_books, get_book_chapters, get_bookitem, process_index_items
 
-def handler_index():
-	feature_list,
-	magic
+def handler_index(page=1):
+	(feature_list, magic_books,
+		sord_books, dushi_books,
+		lover_books, time_travel_books,
+		game_books, mnst_books,
+		scnc_books, other_books, 
+		result_list, paginator, 
+		page, hot_books) = process_index_items(page=1)
+	return (feature_list, 
+			magic_books,
+			sord_books,
+			dushi_books,
+			lover_books,
+			time_travel_books,
+			game_books,
+			mnst_books,
+			scnc_books,
+			other_books,
+			result_list, 
+			paginator, 
+			page,
+			hot_books,
+			)
 
 def handler_show_content(pk):
 	book, object_list, partition = get_book_chapters(pk)
 	return book, object_list, partition
-
-def handler_show_detail(pk):
-	pass
 
 def handler_show_category(pk, page=1):
 	# category feature books

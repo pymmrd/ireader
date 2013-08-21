@@ -18,11 +18,12 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
 from book.models import Book, FeatureBook
 
 CATEGORY_FEATURE_NUM = 6
-INDEX_FEATURE_NUM = 4
+INDEX_FEATURE_NUM = 6
 INDEX_CATEGORY_NUM = 13
 
 def feature_book():
 	page = 0
+	FeatureBook.objects.filter(page=page).delete()
 	exclude = FeatureBook.objects.values_list('book__id', flat=True).all()
 	books = Book.objects.values_list('id', flat=True).exclude(id__in=exclude) 
 	books = random.sample(books, INDEX_FEATURE_NUM)
@@ -49,12 +50,12 @@ def init_feature(pk):
 	index_pk = pk + 9
 	FeatureBook.objects.filter(page=index_pk).delete()
 	new_books = books.exclude(id__in=cat_features)
-	index_features = random.sample(new_books, INDEX_FEATURE_NUM)
+	index_features = random.sample(new_books, INDEX_CATEGORY_NUM)
 	gen_feature_books(index_features, index_pk)
 
 def init():
 	pool = threadpool.ThreadPool(5)
-	requests = threadpool.makeRequests(init_feature, xrange(1, 9))
+	requests = threadpool.makeRequests(init_feature, xrange(1, 10))
 	for req in requests:
 		pool.putRequest(req)
 	pool.wait()

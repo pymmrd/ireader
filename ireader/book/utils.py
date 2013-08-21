@@ -34,12 +34,14 @@ def category_books(pk, page=1):
 												 )
 	return result_list, paginator, page
 
-def category_hot_books(pk):
+def category_hot_books(pk=None):
 	values = ('id', 'name', 'author')
 	page_size = settings.CATEGORY_BOOKS_PER_PAGE + 1
 	object_list = Book.objects.values_list(
 					  'id', flat=True
-				  ).filter(category__pk=pk)
+				  )
+	if pk:
+		object_list = object_list.filter(category__pk=pk)
 	object_ids = random.sample(object_list, page_size) 
 	object_list = Book.objects.values(*values).filter(pk__in=object_ids)
 	return object_list
@@ -128,20 +130,38 @@ def get_index_feature_books(page):
 	values = ('book__name', 'book__intro', 'book__author', 'book__cover', 'book__id')
 	return FeatureBook.objects.values(*values).filter(page=page).order_by('pk')
 
-def process_index_items():
+def process_index_items(page=1):
+	page_size = 24
+	values = ('id',  'name', 'update_date', 'author', 'status')
 	#index feature
 	feature_list = get_index_feature_books(FeatureBook.INDEX)
-	magic_books = get_index_feature_books(FeatureBook.MAGIC)
-	sord_books = get_index_feature_books(FeatureBook.SORD)
-	dushi_books = get_index_feature_books(FeatureBook.DUSHI)
-	lover_books = get_index_feature_books(FeatureBook.LOVER)
-	time_travel_books = get_index_feature_books(FeatureBook.TIME_TRAVEL)
-	game_books = get_index_feature_books(FeatureBook.GAME)
-	mnst_books = get_index_feature_books(FeatureBook.MONSTER)
-	scnc_books = get_index_feature_books(FeatureBook.SCIENCE)
+	magic_books = get_index_feature_books(FeatureBook.INDEX_MAGIC)
+	sord_books = get_index_feature_books(FeatureBook.INDEX_SORD)
+	dushi_books = get_index_feature_books(FeatureBook.INDEX_DUSHI)
+	lover_books = get_index_feature_books(FeatureBook.INDEX_LOVER)
+	time_travel_books = get_index_feature_books(FeatureBook.INDEX_TIME_TRAVEL)
+	game_books = get_index_feature_books(FeatureBook.INDEX_GAME)
+	mnst_books = get_index_feature_books(FeatureBook.INDEX_MONSTER)
+	scnc_books = get_index_feature_books(FeatureBook.INDEX_SCIENCE)
+	other_books = get_index_feature_books(FeatureBook.INDEX_OTHER)
 	books = Book.objects.values(*values).all().order_by('-update_date')
+	hot_books = category_hot_books()
 	result_list, paginator, page = paginate_util(books,
 												 page,
 												 page_size
 												 )
-	return result_list, paginator, page
+	return (feature_list, 
+			magic_books,
+			sord_books,
+			dushi_books,
+			lover_books,
+			time_travel_books,
+			game_books,
+			mnst_books,
+			scnc_books,
+			other_books,
+			result_list, 
+			paginator, 
+			page,
+			hot_books,
+			)
