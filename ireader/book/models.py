@@ -173,7 +173,9 @@ class BookPart(models.Model):
 
 class BookItem(models.Model):
 	book = models.ForeignKey(Book, verbose_name=u'书籍')
-	part = models.ForeignKey(BookPart, verbose_name=u'部分')
+	part = models.ForeignKey(BookPart, 
+							verbose_name=u'部分', 
+							blank=True, null=True)
 	name = models.CharField(max_length=80)
 	content = models.CharField(max_length=80)
 	
