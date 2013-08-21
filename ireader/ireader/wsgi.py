@@ -14,6 +14,13 @@ framework.
 
 """
 import os
+import sys
+
+wsgi_dir = os.path.abspath(os.path.dirname(__file__))
+project_dir = os.path.dirname(wsgi_dir)
+sys.path.append(project_dir)
+root_project = os.path.dirname(project_dir)
+sys.path.append(root_project)
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ireader.settings")
 

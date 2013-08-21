@@ -43,7 +43,7 @@ TIME_ZONE = 'Asia/Shanghai'
 LANGUAGE_CODE = 'en-us'
 
 if DEBUG:
-	DOMAIN = '10.1.0.124:8000'
+	DOMAIN = '113.11.199.100:8080'
 else:
 	DOMAIN = 'www.40ye.com'
 
