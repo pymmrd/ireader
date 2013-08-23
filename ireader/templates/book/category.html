@@ -1,4 +1,5 @@
 {% extends "base_site.html" %}
+{% load paginate %}
 
 {% block content %}
 <div id="main">
@@ -18,7 +19,7 @@
 	</div>
 	<div id="newscontent">
 		<div class="l">
-			<h2>好看的{{ name }}小说列表</h2>
+			<h2>{{ name }}小说列表</h2>
 			<ul>
 				<li><span class="s2">书名</span><span class="s2">作者</span><span class="s2">更新时间</span><span class="s2">状态</span></li>
 				{% for object in object_list %}
@@ -30,6 +31,7 @@
 				</li>
 				{% endfor %}
 			</ul>
+			{% more_paginator request paginator %}
 		</div>
 		<div class="r">
 			<h2>热度{{ name }}小说列表</h2>

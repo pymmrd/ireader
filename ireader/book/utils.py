@@ -5,12 +5,27 @@ import os
 import random
 import bisect
 
-#from project
+#from django
 from django.conf import settings
+from django.db.models import Q
+
+#from project
 from commons.paginate import paginate_util
 from book import models
 from book.models import Book, BookPart, Category, FeatureBook
 from book.klass import get_bookitem_model 
+
+CATEGORY_NAME = {
+	1: u'玄幻',
+	2: u'武侠',
+	3: u'都市',
+	4: u'言情',
+	5: u'穿越',
+	6: u'网游',
+	7: u'惊恐',
+	8: u'科幻',
+	9: u'其它'
+}
 
 def category_feature_books(pk):
 	values = (	'book__name', 'book__cover', 
@@ -21,6 +36,7 @@ def category_feature_books(pk):
 	return feature_list
 
 def category_books(pk, page=1):
+	name = CATEGORY_NAME.get(pk, u'玄幻') 
 	page_size = settings.CATEGORY_BOOKS_PER_PAGE
 	values = ('id',  'name', 'update_date', 'author', 'status')
 	object_list = Book.objects.values(
@@ -32,7 +48,7 @@ def category_books(pk, page=1):
 												 page,
 												 page_size
 												 )
-	return result_list, paginator, page
+	return result_list, paginator, page, name
 
 def category_hot_books(pk=None):
 	values = ('id', 'name', 'author')
@@ -165,3 +181,12 @@ def process_index_items(page=1):
 			page,
 			hot_books,
 			)
+
+def get_search_result(keyword, page):
+	page_size = settings.SEARCH_PER_PAGE
+	object_list = Book.objects.filter(Q(name__icontains=keyword)|Q(author__icontains=keyword))
+	result_list, paginator, page = paginate_util(object_list,
+												 page,
+												 page_size
+												 )
+	return result_list, paginator, page

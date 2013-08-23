@@ -3,11 +3,16 @@
 		<a href="http://www.biquge.com/"></a>
 	</div>
 	<div class="header_search">
-		<form name="form" action="http://www.biquge.com/modules/article/search.php" id="sform" target="_blank"><input autocomplete="off" value="" name="searchkey" class="search" id="wd" baidusug="2" type="text"><button id="sss" type="submit"></button></form>
+		<form name="form" action="http://{{ domain }}" id="sform" target="_blank">
+		<input autocomplete="off" value="" name="keyword" class="search" id="wd" baidusug="2" type="text">
+		<button id="sss" type="submit">搜索</button>
+		</form>
 	</div>
+	{% comment %}
 	<div class="userpanel">&nbsp;
 		<font color="red"></font>
 		<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=biqugecom@%67%6D%61%69%6C%2E%63%6F%6D"> </a>
 		<a href="http://www.biquge.com/newmessage.php?tosys=1"></a><br><a target="_blank" href="http://www.biquge.com/ziti.html"><b></b></a>&nbsp;&nbsp;
 		<a target="_blank" href="http://www.biquge.com/jifen.html"></a>&nbsp;&nbsp;<a target="_blank" href="http://www.biquge.com/dns.html"></a></div>
+	{% endcomment %}
 </div>

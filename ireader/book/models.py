@@ -150,6 +150,8 @@ class Book(models.Model):
 	has_part = models.BooleanField(default=False)
 	cover = models.CharField(max_length=15, blank=True)
 	intro = models.TextField(blank=True)
+	is_active = models.BooleanField(default=False)
+
 	class Meta:
 		db_table = 'book'
 		verbose_name = u'书'
@@ -233,9 +235,18 @@ class FeatureBook(models.Model):
 		verbose_name = u'推荐书籍'
 		verbose_name_plural = u'推荐书籍'
 		db_table = 'featurebook'
-		
-	
 
+class QueryTerm(models.Model):
+	ip = models.IntegerField()
+	term = models.CharField(max_length=50)
+	created_date = models.DateTimeField(auto_now=True)
+
+	class Meta:
+		db_table = 'queryterm'
+		verbose_name =  u'查询词汇'
+		verbose_name_plural = u'查询词汇'
+		ordering = ['-created_date']
+		
 def create_partition_models(base, partition):
 	import sys
 	_current_module = sys.modules[__name__]
