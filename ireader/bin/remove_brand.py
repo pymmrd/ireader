@@ -12,8 +12,6 @@ repl1 = u'40亿小说'
 regx1 = re.compile(r'[wW]{3}.[qQuUaAbBeEnN]{7}.[cCoOmM]{3}')
 regx2 = re.compile(r'%s' % brand)
 
-brand_list = [regx1, regx2]
-
 def get_random_domain():
 	ww = 'wW' * 10
 	www = ''.join(random.sample(ww, 3))
