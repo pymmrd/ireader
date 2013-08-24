@@ -34,10 +34,10 @@ def handler_show_category(pk, page=1):
 	# category feature books
 	feature_list = category_feature_books(pk)
 	# category books
-	object_list, paginator, page = category_books(pk, page)
+	object_list, paginator, page, name = category_books(pk, page)
 	# hot books 
 	hot_list = category_hot_books(pk)
-	return feature_list, object_list, hot_list
+	return feature_list, object_list, hot_list, paginator, name
 
 def handler_show_detail(partition, pk):
 	(item,
@@ -46,3 +46,8 @@ def handler_show_detail(partition, pk):
 		next_to, 
 		previous_to) = get_bookitem(partition, pk)
 	return item, has_next, has_previous, next_to, previous_to
+
+def handler_search(keyword, page):
+	result_list, paginator, page = get_search_result(keyword, page)
+	return result_list, paginator, page
+	

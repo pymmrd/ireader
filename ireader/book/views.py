@@ -9,6 +9,7 @@ from django.shortcuts import render_to_response
 #from project
 from book.handlers import handler_index, handler_show_content, \
 						handler_show_detail, handler_show_category
+from commons.smart_convert import convert_int
 
 def index(request, tmpl='index.html'):
 	(feature_list, magic_books,
@@ -36,10 +37,7 @@ def index(request, tmpl='index.html'):
 	}))
 
 def show_content(request, pk, tmpl="book/content.html"):
-	try:
-		pk = int(pk)
-	except (TypeError, ValueError):
-		pk = 1
+	pk = convert_int(pk, exct=True)
 	book, object_list, partition = handler_show_content(pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
 		'book': book,
@@ -48,11 +46,8 @@ def show_content(request, pk, tmpl="book/content.html"):
 	}))
 
 def show_detail(request, partition, pk, tmpl="book/detail.html"):
-	try:
-		partition = int(partition)
-		pk = int(pk)
-	except (TypeError, ValueError):
-		raise Http404
+	pk = convert_int(pk, exct=True)
+	partition = convert_int(partition, exct=True)
 	(item, 
 		has_next, 
 		has_previous, 
@@ -67,14 +62,29 @@ def show_detail(request, partition, pk, tmpl="book/detail.html"):
 		'has_previous': has_previous,
 	}))
 
-def show_category(request, pk, tmpl="book/category.html"):
-	try:
-		pk = int(pk)
-	except (TypeError, ValueError):
-		pk = 1
-	feature_list, object_list, hot_list = handler_show_category(pk, page=1)
+def show_category(request, pk, page=1, tmpl="book/category.html"):
+	pk = convert_int(pk)
+	page = convert_int(page) 
+	feature_list, object_list, hot_list, paginator, name = handler_show_category(pk, page)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
 		'hot_list': hot_list,
 		'feature_list': feature_list,
 		'object_list': object_list, 
+		'paginator': paginator,
+		'name': name,
+
 	}))
+
+def search(request, tmpl="book/search.html"):
+	result_list = []
+	paginaotr = None
+	keyword = request.GET.get('keyword', '')
+	page = request,GET.get('page', 1)
+	page = convert_int(page)
+	if keyword:
+		result_list, paginator, page = handler_search(keyword, page)
+	return render_to_response(tmpl, context_instance=RequestContext(request, {
+		'result_list': result_list,
+		'paginator': paginator
+	}))
+	
