@@ -40,7 +40,7 @@ def show_content(request, pk, tmpl="book/content.html"):
 	pk = convert_int(pk, exct=True)
 	book, object_list, partition = handler_show_content(pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
-		'book': book,
+		'object': book,
 		'object_list': object_list,
 		'partition': partition,
 	}))

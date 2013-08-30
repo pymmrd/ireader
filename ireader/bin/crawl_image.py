@@ -21,7 +21,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
 
 from book.models import Book, BookItem, BookPart, Category
 
-URL = "'http://search.17k.com/search.xhtml?c.st=0&c.q=%s"
+URL = "http://search.17k.com/search.xhtml?c.st=0&c.q=%s"
 
 def get_content(url):
 	content = ''
@@ -31,7 +31,7 @@ def get_content(url):
 		"Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.17) Gecko/20110422 Ubuntu/10.04 (lucid) Firefox/3.6.17"
 	]
 	headers = {'User-Agent':random.choice(user_agents)}
-	req = urllib2.Request(url=url, headers=headers)
+	req = urllib2.Request(url=url, headers=headers,)
 	try:
 		content = urllib2.urlopen(req).read()
 	except urllib2.HTTPError, e:
@@ -91,4 +91,5 @@ def crawl_image():
 						continue
 					else:
 						#author
+
 						

@@ -13,14 +13,14 @@
 			{% with object=magic_books.0 %}
 			<div class="top">
 				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
 			{% endwith %}
 			<ul>
 				{% for object in magic_books %}
 					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -30,14 +30,14 @@
 			{% with object=sord_books.0 %}
 			<div class="top">
 				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
 			{% endwith %}
 			<ul>
 				{% for object in sord_books %}
 					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+				<li><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -47,14 +47,14 @@
 			{% with object=dushi_books.0 %}
 			<div class="top">
 				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
 			{% endwith %}
 			<ul>
 				{% for object in dushi_books %}
 					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -67,14 +67,14 @@
 			{% with object=lover_books.0 %}
 			<div class="top">
 				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+				<dl><dt><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
 			{% endwith %}
 			<ul>
 				{% for object in lover_books %}
 					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+				<li><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -84,14 +84,14 @@
 			{% with object=time_travel_books.0 %}
 			<div class="top">
 				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+				<dl><dt><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
 			{% endwith %}
 			<ul>
 				{% for object in time_travel_books %}
 					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -101,14 +101,14 @@
 			{% with object=game_books.0 %}
 			<div class="top">
 				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
 			{% endwith %}
 			<ul>
 				{% for object in game_books %}
 					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -121,14 +121,14 @@
 			{% with object=mnst_books.0 %}
 			<div class="top">
 				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+				<dl><dt><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
 			{% endwith %}
 			<ul>
 				{% for object in mnst_books %}
 					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -138,14 +138,14 @@
 			{% with object=scnc_books.0 %}
 			<div class="top">
 				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
 			{% endwith %}
 			<ul>
 				{% for object in scnc_books %}
 					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+				<li><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -155,14 +155,14 @@
 			{% with object=other_books.0 %}
 			<div class="top">
 				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
 				<div class="clear"></div>
 			</div>
 			{% endwith %}
 			<ul>
 				{% for object in other_books %}
 					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-detail object.book__id|get_partition object.book__id %}">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
 					{% endif %}
 				{% endfor %}
 			</ul>
@@ -173,13 +173,14 @@
 		<div class="l">
 			<h2>全站小说列表</h2>
 			<ul>
-				<li><span class="s2">书名</span><span class="s2">作者</span><span class="s2">更新时间</span><span class="s2">状态</span></li>
+				<li><span class="s2">分类</span><span class="s2">书名</span><span class="s2">作者</span><span class="s2">更新时间</span><span class="s2">状态</span></li>
 				{% for object in result_list %}
 				<li>
+					<span class="s2"><a href="{% url show-category object.category__id %}">{{ object.category__name }}</a></span>
 					<span class="s2"><a href="{% url show-content object.id %}" target="_blank">《{{ object.name }}》</a></span>
 					<span class="s2">{{ object.author }}</span>
 					<span class="s2">{{ object.update_date|date:"Y-m-d" }}</span>
-					<span class="s2">{% if object.status == 0 %}连载{% else %}完结{% endif %}</span>
+					<span class="s2">{% if object.status == 1 %}连载{% else %}完结{% endif %}</span>
 				</li>
 				{% endfor %}
 			</ul>
