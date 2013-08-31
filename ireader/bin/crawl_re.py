@@ -100,18 +100,12 @@ def get_book():
 		raws = set(map(lambda x : x.rsplit('/', 1)[-1], items))
 		reserved = raws.difference(crawled)
 		if reserved:
-			print name, reserved
-			#with open('new.txt', 'a') as f:
-			#	f.write('%s%s' % (name, os.linesep))
-			"""
 			s = '%s%s' % (book.name, book.author) 
 			key = md5(s.encode('utf-8')).hexdigest()
 			yield (book.name, book.author, reserved)
-			"""
 
 def get_task():
 	adict = {}
-	queue = Queue()
 	with open('full.json', 'r') as f:
 		adict = json.load(f)
 	for name, author,  reserved in get_book():
@@ -121,8 +115,13 @@ def get_task():
 		for pk in reserved:
 			suffix = '%s.html' % pk  
 			url = urlparse.urljoin(prefix, suffix) 
-			queue.put((name, url, pk))
-	return queue
+			try:
+				save_detail(name, url, pk)
+			except:
+				with open('miss.txt', 'a') as f:
+					f.write('%s%s' % (url, os.linesep))
+			#queue.put((name, url, pk))
+	#return queue
 
 def worker():
 	queue = get_task()
@@ -135,10 +134,10 @@ def worker():
 			save_detail(name, url, pk)
 
 if __name__ == "__main__":
-	get_book()
 	"""
 	pool = Pool(7)
 	for x in range(7):
 		pool.spawn(worker())
 	pool.join()
 	"""
+	get_task()

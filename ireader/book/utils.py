@@ -39,7 +39,7 @@ def category_books(pk, page=1):
 	name = CATEGORY_NAME.get(pk, u'玄幻') 
 	page_size = settings.CATEGORY_BOOKS_PER_PAGE
 	values = ('id',  'name', 'update_date', 'author', 'status')
-	object_list = Book.objects.values(
+	object_list = Book.actives.values(
 				      *values
 				  ).filter(
 				      category__pk=pk,
@@ -51,15 +51,19 @@ def category_books(pk, page=1):
 	return result_list, paginator, page, name
 
 def category_hot_books(pk=None):
+	object_list = []
 	values = ('id', 'name', 'author')
 	page_size = settings.CATEGORY_BOOKS_PER_PAGE + 1
-	object_list = Book.objects.values_list(
+	book_list = Book.actives.values_list(
 					  'id', flat=True
 				  )
 	if pk:
-		object_list = object_list.filter(category__pk=pk)
-	object_ids = random.sample(object_list, page_size) 
-	object_list = Book.objects.values(*values).filter(pk__in=object_ids)
+		book_list = book_list.filter(category__pk=pk)
+	count = book_list.count()
+	if count:
+		page_size = page_size if count > page_size else count
+		book_ids = random.sample(book_list, page_size) 
+		object_list = Book.actives.values(*values).filter(pk__in=book_ids)
 	return object_list
 
 def get_single_book(pk):
@@ -148,7 +152,7 @@ def get_index_feature_books(page):
 
 def process_index_items(page=1):
 	page_size = 24
-	values = ('id',  'name', 'update_date', 'author', 'status')
+	values = ('id',  'name', 'update_date', 'author', 'status', 'category__name', 'category__id')
 	#index feature
 	feature_list = get_index_feature_books(FeatureBook.INDEX)
 	magic_books = get_index_feature_books(FeatureBook.INDEX_MAGIC)
@@ -160,7 +164,7 @@ def process_index_items(page=1):
 	mnst_books = get_index_feature_books(FeatureBook.INDEX_MONSTER)
 	scnc_books = get_index_feature_books(FeatureBook.INDEX_SCIENCE)
 	other_books = get_index_feature_books(FeatureBook.INDEX_OTHER)
-	books = Book.objects.values(*values).all().order_by('-update_date')
+	books = Book.actives.values(*values).all().order_by('-update_date')
 	hot_books = category_hot_books()
 	result_list, paginator, page = paginate_util(books,
 												 page,

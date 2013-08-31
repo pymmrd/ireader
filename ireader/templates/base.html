@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html>
-	<head>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->                                                              
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>{# 42亿小说网，免费小说，免费玄幻小说，免费武侠小说，免费言情小说，免费都市小说，免费穿越小说，免费网游小说 #}</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="keywords" content="">
 		<meta name="description" content="">
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/40ye.css">
-		<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/40yestyle.css">
+		<meta name="viewport" content="width=device-width">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="{{ STATIC_URL}}/dist/styles/28410554.base.css">
+		<script src="{{ STATIC_URL }}dist/scripts/vendor/f7f27360.modernizr.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -17,6 +23,24 @@
 		</div>
 		{% block footer %}
 		{% include "tags/footer.html" %}
+		{% endblock %}
+		
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+		<script>
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+		ga('create','UA-XXXXX-X');ga('send','pageview');
+		</script>
+
+		{% block mainjs %}
+		<script data-main="{{ STATIC_URL }}dist/scripts/fa8c7ec7.main" src="{{ STATIC_URL }}app/bower_components/requirejs/require.js"></script>
 		{% endblock %}
 	</body>
 </html>

@@ -4,8 +4,7 @@
 <div class="content_read">
 	<div class="box_con">
 		<div class="con_top">
-			<div id="page_set">
-			</div>
+			<div id="page_set"></div>
 			<a href="http://{{ domain }}/">42亿小说</a> &gt; <a href="http://{{ domain }}{% url show-category pk=object.book__category__id %}">{{ object.book__category__name }}</a>  &gt; <a href="http://{{ domain }}{% url show-content object.book__id %}">{{ object.book__title }}</a> &gt; {{ object.name  }}
 		</div>
 		<div class="bookname">
@@ -16,8 +15,7 @@
 				{% endif %}
 				&nbsp;&nbsp;<a href="{% url show-content object.book__id %}" title="{{ object.book__name }}">目录</a>&nbsp;&nbsp;{% if has_next %}<a href="http://{{ domain }}{% url show-detail partition next_to %}">下一章</a>{% endif %} 
 			</div>
-			<div class="lm">&nbsp;热门推荐：
-			</div>
+			<div class="lm">&nbsp;热门推荐：</div>
 		</div>
 		<div id="content">{% include object.content %}</div>
 		<div class="bottem2">

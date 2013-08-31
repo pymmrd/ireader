@@ -128,6 +128,10 @@ class Category(models.Model):
 	def __unicode__(self):
 		return self.path()
 
+class ActiveManager(models.Manager):
+	def get_query_set(self, *args, **kwargs):
+		return super(self.__class__, self).get_query_set(*args, **kwargs).filter(is_active=True)
+
 class Book(models.Model):
 	FINISHED = 1
 	UNFINISHED = 2
@@ -151,6 +155,8 @@ class Book(models.Model):
 	cover = models.CharField(max_length=15, blank=True)
 	intro = models.TextField(blank=True)
 	is_active = models.BooleanField(default=False)
+	objects = models.Manager()
+	actives = ActiveManager()
 
 	class Meta:
 		db_table = 'book'
