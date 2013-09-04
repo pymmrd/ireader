@@ -56,10 +56,10 @@ def get_content(parse_target):
 			content = urllib2.urlopen(req).read()
 		except urllib2.HTTPError, e:
 			if e.code == 503 : 
-				time.sleep(30)
+				time.sleep(1)
 				content = tryAgain(req, 0)
 		except :
-			time.sleep(30)
+			time.sleep(1)
 			content = tryAgain(req, 0)
 		if content:
 			parse_target.send((title, pk, url, content))
@@ -71,7 +71,7 @@ def tryAgain(url, retries=0):
 	content = ''
 	if retries < 4:
 		try:
-			time.sleep(30)
+			time.sleep(1)
 			content = urllib2.urlopen(req).read()
 		except :
 			retries += 1
@@ -85,13 +85,12 @@ def parse_detail(save_target):
 		dom = html.fromstring(content)
 		ct = dom.xpath("//div[@id='content']")[0]
 		ct_str = html.tostring(ct, encoding='utf-8')
-		#regx = re.compile('<div\sid="content">(?P<detail>.+)</div>')
+		#regx = re.compile('<div\sid="content".+>?(?P<detail>.+)</div>')
 		regx = re.compile('<div.+?>')
 		detail = regx.sub('', ct_str)
 		#detail = regx.match(ct_str)
-		if detail is not None:
+		if detail:
 			detail = detail.replace('</div>', '')
-			#detail = detail.group('detail')
 			save_target.send((title, pk, detail))
 		else:
 			with open('miss.txt', 'a') as f:
@@ -102,30 +101,26 @@ def save_detail():
 	while True:
 		title, pk, detail = (yield )
 		sub_path = os.path.join(BOOK_PATH, title)
+		print sub_path
 		if not os.path.exists(sub_path):
 			os.makedirs(sub_path)
-		book_url = '%s/%s' % (title, pk) 
 		book_path = os.path.join(sub_path, str(pk))
 		with open(book_path, 'w') as f:
 			f.write(detail)
 
-def get_book(start, end, filename, task_target):
+def get_book(start, end, cat_pk, task_target):
 	"""
 	target is 'get_task'
 	"""
-	names = (linecache.getline(filename, n) for n in range(start, end+1))
-	for name in names:
-		name = name.strip()
-		path = os.path.join(BOOK_PATH, name)
-		crawled = set(os.listdir(path))
-		book = Book.objects.get(name=name)
-		pk = book.pk
-		cls = get_bookitem_model(pk)
-		items = cls.objects.values_list('content', flat=True).filter(book__id=pk).order_by('pk')
-		raws = set(map(lambda x : x.rsplit('/', 1)[-1], items))
-		reserved = raws.difference(crawled)
-		if reserved:
-			task_target.send((book.name, book.author, reserved))
+	for book in Book.objects.filter(category__id=int(cat_pk)).order_by('pk')[start:end]:
+		path = os.path.join(BOOK_PATH, book.name).encode('utf-8')
+		if not os.path.exists(path):
+			pk = book.pk
+			cls = get_bookitem_model(pk)
+			items = cls.objects.values_list('content', flat=True).filter(book__id=pk).order_by('pk')
+			raws = set(map(lambda x : x.rsplit('/', 1)[-1], items))
+			if raws:
+				task_target.send((book.name, book.author, raws))
 
 @coroutine
 def get_task(content_target):
@@ -144,7 +139,6 @@ if __name__ == "__main__":
 	import sys
 	start = int(sys.argv[1])
 	end = int(sys.argv[2])
-	filename = sys.argv[3]
-	pk = sys.argv[4] 
-	BOOK_PATH = '/home/zg163/data/book%s' % pk
+	filename = (sys.argv[3])
+	BOOK_PATH = '/home/zg163/data/book%s' % filename
 	get_book(start, end, filename, get_task(get_content(parse_detail(save_detail()))))

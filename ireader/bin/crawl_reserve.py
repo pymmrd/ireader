@@ -22,8 +22,6 @@ abspath = os.path.abspath
 dirname = os.path.dirname
 CURRENT_PATH = abspath(dirname(__file__))
 PROJECT_PATH = abspath(dirname(CURRENT_PATH))
-BOOK_PATH = '/home/zg163/data/book1'
-DEST_PATH = '/home/zg163/data/book2'
 
 sys.path.append(PROJECT_PATH)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
@@ -89,7 +87,8 @@ def save_detail(title, url, pk):
 	with open(book_path, 'w') as f:
 		f.write(detail)
 
-def get_book():
+def get_book(pk):
+	d = 'new%s.txt' % pk
 	for name in os.listdir(BOOK_PATH):
 		path = os.path.join(BOOK_PATH, name)
 		crawled = set(os.listdir(path))
@@ -100,9 +99,8 @@ def get_book():
 		raws = set(map(lambda x : x.rsplit('/', 1)[-1], items))
 		reserved = raws.difference(crawled)
 		if reserved:
-			print name, reserved
-			#with open('new.txt', 'a') as f:
-			#	f.write('%s%s' % (name, os.linesep))
+			with open(d, 'a') as f:
+				f.write('%s%s' % (name, os.linesep))
 			"""
 			s = '%s%s' % (book.name, book.author) 
 			key = md5(s.encode('utf-8')).hexdigest()
@@ -135,7 +133,10 @@ def worker():
 			save_detail(name, url, pk)
 
 if __name__ == "__main__":
-	get_book()
+	import sys
+	pk = sys.argv[1]
+	BOOK_PATH = '/home/zg163/data/book%s' % pk
+	get_book(pk)
 	"""
 	pool = Pool(7)
 	for x in range(7):
