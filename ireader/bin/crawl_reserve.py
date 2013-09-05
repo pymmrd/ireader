@@ -99,8 +99,9 @@ def get_book(pk):
 		raws = set(map(lambda x : x.rsplit('/', 1)[-1], items))
 		reserved = raws.difference(crawled)
 		if reserved:
-			with open(d, 'a') as f:
-				f.write('%s%s' % (name, os.linesep))
+			print name, reserved
+			#with open(d, 'a') as f:
+			#	f.write('%s%s' % (name, os.linesep))
 			"""
 			s = '%s%s' % (book.name, book.author) 
 			key = md5(s.encode('utf-8')).hexdigest()

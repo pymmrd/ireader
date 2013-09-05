@@ -1,11 +1,11 @@
 # -*- coding:utf-8 -*-
 
-import gevent
-import gevent.monkey
-gevent.monkey.patch_all()
-import re
-import urllib2
 import os
+import re
+import sys
+import json
+import random
+import urllib2
 from hashlib import md5
 from lxml import html
 
@@ -68,11 +68,20 @@ def get_link():
 		yield (name, key, link)
 
 def get_item(name, key, link): 
+	img_path = ''
 	content = get_content(link)
 	dom = html.fromstring(content)
-
-
-
+	status = dom.xpath("//div[@id='content']/table/tr[1]/td/table/tr[3]/td[2]/text()")[0]
+	img = dom.xpath("//div[@id='content']/table/tr[3]/td/table/tr[1]/td[2]/a/img")[0]
+	status = status.split(u'：')[-1].strip()
+	if status == u'已全本':
+		status = True
+	img_link = img.attrib['src']
+	img_name = img_link.rsplit('/', 1)[-1]
+	default_name = 'nocover.jpg'
+	if img_name != default_name:
+		img_path = save_image(img_link, key)
+	return status, img_path
 	
 def save_image(url, key, sub_dir='img2'):
 	default_ext = '.ext'
@@ -89,3 +98,24 @@ def save_image(url, key, sub_dir='img2'):
 		with open(file_path, 'w') as f:
 			f.write(content)
 	return '%s/%s' % (sub_dir, filename)
+
+def crawl():
+	bdict = {}
+	for book in Book.objects.all():
+		try:
+			name = book.name
+			author = book.author
+			raw = '%s%s' % (name, author)
+			raw = raw.encode('utf-8')
+			key = md5(raw).hexdigest()
+			link = adict.get(key, '')
+			status, img_path = get_item(name, key, link)
+		except:
+			print link
+		else:
+			bdict[key] = [ status, img_path]
+	with open('status.json', 'a') as f:
+		json.dump(bdict, f)
+
+if __name__ == "__main__":
+	crawl()

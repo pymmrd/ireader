@@ -66,6 +66,7 @@ def preview_check(d):
 if __name__ == "__main__":
 	import sys
 	SUB_PATH = sys.argv[1]
+	"""
 	for d in os.listdir(SUB_PATH):
 		preview_check(d)
 	"""
@@ -76,5 +77,4 @@ if __name__ == "__main__":
 	pool.wait()
 	#path = '/home/zg163/data/book1'
 	#preview_check(path)
-	"""
 				

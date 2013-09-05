@@ -2,10 +2,12 @@
 
 import os
 import time
+import random
 import sys
 import json
 import glob
 import threadpool
+from hashlib import md5
 from datetime import datetime
 
 pathjoin = os.path.join
@@ -13,7 +15,7 @@ abspath = os.path.abspath
 dirname = os.path.dirname
 CURRENT_PATH = abspath(dirname(__file__))
 PROJECT_PATH = abspath(dirname(CURRENT_PATH))
-DATA_PATTERN = "/var/www/wwwroot/ireader/pybook/detail/*.json"
+DATA_PATTERN = "/home/zg163/djcode/ireader/pybook/detail/*.json"
 
 sys.path.append(PROJECT_PATH)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
@@ -21,31 +23,24 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
 from book.models import Book, BookItem, BookPart, Category
 from book.klass import get_bookitem_model
 
-CATEGORY_MAP = {
-    'magic': 1,
-    'sord': 2,
-    'dushi': 3,
-    'lover': 4,
-    'time_travel': 5,
-    'game': 6,
-    'monster': 7,
-    'science': 8,
-    'other': 9,
+BOOK_DIR_MAP = {
+	1: 'book1',
+	2: 'book2',
+	3: 'book3',
+	4: 'book4',
+	5: 'book5',
+	6: 'book6',
+	7: 'book7',
+	8: 'book8',
+	9: 'book9',
 }
 
-BOOK_DIR = 'book1'
-
-def get_category(data_path):
-    category = None
-    file_name = data_path.rsplit('/', 1)[-1] 
-    prefix_name = file_name.rsplit('_', 2)[0]
-    try:
-        index = CATEGORY_MAP.get(prefix_name)
-    except KeyError:
-        print 'error:', data_path
-    else:
-        category = CATEGORY_LIST[index-1] 
-    return category
+def get_bookdir_partition(name, author, prefix='book1', base=10):
+	full = 'a'
+	d = md5('%s%s' % (name.encode('utf-8'), author.encode("utf-8"))).hexdigest()
+	partition = int(d[-1], 16) % base
+	partition = '%s%s%s' % (prefix, full, partition) 
+	return partition
 
 def get_data(data_path):
     datas = []
@@ -56,62 +51,66 @@ def get_data(data_path):
             print "jsonerror", data_path
     return datas
     
-def process_has_part(content, cls, book):
-    #sort value
-    sort_ref = {}
-    tmp_dict = {}
-    result = []
-    for k in content:
-        if k != 'A':
-            sort_value = sorted(content[k], key=lambda a:a['id']) 
-            if sort_value:
-                first = sort_value[0].get('id')
-                sort_ref[first] = k
-                tmp_dict[k] = sort_value
-    keys = [sort_ref[i] for i in sorted(sort_ref.keys())]
-    for k in keys:
-        result.append({k: tmp_dict[k]}) 
-    for elem in result:
-        count = 0
-        for key, value in elem.iteritems():
-            if count > 0 and count % 10  == 0:
-                time.sleep(0.1)
-            if key != "A":
-                bp = BookPart()
-                bp.book = book
-                bp.name = key
-                bp.save()
-                for item in value:
-                    ins = cls()
-                    book_url = item.get('book_url')
-                    ct = '%s/%s' % (BOOK_DIR, book_url)
-                    name = item.get('title')
-                    if name is None:
-                        name = ''
-                    ins.content = ct
-                    ins.name = name
-                    ins.book = book
-                    ins.part = bp
-                    ins.save()
-                    count += 1
+def process_has_part(content, cls, book, sleep):
+	#sort value
+	sort_ref = {}
+	tmp_dict = {}
+	result = []
+	for k in content:
+		if k != 'A':
+			sort_value = sorted(content[k], key=lambda a:a['id']) 
+			if sort_value:
+				first = sort_value[0].get('id')
+				sort_ref[first] = k
+				tmp_dict[k] = sort_value
+	keys = [sort_ref[i] for i in sorted(sort_ref.keys())]
+	for k in keys:
+		result.append({k: tmp_dict[k]}) 
+	book_dir = BOOK_DIR_MAP.get(book.category.pk)
+	if book_dir == 'book1':
+		book_dir = get_bookdir_partition(book.name, book.author) 
+	for elem in result:
+		count = 0
+		for key, value in elem.iteritems():
+			if key != "A":
+				bp = BookPart()
+				bp.book = book
+				bp.name = key
+				bp.save()
+				for item in value:
+					ins = cls()
+					book_url = item.get('book_url')
+					ct = '%s/%s' % (book_dir, book_url)
+					name = item.get('title')
+					if name is None:
+						name = ''
+					ins.content = ct
+					ins.name = name
+					ins.book = book
+					ins.part = bp
+					ins.save()
+					time.sleep(sleep)
+					count += 1
 
-def process_null_part(content, cls, book):
-    chapters = content.get('A')
-    count = 0
-    for item in sorted(chapters, key=lambda a:a['id']):
-        if count > 0 and count % 10 == 0:
-            time.sleep(0.1)
-        ins = cls()
-        book_url = item.get('book_url')
-        ct = '%s/%s' % (BOOK_DIR, book_url)
-        name = item.get('title')
-        if name is None:
-            name = ''
-        ins.content = ct
-        ins.book = book
-        ins.name = name
-        ins.save()
-        count += 1
+def process_null_part(content, cls, book, sleep):
+	count = 0
+	chapters = content.get('A')
+	book_dir = BOOK_DIR_MAP.get(book.category.pk)
+	if book_dir == 'book1':
+		book_dir = get_bookdir_partition(book.name, book.author) 
+	for item in sorted(chapters, key=lambda a:a['id']):
+		ins = cls()
+		book_url = item.get('book_url')
+		ct = '%s/%s' % (book_dir, book_url)
+		name = item.get('title')
+		if name is None:
+			name = ''
+		ins.content = ct
+		ins.book = book
+		ins.name = name
+		ins.save()
+		time.sleep(sleep)
+		count += 1
 
 def load_full_detail(data_path):
     has_part = False 
@@ -131,21 +130,53 @@ def load_full_detail(data_path):
     book.has_part = has_part
     book.save()
 
+def load_signle_detail(pk, sleep):
+	has_part = False
+	data_dir = "/home/zg163/djcode/ireader/pybook/detail/"
+	book = Book.objects.get(pk=pk)
+	cls = get_bookitem_model(pk)
+	data_path = os.path.join(data_dir, '%s.json' % book.name.encode('utf-8'))
+	item = get_data(data_path) 
+	intro = item.get('intro', '')
+	content = item.get('content', '')
+	book.intro = intro
+	keys = content.keys()
+	if len(keys) > 1:
+		has_part = True
+		process_has_part(content, cls, book, sleep)
+	else:
+		process_null_part(content, cls, book, sleep)
+	book.has_part = has_part
+	book.save()
+
 if __name__ == "__main__":
-    from django.db import connection
-    for item in glob.iglob(DATA_PATTERN):
-        try:
-            load_full_detail(item)
-        except:
-            print item
-        else:
-            time.sleep(3)
-    #import sys
-    #load_full_detail(sys.argv[1])
-    #pool = threadpool.ThreadPool(10)
-    #requests = threadpool.makeRequests(load_full_detail, glob.iglob(DATA_PATTERN))
-    #@for req in requests:
-     #   pool.putRequest(req)
-    #pool.wait()
-    #import pprint
-    #pprint.pprint(connection.queries)
+	import linecache
+	from django.db import connection
+	start = int(sys.argv[1])
+	end = int(sys.argv[2])
+	pk = sys.argv[3]
+	sleep = float(sys.argv[4])
+	filename = '%s.part' % pk
+	names = (linecache.getline(filename, n) for n in range(start, end))
+	for book_id in names:
+		book_id = int(book_id.strip())
+		load_signle_detail(book_id, sleep)
+	
+	"""
+	for item in glob.iglob(DATA_PATTERN):
+		try:
+			load_full_detail(item)
+		except:
+			print item
+		else:
+			time.sleep(3)
+	"""
+	#import sys
+	#load_full_detail(sys.argv[1])
+	#pool = threadpool.ThreadPool(20)
+	#requests = threadpool.makeRequests(load_full_detail, glob.iglob(DATA_PATTERN))
+	#for req in requests:
+	#	pool.putRequest(req)
+	#pool.wait()
+	#import pprint
+	#pprint.pprint(connection.queries)
