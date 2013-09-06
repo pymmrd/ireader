@@ -39,7 +39,7 @@ def category_books(pk, page=1):
 	name = CATEGORY_NAME.get(pk, u'玄幻') 
 	page_size = settings.CATEGORY_BOOKS_PER_PAGE
 	values = ('id',  'name', 'update_date', 'author', 'status')
-	object_list = Book.actives.values(
+	object_list = Book.objects.values(
 				      *values
 				  ).filter(
 				      category__pk=pk,
@@ -54,7 +54,7 @@ def category_hot_books(pk=None):
 	object_list = []
 	values = ('id', 'name', 'author')
 	page_size = settings.CATEGORY_BOOKS_PER_PAGE + 1
-	book_list = Book.actives.values_list(
+	book_list = Book.objects.values_list(
 					  'id', flat=True
 				  )
 	if pk:
@@ -63,7 +63,7 @@ def category_hot_books(pk=None):
 	if count:
 		page_size = page_size if count > page_size else count
 		book_ids = random.sample(book_list, page_size) 
-		object_list = Book.actives.values(*values).filter(pk__in=book_ids)
+		object_list = Book.objects.values(*values).filter(pk__in=book_ids)
 	return object_list
 
 def get_single_book(pk):
@@ -164,7 +164,7 @@ def process_index_items(page=1):
 	mnst_books = get_index_feature_books(FeatureBook.INDEX_MONSTER)
 	scnc_books = get_index_feature_books(FeatureBook.INDEX_SCIENCE)
 	other_books = get_index_feature_books(FeatureBook.INDEX_OTHER)
-	books = Book.actives.values(*values).all().order_by('-update_date')
+	books = Book.objects.values(*values).all().order_by('-update_date')
 	hot_books = category_hot_books()
 	result_list, paginator, page = paginate_util(books,
 												 page,

@@ -142,11 +142,7 @@ class Book(models.Model):
 	word_num = models.CharField(max_length=15)
 	created_date = models.DateTimeField(auto_now=True)
 	update_date = models.DateTimeField(auto_now=True)
-	status = models.BooleanField(
-									choices=BOOK_STATUS, 
-									default=UNFINISHED,
-									db_index=True,
-								)
+	status = models.BooleanField(default=False)
 	weight = models.IntegerField(default=0, db_index=True)
 	has_part = models.BooleanField(default=False)
 	cover = models.CharField(max_length=15, blank=True)
