@@ -1,31 +1,32 @@
 <div class="ywtop">
-	{% comment %}
-	<div class="ywtop_con">
-		<div class="ywtop_sethome">
-			<a href="http://www.biquge.com/zhuomian.php"></a>
-		</div>
-		<div class="ywtop_addfavorite">
-			<a href="javascript:window.external.addFavorite('http://www.biquge.com','%E7%AC%94%E8%B6%A3%E9%98%81_%E4%B9%A6%E5%8F%8B%E6%9C%80%E5%80%BC%E5%BE%97%E6%94%B6%E8%97%8F%E7%9A%84%E7%BD%91%E7%BB%9C%E5%B0%8F%E8%AF%B4%E9%98%85%E8%AF%BB%E7%BD%91')"></a>
-		</div>
-		<div class="nri">
-			<form name="frmlogin" id="frmlogin" method="post" action="/login.php?do=submit&amp;action=login&amp;usecookie=1&amp;jumpurl=" http:="" www.biquge.com="" &jumpreferer="1">
-				<div class="cc">
-					<div class="txt"></div>
-					<div class="inp"><input name="username" id="username" type="text"></div>
-				</div>
-				<div class="cc">
-					<div class="txt"></div>
-					<div class="inp"><input name="password" id="password" type="password"></div>
-				</div>
-				<div class="frii">
-					<input class="int" value=" " type="submit">
-				</div>
-				<div class="ccc">
-					<div class="txtt"><a href="http://www.biquge.com/getpass.php"></a></div>
-					<div class="txtt"><a href="http://www.biquge.com/register.php"></a></div>
-				</div>
-			</form>
-		</div>
-	</div>
-	{% endcomment %}
+<div class="ywtop_con">
+        <div class="ywtop_addfavorite"><a href="javascript:window.external.addFavorite('http://www.40ye.com','40页_书友最值得收藏的网络小说阅读网')">收藏40页小说网</a></div>
+        <div class="nri">
+            <form name="frmlogin" id="frmlogin" method="post" action=".">{% csrf_token %}
+                <div class="cc">
+                    <div class="txt">账号：</div>
+                    <div class="inp">
+                        <input name="username" id="username" type="text">
+                    </div>
+                </div>
+                <div class="cc">
+                    <div class="txt">密码：</div>
+                    <div class="inp">
+                        <input name="password" id="password" type="password">
+                    </div>
+                </div>
+                <div class="frii">
+                    <input class="int" value=" " type="submit">
+                </div>
+                <div class="ccc">
+                    <div class="txtt">
+                        <a href=".">忘记密码</a>
+                    </div>
+                    <div class="txtt">
+                        <a href=".">用户注册</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
 </div>
