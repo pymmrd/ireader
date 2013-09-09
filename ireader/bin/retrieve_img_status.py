@@ -22,9 +22,6 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
 from book.models import Book, BookItem, BookPart, Category
 from book.klass import get_bookitem_model
 
-adict = {}
-with open('fulltext.json', 'r') as f:
-	adict = json.load(f)
 
 def get_content(url):
 	content = ''
@@ -57,34 +54,28 @@ def tryAgain(url, retries=0):
 			content = tryAgain(url, retries)
 	return content
 
-def get_link():
-	for book in Book.objects.all():
-		name = book.name
-		author = book.author
-		raw = '%s%s' % (name, author)
-		raw = raw.encode('utf-8')
-		key = md5(raw).hexdigest()
-		link = adict.get(key, '')
-		yield (name, key, link)
-
-def get_item(name, key, link): 
+def get_item(name, author, link): 
 	img_path = ''
+	status = 0
 	content = get_content(link)
 	dom = html.fromstring(content)
 	status = dom.xpath("//div[@id='content']/table/tr[1]/td/table/tr[3]/td[2]/text()")[0]
 	img = dom.xpath("//div[@id='content']/table/tr[3]/td/table/tr[1]/td[2]/a/img")[0]
 	status = status.split(u'：')[-1].strip()
 	if status == u'已全本':
-		status = True
+		status = 1
 	img_link = img.attrib['src']
 	img_name = img_link.rsplit('/', 1)[-1]
 	default_name = 'nocover.jpg'
 	if img_name != default_name:
+		raw = '%s%s' % (name, author)
+		raw = raw.encode('utf-8')
+		key = md5(raw).hexdigest()
 		img_path = save_image(img_link, key)
 	return status, img_path
 	
 def save_image(url, key, sub_dir='img2'):
-	default_ext = '.ext'
+	default_ext = '.jpg'
 	p, filename = url.rsplit('/', 1)
 	name, ext = os.path.splitext(filename)
 	ext = ext if ext else default_ext 
@@ -99,23 +90,18 @@ def save_image(url, key, sub_dir='img2'):
 			f.write(content)
 	return '%s/%s' % (sub_dir, filename)
 
-def crawl():
-	bdict = {}
-	for book in Book.objects.all():
-		try:
-			name = book.name
-			author = book.author
-			raw = '%s%s' % (name, author)
-			raw = raw.encode('utf-8')
-			key = md5(raw).hexdigest()
-			link = adict.get(key, '')
-			status, img_path = get_item(name, key, link)
-		except:
-			print link
-		else:
-			bdict[key] = [ status, img_path]
-	with open('status.json', 'a') as f:
-		json.dump(bdict, f)
 
 if __name__ == "__main__":
-	crawl()
+	import linecache
+	start = int(sys.argv[1])
+	end = int(sys.argv[2])
+	filename = int(sys.argv[3])
+	result = int(sys.argv[4])
+	lines = [linecache.getline(filename, n)  for n in range(start, end)]
+	with open(result, 'a') as f:
+		for line in lines:
+			line = line.strip()
+			if line:
+				name, author, link = line.split('\t') 
+				status, img_path = get_item(name, author, link)
+				f.write('%s\t%s\t%s\t%s' % (name.encode('utf-8'), status, img_path))
