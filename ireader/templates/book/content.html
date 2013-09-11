@@ -19,7 +19,11 @@
 			</div>
 		</div>
 		<div id="sidebar"><div id="fmimg"><img alt="{{ object.name }}" src="{% if object.cover %}{{ object.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span></div></div> 
-		<div id="listtj">&nbsp;推荐阅读：<a target="_blank" href="/4_4416/"><b>末世盗贼行</b></a>、</div>
+		<div id="listtj">&nbsp;推荐阅读：
+		{% for item in recom_list %}
+		<a target="_blank" href="http://{{ domain}}{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}
+		{% endfor %}
+		</div>
 	</div>
 	<div class="box_con">
 		<div id="list">

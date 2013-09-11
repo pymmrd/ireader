@@ -27,8 +27,8 @@ def handler_index(page=1):
 			)
 
 def handler_show_content(pk):
-	book, object_list, partition = get_book_chapters(pk)
-	return book, object_list, partition
+	book, object_list, partition, recom_list = get_book_chapters(pk)
+	return book, object_list, partition, recom_list
 
 def handler_show_category(pk, page=1):
 	# category feature books
@@ -44,7 +44,8 @@ def handler_show_detail(partition, pk):
 		has_next, 
 		has_previous, 
 		next_to, 
-		previous_to) = get_bookitem(partition, pk)
+		previous_to,
+		recom_list) = get_bookitem(partition, pk)
 	return item, has_next, has_previous, next_to, previous_to
 
 def handler_search(keyword, page):

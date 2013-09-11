@@ -19,7 +19,10 @@
 				{% endif %}
 				&nbsp;&nbsp;<a href="{% url show-content object.book__id %}" title="{{ object.book__name }}">目录</a>&nbsp;&nbsp;{% if has_next %}<a href="http://{{ domain }}{% url show-detail partition next_to %}">下一章</a>{% endif %} 
 			</div>
-			<div class="lm">&nbsp;热门推荐：<a href="http://www.biquge.com/0_290/" target="_blank">最终进化</a>(完)、<a href="http://www.biquge.com/0_412/" target="_blank"><b>狂蟒之灾</b></a>、
+			<div class="lm">&nbsp;热门推荐：
+		{% for item in recom_list %}
+		<a target="_blank" href="http://{{ domain}}{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}
+		{% endfor %}
 			</div>
 		</div>
 		<div id="content">{% include object.content %}</div>
