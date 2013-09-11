@@ -46,7 +46,7 @@ def handler_show_detail(partition, pk):
 		next_to, 
 		previous_to,
 		recom_list) = get_bookitem(partition, pk)
-	return item, has_next, has_previous, next_to, previous_to
+	return item, has_next, has_previous, next_to, previous_to, recom_list
 
 def handler_search(keyword, page):
 	result_list, paginator, page = get_search_result(keyword, page)
