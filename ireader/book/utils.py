@@ -104,26 +104,14 @@ def get_next_and_previous(cls, book_id, pk):
 	previous_to = None
 	has_next = False
 	has_previous = False
-	chapters = list(cls.objects.values_list(
-						'id', flat=True
-					).filter(
-						book__id=book_id
-					).order_by('id')
-				)
-	length = len(chapters)
-	minus_len = length - 1
-	index = bisect.bisect_left(chapters, pk) 
-	if 0 < index < minus_len:
-		has_next = True
+	previous = cls.objects.values_list('id', flat=True).filter(book__pk=book_id, pk__lt=pk).order_by('-pk')
+	nexts = cls.objects.values_list('id', flat=True).filter(book__pk=book_id, pk__gt=pk).order_by('pk')
+	if previous:
 		has_previous = True
-	elif index == minus_len and length >= 2 :
-		has_previous = True
-	elif index == 0 and length >= 2:
+		previous_to = previous[0]
+	if nexts:
 		has_next = True
-	if has_next:
-		next_to = pk + 1
-	if has_previous:
-		previous_to = pk - 1
+		next_to = nexts[0]
 	return has_next, has_previous, next_to, previous_to
 
 def get_bookitem(partition, pk):
