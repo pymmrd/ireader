@@ -103,4 +103,4 @@ if __name__ == "__main__":
             if line:
                 name, author, link = line.split('\t') 
                 status, img_path = get_item(name, author, link)
-                f.write('%s\t%s\t%s\t%s' % (name, author, status, img_path))
+                f.write('%s\t%s\t%s\t%s%s' % (name, author, status, img_path, os.linesep))

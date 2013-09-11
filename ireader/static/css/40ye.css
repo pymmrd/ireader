@@ -169,3 +169,7 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 #footer,.footer{overflow:hidden;text-align:center;width:980px;margin:10px auto auto;}
 .footer_link{border-bottom:2px solid #88C6E5;height:25px;line-height:25px;overflow:hidden;width:92%;margin:5px auto;}
 .footer_cont p{color:#B2B2B2;line-height:20px;width:88%;}
+.pagination {float: right;}
+.pagination a, .pagination span {background: linear-gradient(#FFFFFF, #EFEFEF) repeat scroll 0 0 transparent;border-radius: 3px 3px 3px 3px;display: inline;float: left;font-size: 1.167em;line-height: 2em;margin-left: 0.25em;padding: 0 0.75em;position: relative;}
+.pagination .page {background-color: #FFFFFF;border: 1px solid #CCCCCC;text-decoration: none;}
+.pagination a:hover, .pagination span.current {border-color: #FF9966;color: #FF9966;}

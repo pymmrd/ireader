@@ -139,6 +139,6 @@ if __name__ == "__main__":
 	import sys
 	start = int(sys.argv[1])
 	end = int(sys.argv[2])
-	filename = (sys.argv[3])
+	filename = sys.argv[3]
 	BOOK_PATH = '/home/zg163/data/book%s' % filename
 	get_book(start, end, filename, get_task(get_content(parse_detail(save_detail()))))

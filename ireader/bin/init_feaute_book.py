@@ -43,7 +43,7 @@ def init_feature(pk):
 	# init category page
 	books = Book.objects.values_list(
 			   'id', flat=True
-		   ).filter(category__id=pk)
+		   ).filter(category__id=pk).exclude(cover='', intro='')
 	cat_features = random.sample(books, CATEGORY_FEATURE_NUM)
 	gen_feature_books(cat_features, pk)
 	# init index page

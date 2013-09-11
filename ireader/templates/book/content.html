@@ -1,5 +1,9 @@
 {% extends "base_site.html" %}
 
+{% block keywords %}{{ object.name }}， {{ object.name }}最新章节{% endblock %}
+{% block description %}{{ object.name }}，{{ object.name }}最新章节，{{ object.name }}是一本{{ object.category__name}}小说，更多精彩尽在40页小说网{% endblock %}
+{% block title %}{{ object.name }}全文阅读，{{ object.name }} 全集，{{ object.name }}，尽在40页小说网{% endblock %}
+
 {% block content %}
 	<div class="box_con">
 		<div class="con_top"><a href="http://{{ domain }}/">42亿</a> &gt; <a href="http://{{ domain }}{% url show-category object.category__id %}">{{ object.category__name }}</a>&gt;{{ object.name }}</div>
@@ -15,6 +19,7 @@
 			</div>
 		</div>
 		<div id="sidebar"><div id="fmimg"><img alt="{{ object.name }}" src="{% if object.cover %}{{ object.cover }}{% else %}{{ STATIC_URL }}images/dft.jpg{% endif %}" height="150" width="120"><span class="b"></span></div></div> 
+		<div id="listtj">&nbsp;推荐阅读：<a target="_blank" href="/4_4416/"><b>末世盗贼行</b></a>、</div>
 	</div>
 	<div class="box_con">
 		<div id="list">

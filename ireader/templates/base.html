@@ -6,9 +6,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>40页小说网，免费小说，免费玄幻小说，免费武侠小说，免费言情小说，免费都市小说，免费穿越小说，免费网游小说</title>
-		<meta name="keywords" content="">
-		<meta name="description" content="">
+		<title>{% block title %}40页小说网，免费小说，免费小说阅读网{% endblock %}</title>
+		<meta name="keywords" content="{% block keywords %}40页小说网， 免费小说， 免费小说阅读网{% endblock %}">
+		<meta name="description" content="{% block description %}40页小说网是免费小说阅读网站.40页小说网是提供完结小说,玄幻小说,都市小说,穿越小说,言情小说,武侠小说,网游小说等免费小说阅读的免费小说阅读网站.{% endblock %}">
 		<meta name="viewport" content="width=device-width">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="stylesheet" href="{{ STATIC_URL}}css/40ye.css">
@@ -38,9 +38,5 @@
 		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 		ga('create','UA-XXXXX-X');ga('send','pageview');
 		</script>
-
-		{% block mainjs %}
-		<script data-main="{{ STATIC_URL }}dist/scripts/fa8c7ec7.main" src="{{ STATIC_URL }}app/bower_components/requirejs/require.js"></script>
-		{% endblock %}
 	</body>
 </html>
