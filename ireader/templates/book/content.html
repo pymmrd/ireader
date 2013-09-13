@@ -30,7 +30,7 @@
 	<div class="box_con">
 		<div id="list">
 			<dl>
-				{% for item in book_list %}
+				{% for item in object_list %}
 					{% for part, chapters in item.iteritems %}
 						{% if part != 'A' %}
 							<dt>{{ part }}</dt>
