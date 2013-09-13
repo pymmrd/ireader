@@ -40,7 +40,7 @@ def show_content(request, pk, tmpl="book/content.html"):
 	pk = convert_int(pk, exct=True)
 	book, object_list, partition, recom_list= handler_show_content(pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
-		'object': book,
+		'book': book,
 		'object_list': object_list,
 		'partition': partition,
 		'recom_list': recom_list,
@@ -54,8 +54,9 @@ def show_detail(request, partition, pk, tmpl="book/detail.html"):
 		has_previous, 
 		next_to, 
 		previous_to,
-		recom_list) = handler_show_detail(partition, pk)
+		recom_list, book) = handler_show_detail(partition, pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
+		'book': book,
 		'object': item,
 		'next_to': next_to,
 		'has_next': has_next,

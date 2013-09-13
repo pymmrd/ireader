@@ -1,24 +1,26 @@
 {% extends "base_site.html" %}
 
-{% block keywords %}{{ object.name }}， {{ object.name }}最新章节{% endblock %}
-{% block description %}{{ object.name }}，{{ object.name }}最新章节，{{ object.name }}是一本{{ object.category__name}}小说，更多精彩尽在40页小说网{% endblock %}
-{% block title %}{{ object.name }}全文阅读，{{ object.name }}最新章节，{{ object.name }}，尽在40页小说网{% endblock %}
+{% block keywords %}{{ book.name }}， {{ book.name }}最新章节{% endblock %}
+{% block description %}{{ book.name }}，{{ book.name }}最新章节，{{ book.name }}是一本{{ book.category__name}}小说，更多精彩尽在40页小说网{% endblock %}
+{% block title %}{{ book.name }}全文阅读，{{ book.name }}最新章节，{{ book.name }}，尽在40页小说网{% endblock %}
 
 {% block content %}
 	<div class="box_con">
-		<div class="con_top"><a href="http://{{ domain }}/">40页</a> &gt; <a href="http://{{ domain }}{% url show-category object.category__id %}">{{ object.category__name }}</a>&gt;{{ object.name }}</div>
+		<div class="con_top"><a href="http://{{ domain }}/">40页</a> &gt; <a href="http://{{ domain }}{% url show-category book.category__id %}">{{ book.category__name }}</a>&gt;{{ book.name }}</div>
 		<div id="maininfo">
 			<div id="info">
-				<h1>{{ object.name }}</h1>
-				<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：{{ object.author }}</p>
-				<p>动&nbsp;&nbsp;&nbsp;&nbsp;作；<a href="javascript:;">加入书架</a></p>
-				<p>最后更新：{{ object.update_date|date:"Y-m-d" }}</p>
+				<h1>{{ book.name }}</h1>
+				<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：{{ book.author }}</p>
+				<p>动&nbsp;&nbsp;&nbsp;&nbsp;作：<a href="javascript:;">加入书架</a></p>
+				<p>最后更新：{{ book.update_date|date:"Y-m-d" }}</p>
+				<p>状态：{% if book.status %}完结{% else %}连载{% endif %}</p>
+				<p>字数: {{ book.word_num }}</p>
 			</div>
 			<div id="intro">
-				<p>{{ object.intro }}</p>
+				<p>{{ book.intro }}</p>
 			</div>
 		</div>
-		<div id="sidebar"><div id="fmimg"><img alt="{{ object.name }}" src="{% if object.cover %}{{ object.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span></div></div> 
+		<div id="sidebar"><div id="fmimg"><img alt="{{ book.name }}" src="{% if book.cover %}{{ MEDIA_URL }}{{ book.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span></div></div> 
 		<div id="listtj">&nbsp;推荐阅读：
 		{% for item in recom_list %}
 		<a target="_blank" href="http://{{ domain}}{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}
@@ -28,7 +30,7 @@
 	<div class="box_con">
 		<div id="list">
 			<dl>
-				{% for item in object_list %}
+				{% for item in book_list %}
 					{% for part, chapters in item.iteritems %}
 						{% if part != 'A' %}
 							<dt>{{ part }}</dt>

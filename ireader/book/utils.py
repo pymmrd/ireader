@@ -71,7 +71,8 @@ def get_single_book(pk):
 				'author', 'category__name',
 				'category__pk', 'status', 
 				'cover', 'update_date',
-				'has_part',
+				'has_part', 'word_num',
+				'intro',
 	)
 	book = Book.objects.values(*values).get(pk=pk)
 	return book
@@ -103,7 +104,7 @@ def get_book_chapters(pk):
 					   ).order_by('pk')
 			object_list.append({bp.name: chapters})
 	else:
-		chapters = itemcls.objects.values(*values).filter(book__id=pk)
+		chapters = itemcls.objects.values(*values).filter(book__id=pk).order_by('pk')
 		object_list.append({'A': chapters})
 	recom_list = get_recommand_books(pk)
 	return book, object_list, partition, recom_list
@@ -137,12 +138,13 @@ def get_bookitem(partition, pk):
 	itemcls = getattr(models, name)
 	item = itemcls.objects.values(*values).get(pk=pk)
 	book_id = item.get('book__id', '')
+	book = get_single_book(book_id)
 	recom_list = get_recommand_books(book_id)
 	(has_next, 
 		has_previous, 
 		next_to, 
 		previous_to) = get_next_and_previous(itemcls, book_id, pk)
-	return item, has_next, has_previous, next_to, previous_to, recom_list
+	return item, has_next, has_previous, next_to, previous_to, recom_list, book
 
 def get_index_feature_books(page):
 	values = ('book__name', 'book__intro', 'book__author', 'book__cover', 'book__id')
