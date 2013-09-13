@@ -2,7 +2,7 @@
 
 import os
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 abspath = os.path.abspath
@@ -42,10 +42,7 @@ TIME_ZONE = 'Asia/Shanghai'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-if DEBUG:
-	DOMAIN = '127.0.0.1:7777'
-else:
-	DOMAIN = 'www.40ye.com'
+DOMAIN = 'www.40ye.com'
 
 SITE_ID = 1
 
@@ -126,7 +123,8 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 	pathjoin(PROJECT_PATH, 'templates'),
-	'/home/zg163/data',
+	'/mnt/data1/book',
+    '/data',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -153,7 +151,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 	'book',
-	'crawler',
+#	'crawler',
 )
 
 # A sample logging configuration. The only tangible logging
