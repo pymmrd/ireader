@@ -9,7 +9,7 @@
 	<div class="box_con">
 		<div class="con_top">
 			<div id="page_set"></div>
-			<a href="http://{{ domain }}/">40页小说</a> &gt; <a href="http://{{ domain }}{% url show-category pk=object.book__category__id %}">{{ object.book__category__name }}小说</a>&gt; <a href="http://{{ domain}}{% url show-content object.book__id %}">{{ object.book__name }}</a>&gt;<a href="http://{{ domain }}{% url show-content object.book__id %}">{{ object.book__title }}</a> &gt; {{ object.name  }}
+			<a href="http://{{ domain }}/">40页小说</a> &gt; <a href="http://{{ domain }}{% url show-category pk=object.book__category__pk %}">{{ object.book__category__name }}小说</a>&gt; <a href="http://{{ domain}}{% url show-content object.book__id %}">{{ object.book__name }}</a>&gt;<a href="http://{{ domain }}{% url show-content object.book__id %}">{{ object.book__title }}</a> &gt; {{ object.name  }}
 		</div>
 		<div class="bookname">
 			<h1>{{ object.name }}</h1>
