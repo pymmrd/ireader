@@ -11,14 +11,14 @@ from book.handlers import handler_index, handler_show_content, \
 						handler_show_detail, handler_show_category
 from commons.smart_convert import convert_int
 
-def index(request, tmpl='index.html'):
+def index(request, page=1, tmpl='index.html'):
 	(feature_list, magic_books,
 		sord_books, dushi_books,
 		lover_books, time_travel_books,
 		game_books, mnst_books,
 		scnc_books, other_books, 
 		result_list, paginator, 
-		page, hot_books) = handler_index(page=1)
+		page, hot_books) = handler_index(page)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
 		'feature_list': feature_list,
 		'magic_books': magic_books,
