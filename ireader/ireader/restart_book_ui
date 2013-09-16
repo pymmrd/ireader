@@ -1,0 +1,10 @@
+echo 'start kill'
+pids=`ps aux|grep '[u]i-wsgi.ini'|awk -F' ' '{print $2}'`
+if [ "$pids" ];then
+        kill -9 $pids
+fi
+echo 'stop end...'
+cd /opt/zhanzhang/physical/ui/physical
+uwsgi --ini ui-wsgi.ini
+echo 'restart end...'
+

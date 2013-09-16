@@ -11,14 +11,14 @@ from book.handlers import handler_index, handler_show_content, \
 						handler_show_detail, handler_show_category
 from commons.smart_convert import convert_int
 
-def index(request, tmpl='index.html'):
+def index(request, page=1, tmpl='index.html'):
 	(feature_list, magic_books,
 		sord_books, dushi_books,
 		lover_books, time_travel_books,
 		game_books, mnst_books,
 		scnc_books, other_books, 
 		result_list, paginator, 
-		page, hot_books) = handler_index(page=1)
+		page, hot_books) = handler_index(page)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
 		'feature_list': feature_list,
 		'magic_books': magic_books,
@@ -40,7 +40,7 @@ def show_content(request, pk, tmpl="book/content.html"):
 	pk = convert_int(pk, exct=True)
 	book, object_list, partition, recom_list= handler_show_content(pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
-		'object': book,
+		'book': book,
 		'object_list': object_list,
 		'partition': partition,
 		'recom_list': recom_list,
@@ -54,8 +54,9 @@ def show_detail(request, partition, pk, tmpl="book/detail.html"):
 		has_previous, 
 		next_to, 
 		previous_to,
-		recom_list) = handler_show_detail(partition, pk)
+		recom_list, book) = handler_show_detail(partition, pk)
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
+		'book': book,
 		'object': item,
 		'next_to': next_to,
 		'has_next': has_next,
@@ -90,4 +91,18 @@ def search(request, tmpl="book/search.html"):
 		'result_list': result_list,
 		'paginator': paginator
 	}))
+
+def page_not_found(request, tmpl='404.html'):
+	content = u'没有这个页面，换个URL试一试！'
+	return render_to_response(tmpl, context_instance=RequestContext(request, {
+		'content': content,
+		}))
+
+def server_error(request, tmpl='500.html'):
+	content = u'后台出现一个小小的意外，请耐心等待！'
+	return render_to_response(tmpl, context_instance=RequestContext(request, {
+		'content': content,
+		}))
+
+	
 	

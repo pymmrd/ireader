@@ -1,24 +1,26 @@
 {% extends "base_site.html" %}
 
-{% block keywords %}{{ object.name }}， {{ object.name }}最新章节{% endblock %}
-{% block description %}{{ object.name }}，{{ object.name }}最新章节，{{ object.name }}是一本{{ object.category__name}}小说，更多精彩尽在40页小说网{% endblock %}
-{% block title %}{{ object.name }}全文阅读，{{ object.name }}最新章节，{{ object.name }}，尽在40页小说网{% endblock %}
+{% block keywords %}{{ book.name }}， {{ book.name }}最新章节{% endblock %}
+{% block description %}{{ book.name }}，{{ book.name }}最新章节，{{ book.name }}是一本{{ book.category__name}}小说，更多精彩尽在40页小说网{% endblock %}
+{% block title %}{{ book.name }}全文阅读，{{ book.name }}最新章节，{{ book.name }}，尽在40页小说网{% endblock %}
 
 {% block content %}
 	<div class="box_con">
-		<div class="con_top"><a href="http://{{ domain }}/">40页</a> &gt; <a href="http://{{ domain }}{% url show-category object.category__id %}">{{ object.category__name }}</a>&gt;{{ object.name }}</div>
+		<div class="con_top"><a href="http://{{ domain }}/">40页</a> &gt; <a href="http://{{ domain }}{% url show-category pk=book.category__pk %}">{{ book.category__name }}</a>&gt;{{ book.name }}</div>
 		<div id="maininfo">
 			<div id="info">
-				<h1>{{ object.name }}</h1>
-				<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：{{ object.author }}</p>
-				<p>动&nbsp;&nbsp;&nbsp;&nbsp;作；<a href="javascript:;">加入书架</a></p>
-				<p>最后更新：{{ object.update_date|date:"Y-m-d" }}</p>
+				<h1>{{ book.name }}</h1>
+				<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：{{ book.author }}</p>
+				<p>动&nbsp;&nbsp;&nbsp;&nbsp;作：<a href="javascript:;">加入书架</a></p>
+				<p>最后更新：{{ book.update_date|date:"Y-m-d" }}</p>
+				<p>状态：{% if book.status %}完结{% else %}连载{% endif %}</p>
+				<p>字数: {{ book.word_num }}</p>
 			</div>
 			<div id="intro">
-				<p>{{ object.intro }}</p>
+				<p>{{ book.intro }}</p>
 			</div>
 		</div>
-		<div id="sidebar"><div id="fmimg"><img alt="{{ object.name }}" src="{% if object.cover %}{{ object.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span></div></div> 
+		<div id="sidebar"><div id="fmimg"><img alt="{{ book.name }}" src="{% if book.cover %}{{ MEDIA_URL }}{{ book.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span></div></div> 
 		<div id="listtj">&nbsp;推荐阅读：
 		{% for item in recom_list %}
 		<a target="_blank" href="http://{{ domain}}{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}
@@ -40,5 +42,13 @@
 				{% endfor %}
 			</dl>
 		</div>
+		<p>
+		①:《<a href="{% url show-content book.id %}">{{ book.name }}</a>》是一本<a href="{% url show-category book.category__pk %}">{{ book.category__name }}</a>。更多好看的<a href="{% url show-category book.category__pk %}">{{ book.category__name }}</a>，请关注<a target="_blank" href="http://www.40ye.com/">40页小说网</a>“<a href="{% url show-category book.category__pk %}">{{ book.category__name }}</a>”专栏。<br>
+		②:如果您发现<a href="http://www.40ye.com">免费小说</a><a href="{% show-content book.id %}">{{ book.name }}全文阅读</a>章节有错误，请及时通知我们。您的热心是对<a target="_blank" href="http://www.40ye.com/">40页小说</a>网最大的支持。<br>
+		③:<a target="_blank" href="http://www.40ye.com">40页小说网</a>是<a target="_blank" href="http://www.40ye.com/">40页小说阅读网</a>站，提供<a href="{% url show-content book.id %}">{{ book.name }}</a>，<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全文阅读</a>，<a href="{% show-content book.id %}">{{ book.name }}最新章节</a>。<br>
+		④:<a target="_blank" href="http://www.quanben.com/">免费小说</a><a href="http://www.quanben.com/xiaoshuo/13/13117/">强者世界全文阅读</a>的所有章节均为网友更新，属发布者个人行为，与<a target="_blank" href="http://www.quanben.com/">全本小说</a>网（<a target="_blank" href="http://www.quanben.com/">www.quanben.com</a>）立场无关。<br>⑤:如果您对<a target="_blank" href="http://www.quanben.com/">完结小说</a><a href="http://www.quanben.com/xiaoshuo/13/13117/">强者世界全集</a>的作品版权、内容等方面有质疑，请及时与我们联系，我们将在第一时间进行处理，谢谢！<br>
+		【分类地图导航】<a target="_blank" href="http://www.quanben.com/map/1.html">全本玄幻小说</a> <a target="_blank" href="http://www.quanben.com/map/2.html">全本武侠小说</a> <a target="_blank" href="http://www.quanben.com/map/3.html">全本都市小说</a> <a target="_blank" href="http://www.quanben.com/map/4.html">全本言情小说</a> <a target="_blank" href="http://www.quanben.com/map/5.html">全本穿越小说</a> <a target="_blank" href="http://www.quanben.com/map/6.html">全本网游小说</a> <a target="_blank" href="http://www.quanben.com/map/7.html">全本恐怖小说</a> <a target="_blank" href="http://www.quanben.com/map/8.html">全本科幻小说</a> <a target="_blank" href="http://www.quanben.com/map/9.html">其他全本小说</a><br>
+		搜索关键字&mdash;&mdash;<a href="http://www.quanben.com/xiaoshuo/13/13117/">强者世界</a> <a href="http://www.quanben.com/xiaoshuo/13/13117/">强者世界全文阅读</a> <a href="http://www.quanben.com/xiaoshuo/13/13117/">强者世界全集</a> <a target="_blank" href="http://www.quanben.com/xiazai/13/13117/">强者世界TXT下载</a> <a target="_blank" href="http://www.quanben.com/xiazai/13/13117/">强者世界下载</a> <a target="_blank" href="http://www.quanben.com/xiazai/13/13117/">强者世界TXT</a> <a href="http://www.quanben.com/book1/0/1/">全本玄幻小说</a></div>
+		</p>
 	</div>
 {% endblock %}

@@ -31,13 +31,17 @@ def smart_page_range(pages, page_num, show_all_pages=10, on_each_side=3, on_ends
 def more_paginator(request, paginator):
 	raw_params = request.GET.copy()
 	path = request.path
-	sub_path, page, slash = path.rsplit('/', 2)
-	if page.startswith('0'):
+	if path == '/':
+		sub_path = '/'
 		page = 1
-		sub_path = path
 	else:
-		page = int(page)
-		sub_path = '%s/' % sub_path
+		sub_path, page, slash = path.rsplit('/', 2)
+		if page.startswith('0'):
+			page = 1
+			sub_path = path
+		else:
+			page = int(page)
+			sub_path = '%s/' % sub_path
 	page = 1 if page > paginator.num_pages else page
 	p = paginator.page(page)
 	page_range = smart_page_range(paginator.num_pages, page)
