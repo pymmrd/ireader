@@ -13,9 +13,9 @@ abspath = os.path.abspath
 dirname = os.path.dirname
 CURRENT_PATH = abspath(dirname(__file__))
 PROJECT_PATH = abspath(dirname(CURRENT_PATH))
-DATA_PATTERN = "/home/zg163/djcode/ireader/pybook/new_data/*.json"
-DEST_PATH = '/home/zg163/data/'
-SRC_PATH = '/home/zg163/pdf/data/book/'
+DATA_PATTERN = "/var/www/wwwroot/ireader/pybook/new_data/*.json"
+DEST_PATH = '/data'
+SRC_PATH = '/root/book1/'
 
 sys.path.append(PROJECT_PATH)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
@@ -34,11 +34,9 @@ CATEGORY_MAP = {
     'other': (9, 'book9'),
 }
 
-#CATEGORY_LIST = list(Category.objects.all().order_by('id')) 
 CATEGORY_LIST = [Category.objects.get(pk=pk) for pk in xrange(1,10)] 
 
 def load_json(data_path):
-    #print 'data_path------->', data_path
     file_name = data_path.rsplit('/', 1)[-1] 
     prefix_name = file_name.rsplit('_', 1)[0]
     try:
@@ -66,8 +64,7 @@ def load_json(data_path):
                     author = item.get('author')
                     name = item.get('name')[:-4]
                     book, created = Book.objects.get_or_create(name=name, author=author, defaults={'category': category, 'word_num': word_num})
-                    if not created:
-                        book.save()
+                    if created:
                         src_path = os.path.join(SRC_PATH, name).encode('utf-8')
                         try:
                             shutil.move(src_path, dest_path)

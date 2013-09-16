@@ -6,7 +6,7 @@
 
 {% block content %}
 	<div class="box_con">
-		<div class="con_top"><a href="http://{{ domain }}/">40页</a> &gt; <a href="http://{{ domain }}{% url show-category book.category__id %}">{{ book.category__name }}</a>&gt;{{ book.name }}</div>
+		<div class="con_top"><a href="http://{{ domain }}/">40页</a> &gt; <a href="http://{{ domain }}{% url show-category pk=book.category__pk %}">{{ book.category__name }}</a>&gt;{{ book.name }}</div>
 		<div id="maininfo">
 			<div id="info">
 				<h1>{{ book.name }}</h1>

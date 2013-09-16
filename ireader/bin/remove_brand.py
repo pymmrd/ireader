@@ -70,7 +70,7 @@ if __name__ == "__main__":
 	for d in os.listdir(SUB_PATH):
 		preview_check(d)
 	"""
-	pool = threadpool.ThreadPool(10)
+	pool = threadpool.ThreadPool(5)
 	requests = threadpool.makeRequests(preview_check, os.listdir(SUB_PATH))
 	for req in requests:
 		pool.putRequest(req)

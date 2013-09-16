@@ -147,7 +147,6 @@ class Book(models.Model):
 	has_part = models.BooleanField(default=False)
 	cover = models.CharField(max_length=100, blank=True)
 	intro = models.TextField(blank=True)
-	is_active = models.BooleanField(default=False)
 	objects = models.Manager()
 
 	class Meta:
