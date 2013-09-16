@@ -26,4 +26,7 @@ if settings.DEBUG:
 	    url(r'^static/(?P<path>.*)$', 'serve'),
 	)
 
+handler404 = 'book.views.page_not_found'
+handler500 = 'book.views.server_error'
+
 	

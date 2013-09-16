@@ -91,4 +91,18 @@ def search(request, tmpl="book/search.html"):
 		'result_list': result_list,
 		'paginator': paginator
 	}))
+
+def page_not_found(request, tmpl='404.html'):
+	content = u'没有这个页面，换个URL试一试！'
+	return render_to_response(tmpl, context_instance=RequestContext(request, {
+		'content': content,
+		}))
+
+def server_error(request, tmpl='500.html'):
+	content = u'后台出现一个小小的意外，请耐心等待！'
+	return render_to_response(tmpl, context_instance=RequestContext(request, {
+		'content': content,
+		}))
+
+	
 	
