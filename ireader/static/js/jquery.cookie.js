@@ -107,6 +107,11 @@
 }));
 
 $(function(){
+	var speed = 5;
+	var autopage;// = $.cookie("autopage");
+	var night;
+	var timer;
+	var temPos=1;
 	function scrolling() 
 	{  
 		var currentpos=1;
