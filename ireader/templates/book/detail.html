@@ -8,7 +8,14 @@
 <div class="content_read">
 	<div class="box_con">
 		<div class="con_top">
-			<div id="page_set"></div>
+			<div id="page_set">
+			<select onchange="javascript:setFont(this.options[this.selectedIndex].value);" id="bcolor" name="bcolor"><option value="宋体">字体</option><option value="方正启体简体">默认</option><option value="黑体">黑体</option><option value="楷体_GB2312">楷体</option><option value="微软雅黑">雅黑</option><option value="方正启体简体">启体</option><option value="宋体">宋体</option></select>
+			<select onchange="javascript:setColor(this.options[this.selectedIndex].value);" id="bcolor" name="bcolor"><option value="#000">颜色</option><option value="#000">默认</option><option value="#9370DB">暗紫</option><option value="#2E8B57">藻绿</option><option value="#2F4F4F">深灰</option><option value="#778899">青灰</option><option value="#800000">栗色</option><option value="#6A5ACD">青蓝</option><option value="#BC8F8F">玫褐</option><option value="#F4A460">黄褐</option><option value="#F5F5DC">米色</option><option value="#F5F5F5">雾白</option></select>
+			<select onchange="javascript:setSize(this.options[this.selectedIndex].value);" id="bcolor" name="bcolor"><option value="#E9FAFF">大小</option><option value="19pt">默认</option><option value="10pt">10pt</option><option value="12pt">12pt</option><option value="14pt">14pt</option><option value="16pt">16pt</option><option value="18pt">18pt</option><option value="20pt">20pt</option><option value="22pt">22pt</option><option value="25pt">25pt</option><option value="30pt">30pt</option></select>
+			<select name="scrollspeed" id="scrollspeed" onchange="javascript:setSpeed(this.options[this.selectedIndex].value);"><option value="5">滚屏</option><option value="1">最慢</option><option value="2">慢2</option><option value="3">慢3</option><option value="4">中4</option><option value="5">中5</option><option value="6">中6</option><option value="7">快7</option><option value="8">快8</option><option value="9">快9</option><option value="10">最快</option></select><select onchange="javascript:setBGColor(this.options[this.selectedIndex].value);" id="bcolor" name="bcolor"><option value="#E9FAFF" style="background-color: #E9FAFF;">背景</option><option value="#E9FAFF" style="background-color: #E9FAFF;">默认</option><option value="#FFFFFF" style="background-color: #FFFFFF;">白雪</option><option value="#000000" style="background-color: #000000;color:#FFFFFF;">漆黑</option><option value="#FFFFED" style="background-color: #FFFFED;">明黄</option><option value="#EEFAEE" style="background-color: #EEFAEE;">淡绿</option><option value="#CCE8CF" style="background-color: #CCE8CF;">草绿</option><option value="#FCEFFF" style="background-color: #FCEFFF;">红粉</option><option value="#EFEFEF" style="background-color: #EFEFEF;">深灰</option><option value="#F5F5DC" style="background-color: #F5F5DC;">米色</option><option value="#D2B48C" style="background-color: #D2B48C;">茶色</option><option value="#C0C0C0" style="background-color: #E7F4FE;">银色</option></select>
+			<select onchange="javascript:setWidth(this.options[this.selectedIndex].value);" id="bcolor" name="bcolor"><option value="95%">宽度</option><option value="95%">默认</option><option value="85%">85%</option><option value="76%">75%</option><option value="67%">65%</option><option value="53%">50%</option><option value="41%">40%</option></select>
+			翻页<input name="autopage" id="autopage" onchange="javascript:setAutopage();" value="" type="checkbox">&nbsp;夜间<input name="night" id="night" onchange="javascript:setNight();" value="" type="checkbox">
+			</div>
 			<a href="http://{{ domain }}/">40页小说</a> &gt; <a href="http://{{ domain }}{% url show-category pk=object.book__category__id %}">{{ object.book__category__name }}小说</a>&gt; <a href="http://{{ domain}}{% url show-content object.book__id %}">{{ object.book__name }}全文阅读</a>&gt; {{ object.name  }}
 		</div>
 		<div class="bookname">
@@ -35,3 +42,7 @@
 	</div>
 </div>
 {% endblock %}
+{% block script %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.cookie.js"></script>
+{% endblock %}
+
