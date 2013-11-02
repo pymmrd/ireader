@@ -1,7 +1,7 @@
 html,body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,table,td,th,img,div,dl,dt,dd,input,select,form,fieldset{margin:auto;padding:0;}
 body{background-color:#E9FAFF;color:#555;font-family:????;font-size:12px;margin:0 auto;}
 ul li{list-style:none outside none;}
-a{color:#6F78A7;text-decoration:none;}
+a{color:#071E97;text-decoration:none;}
 a:hover {text-decoration:underline; top:-1px;}
 .clear{clear:both;}
 .header_logo a{background:url(/static/images/logo.png) no-repeat scroll 0 0 transparent;}
@@ -72,20 +72,21 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 #hotcontent .r li .s5 {float: right; text-align: right;}
 #hotcontent .r li a {color: #6F78A7;}
 .novelslist{ margin: 0 auto -10px; }
-.novelslist .content h2{ border-bottom:solid 1px #A6D3E8; font-size:14px; font-weight:bold; padding-left:5px; line-height:25px; height:25px; overflow:hidden; margin: 0;}
-.novelslist .content .image{ padding:10px 0px 0px 5px; float:left; width:71px;}
-.novelslist .content .image img{ width:67px; height:82px; border:solid 1px #DDDDDD; padding:1px; background-color:white;}
-.novelslist .content dl{ padding:10px 0px 0px 0px; float:right; width:219px;}
-.novelslist .content dl dt{ height:25px; line-height:25px; overflow:hidden; font-weight:bold;}
+.novelslist .content h2{ background-color: #FEFBF6; border-bottom:solid 1px #63440E; font-size:14px; font-weight:bold; padding-left:5px; line-height:25px; height:25px; overflow:hidden; margin: 0;border-radius:3px 3px 0 0;}
+.novelslist .content .image{ padding:10px 0 0; float:left; width:71px;}
+.novelslist .content .image img{ width:67px; height:82px;padding:1px;}
+.novelslist .content .i-desc{ margin-left:76px;}
+.novelslist .content dl{ padding:10px 0 0;}
+.novelslist .content dl dt{ height:25px; line-height:25px; overflow:hidden;}
 .novelslist .content dl dd{ line-height:20px; height:60px; overflow:hidden;}
 .novelslist .content ul{ padding:10px 0px 0px 0px;}
-.novelslist .content ul li{ color:#B3B3B3; height:20px; line-height:20px; font-size:12px; overflow:hidden; float:left; width:155px;}
-.novelslist .content ul li a{ font-size:13px;}
+.novelslist .content ul li{ height:20px; line-height:20px; font-size:12px; overflow:hidden; }
+.novelslist .content ul li a{ color:#291B01;font-size:15px;}
 .novelslist .border{ border:0px;}
-.novelslist h2 {background-color: #F6F8FE; border-bottom: 1px solid #DDDDDD; font-size: 14px; font-weight: bold; height: 30px; line-height: 30px; overflow: hidden; padding: 0 0 0 10px;}
 .novelslist ul{ padding:10px;}
-.novelslist li{ padding:5px 0px 0px 0px; border-bottom:solid 1px #DDDDDD; height:25px; line-height:25px; overflow:hidden;}
+.novelslist li{ padding:5px 0px 0px 0px; border-bottom:solid 1px #A8854F; ; height:25px; line-height:25px; overflow:hidden;}
 .novelslist li span{ float:left; display:inline-block;}
+.novelslist li b{ font-weight:normal;float:right;color:#6D4600;}
 .novelslist li .s1{ width:10%;}
 .novelslist li .s2{ width:20%;}
 .novelslist li .s3{ width:49%;}

@@ -1,6 +1,12 @@
 /******************************************************************
     COMMON STYLE 
  *****************************************************************/
+a {
+    color: #071E97;
+}
+a:hover, a:focus {
+    color: #051672;
+}
 body, input, button {
     font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -112,7 +118,7 @@ input, button, textarea, select {
 .nav-collapse {
     display: none;
     margin-top: -5px;
-    padding: 20px;
+    padding: 10px 0;
     background: #271804; 
 }
 .nav ul li {
@@ -120,16 +126,44 @@ input, button, textarea, select {
     height: 40px;
     line-height: 40px;
 }
-.nav ul li a {
+.nav ul li a, .nav-collapse ul li a {
     display: block;
     color: #fffbf2;
     font-size: 15px;
     padding: 0 10px;
     font-weight: normal;
 }
-.nav ul li a:hover {
+.nav-collapse ul li a {
+    padding: 5px 10px;
+}
+.nav ul li a:hover, .nav-collapse ul li a:hover {
     background-color: #92743a;
     text-decoration: none;
+}
+.nav-collapse ul li.active a {
+    background-color: #553C0C;
+}
+.nav ul li.active a {
+    background-color: #92743a;
+}
+.navbar-toggle {
+    position: relative;
+    float: left;
+    padding: 5px 8px 3px;
+    margin-top: 8px;
+    margin-left: 20px;
+    margin-bottom: 8px;
+    background-color: rgb(150, 109, 59);
+    border: 1px solid rgb(77, 43, 1);
+    border-radius: 4px;
+}
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: rgb(77, 43, 1);
+    margin-bottom: 3px;
 }
 .i-con.recom {
     border: solid 1px #634200;
@@ -163,7 +197,12 @@ dd.txt {
     margin: 5px 0;
 }
 .i-con.novel {
-    background:#FEF9EF;
+    color: #291B01;
+    background: #d6bf91;
+    border: solid 1px #634200;
+    text-shadow: 0 1px #DDC38F;
+    background: rgba(238, 215, 169, 0.39);
+    /*background: #FFEABD;*/
 }
 .novel .top .image {
     height: auto;
@@ -186,7 +225,6 @@ dd.txt {
     } 
     .nav {
         width: 100%;
-        height: auto;
     }
     .nav-wrap {
         width: 100%;
@@ -218,6 +256,9 @@ dd.txt {
     }
     .nav ul {
         display: none;
+    }
+    .nav ul li {
+        float: none;
     }
 }
 
