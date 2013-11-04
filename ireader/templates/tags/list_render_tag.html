@@ -1,0 +1,21 @@
+{% load book_filters %}
+
+<div class="content item">
+    <div class="i-con novel">
+        <h2>{{ title }}</h2>
+        {% with object=list.0 %}
+        <div class="top">
+            <div class="image"><img src="{% if object.book__cover %}{{ settings.MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
+            <dl><dt><a href="{% if object.book__id %}{% url show-content object.book__id %}{% endif %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+            <div class="clear"></div>
+        </div>
+        {% endwith %}
+        <ul class="clearfix">
+        {% for object in list %}
+            {% if forloop.counter0 != 0 %}
+            <li><a href="{% if object.book__id %}{% url show-content object.book__id %}{% endif %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+</div>
