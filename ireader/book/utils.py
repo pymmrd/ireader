@@ -50,6 +50,7 @@ def category_books(pk, page=1):
 												 )
 	return result_list, paginator, page, name
 
+"""
 def category_hot_books(pk=None):
 	object_list = []
 	values = ('id', 'name', 'author')
@@ -65,6 +66,11 @@ def category_hot_books(pk=None):
 		book_ids = random.sample(book_list, page_size) 
 		object_list = Book.objects.values(*values).filter(pk__in=book_ids)
 	return object_list
+"""
+def category_hot_books(page):
+    object_list = FeatureBook.objects.values('id', 'book__name', 'book__author').filter(page=page)
+    return object_list
+
 
 def get_single_book(pk):
 	values = (	'id', 'name', 
@@ -165,7 +171,7 @@ def process_index_items(page=1):
 	scnc_books = get_index_feature_books(FeatureBook.INDEX_SCIENCE)
 	other_books = get_index_feature_books(FeatureBook.INDEX_OTHER)
 	books = Book.objects.values(*values).all().order_by('-update_date')
-	hot_books = category_hot_books()
+	hot_books = category_hot_books(100)
 	result_list, paginator, page = paginate_util(books,
 												 page,
 												 page_size
