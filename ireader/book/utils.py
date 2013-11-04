@@ -50,6 +50,7 @@ def category_books(pk, page=1):
 												 )
 	return result_list, paginator, page, name
 
+"""
 def category_hot_books(pk=None):
 	object_list = []
 	values = ('id', 'name', 'author')
@@ -64,6 +65,10 @@ def category_hot_books(pk=None):
 		page_size = page_size if count > page_size else count
 		book_ids = random.sample(book_list, page_size) 
 		object_list = Book.objects.values(*values).filter(pk__in=book_ids)
+	return object_list
+"""
+def category_hot_books(page):
+	object_list = FeatureBook.objects.values('id', 'book__name', 'book__author').filter(page=page)
 	return object_list
 
 def get_single_book(pk):

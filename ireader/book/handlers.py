@@ -9,7 +9,7 @@ def handler_index(page=1):
 		game_books, mnst_books,
 		scnc_books, other_books, 
 		result_list, paginator, 
-		page, hot_books) = process_index_items(page=1)
+		page, hot_books) = process_index_items(page)
 	return (feature_list, 
 			magic_books,
 			sord_books,
@@ -36,7 +36,8 @@ def handler_show_category(pk, page=1):
 	# category books
 	object_list, paginator, page, name = category_books(pk, page)
 	# hot books 
-	hot_list = category_hot_books(pk)
+	index = pk + 100
+	hot_list = category_hot_books(index)
 	return feature_list, object_list, hot_list, paginator, name
 
 def handler_show_detail(partition, pk):
