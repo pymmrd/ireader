@@ -7,9 +7,8 @@
         <div class="top">
             <div class="image"><img src="{% if object.book__cover %}{{ settings.MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
             <div class="i-desc">
-                <dl><dt><a href="{% if object.book__id %}{% url show-content object.book__id %}{% endif %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
+                <dl><dt><a href="{% if object.book__id %}{% url show-content object.book__id %}{% endif %}" target="_blank">{{ object.book__name }}</a></dt><dd class="c-desc">{{ object.book__intro|cut:'　'|truncatechars:50 }}</dd></dl>
             </div>
-            <div class="clear"></div>
         </div>
         {% endwith %}
         <ul class="clearfix">
