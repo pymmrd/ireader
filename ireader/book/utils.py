@@ -170,7 +170,7 @@ def process_index_items(page=1):
 	scnc_books = get_index_feature_books(FeatureBook.INDEX_SCIENCE)
 	other_books = get_index_feature_books(FeatureBook.INDEX_OTHER)
 	books = Book.objects.values(*values).all().order_by('-update_date')
-	hot_books = category_hot_books()
+	hot_books = category_hot_books(100)
 	result_list, paginator, page = paginate_util(books,
 												 page,
 												 page_size

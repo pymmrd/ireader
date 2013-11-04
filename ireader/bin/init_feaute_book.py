@@ -71,11 +71,11 @@ def init_hot_book(i):
 	FeatureBook.objects.filter(page=i).delete()
 	cat = i % 100
 	init_ids = list(FeatureBook.objects.values_list('id', flat=True))
-	books = Book.objects.values_list('id', flat=True).exclude(book__id__in=init_ids)
+	books = Book.objects.values_list('id', flat=True).exclude(id__in=init_ids)
 	if cat:
 		books = list(books.filter(category__id=cat))
 	new_books = random.sample(books, 25)
-	gen_feature_books(new_books, page)
+	gen_feature_books(new_books, i)
 
 
 def get_hot_book():
@@ -96,5 +96,7 @@ def init():
 	feature_book()
 
 if __name__ == "__main__":
-	init()
+    init()
+    get_hot_book()
+
 
