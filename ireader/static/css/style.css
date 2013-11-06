@@ -28,7 +28,6 @@ input, button, textarea, select {
   border-bottom: solid 1px #DDC38F;
 }
 
-
 /******************************************************************
   NORMAL STRUCTURE 
  *****************************************************************/
@@ -192,7 +191,9 @@ dd.txt {
   height: 95px;
   overflow: hidden;
   position: relative;
-  text-indent: 2em;
+}
+.i-author {
+  color: #B90B0B;
 }
 .i-desc .divide {
   margin: 5px 0;

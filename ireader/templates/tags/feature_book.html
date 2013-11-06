@@ -8,9 +8,14 @@
       </div>
       <div class="i-desc">
         <dl>
-          <dt><span>{{ object.book__author }}</span><a href="{% url show-content object.book__id %}">{{ object.book__name }}</a></dt>
+          <dt>
+            <p class="i-name"><a href="{% url show-content object.book__id %}" {% if object.book__name|length > 8 %}title="{{ object.book__name }}"{% endif %}>{{ object.book__name|truncatechars:9 }}</a></p>
+          </dt>
           <dd class="divide"></dd>
-          <dd class="txt">{{ object.book__intro|cut:"<br/>"|cut:"<br>"|cut:"※"|truncatechars:65 }}<p class="i-detail"></p></dd>
+          <dd class="txt">
+            <span class="i-author">{{ object.book__author }}：</span>
+            {{ object.book__intro|cut:"<br/>"|cut:"<br>"|cut:"※"|truncatechars:65 }}<p class="i-detail"></p>
+          </dd>
         </dl>
       </div>
     </div>

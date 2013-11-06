@@ -38,7 +38,6 @@ table.grid { border: 2px solid #C3DFEA; border-collapse: collapse; margin: auto;
 table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA; padding: 4px;}
 .hottext{color:red;}
 .MessageDiv {background: #FFF9D9; border: 1px solid #FFCC33; line-height: 150%; width:800px; margin: 10px auto auto; padding: 10px;text-align:center;}
-#main{width:980px;margin:auto;}
 #hotcontent{padding-top:10px;}
 #hotcontent .l{background:none repeat scroll 0 0 #FEF9EF;border:3px solid #C3DFEA;float:left;height:330px;overflow:hidden;width:695px;padding:0 0 10px;}
 #hotcontent .l .item{float:left;width:335px;padding:10px 0 0 10px;}
@@ -152,23 +151,22 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 #intro p{text-indent:2em; margin-top:10px;}
 #list{padding:2px;}
 #list dl{float:left;overflow:hidden;padding-bottom:1px;margin:auto;}
-#list dt{display:inline;float:left;font-size:14px;line-height:28px;overflow:hidden;text-align:center;vertical-align:middle;width:98%;margin:auto auto 5px;padding:5px 10px;}
+#list dt{display:inline;float:left;font-size:14px;line-height:28px;overflow:hidden;text-align:center;vertical-align:middle;width:98%;margin:5px auto 0;padding:5px 10px;}
 #list dd{border-bottom:dashed 1px #A79478;display:inline;float:left;height:25px;line-height:200%;margin-bottom:5px;overflow:hidden;text-align:left;text-indent:10px;vertical-align:middle;width:33%;}
 #list dd a{color:#444;}
-#page_set{ float:left; text-align:left; height:30px; line-height:30px;}
-.bookname{line-height:30px;padding-top:10px;}
-.bookname h1{font:25px/35px ????;padding-top:10px;text-align:center;}
-.bottem1{clear:both!important;text-align:center;margin:5px;}
+#page_set{ float:left; text-align:left; height:30px; line-height:30px;margin-left: 10px;}
 .box_con #content,.box_con #content div,.box_con #content a{font-size:16px;letter-spacing:0.2em;line-height:1.5em;padding:15px 5px 15px 10px;margin:auto;}
-.ubuntu-style {background:#3c152d;color:#0C6E72;}
+.book-con {font-size:16px;letter-spacing:0.2em;line-height:1.5em;background:#3c152d;color:#0C6E72;padding:10px 5px 15px 10px;}
+.ubuntu-style {font-size:16px;letter-spacing:0.2em;line-height:1.5em;background:#3c152d;color:#0C6E72;padding:10px 5px 15px 10px;}
+.book-con>h1 { line-height: 1em; padding: 20px 0; text-align: center; }
 .box_con #content p div img,.box_con #content p img,.imagecontent,.divimage{text-align:center;margin:auto;}
 .reader_mark0 { width:30px;height:90px;top: 50px; position: fixed; right: 5px; _margin-top:50px; _position:absolute;	_bottom:auto;	_top:expression(eval(document.documentElement.scrollTop)); }
 .reader_mark1 { width:30px;height:90px;top: 50px; position: fixed; left: 5px; _margin-top:50px; _position:absolute;	_bottom:auto;	_top:expression(eval(document.documentElement.scrollTop)); }
 .reader_mark0 a{ width:30px;height:90px;display:block;background-position:0px -116px;}
 .reader_mark1 a{ width:30px;height:90px;display:block;background-position:-30px -116px;}
 .content_read{overflow:hidden;width:980px;margin:10px auto auto;}
-.bottem2{clear:both!important;text-align:center;margin:auto 20px;padding:15px;}
-.bottem1, .bottem2 {text-align: right;}
+.bottem1, .bottem2 {text-align: right;background: #bbb;background: rgba(255, 255, 255, 0.62);height:30px;line-height:30px;margin:0 5px 0 0;}
+.bottem2{margin-top: 10px;}
 .bottem a,.bottem1 a,.bottem2 a{color:#085308;font-size:14px;margin-left:10px;margin-right:10px;}
 .bottem a:hover,.bottem1 a:hover,.bottem2 a:hover{color:#0D5C0D;}
 .bottem a:focus,.bottem1 a:focus,.bottem2 a:focus{color:#0D5C0D;}
