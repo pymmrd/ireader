@@ -7,14 +7,14 @@
         <div class="top">
             <div class="image"><img src="{% if object.book__cover %}{{ settings.MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
             <div class="i-desc">
-                <dl><dt><a href="{% if object.book__id %}{% url show-content object.book__id %}{% endif %}" target="_blank">{{ object.book__name }}</a></dt><dd class="c-desc">{{ object.book__intro|cut:'　'|truncatechars:50 }}</dd></dl>
+                <dl><dt><a href="{% if object.book__id %}{% url show-intro object.book__id %}{% endif %}" target="_blank">{{ object.book__name }}</a></dt><dd class="c-desc">{{ object.book__intro|cut:'　'|truncatechars:50 }}</dd></dl>
             </div>
         </div>
         {% endwith %}
         <ul class="clearfix">
         {% for object in list %}
             {% if forloop.counter0 != 0 %}
-            <li><b>{{ object.book__author }}</b><a href="{% if object.book__id %}{% url show-content object.book__id %}{% endif %}" target="_blank">{{ object.book__name }}</a></li>
+            <li><b>{{ object.book__author }}</b><a href="{% if object.book__id %}{% url show-intro object.book__id %}{% endif %}" target="_blank">{{ object.book__name }}</a></li>
             {% endif %}
         {% endfor %}
         </ul>

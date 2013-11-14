@@ -8,34 +8,95 @@
 <div class="main">
   <div class="box_con">
     <div class="con_top"><a href="/">40页小说</a> &gt; <a href="{% url show-category pk=book.category__pk %}">{{ book.category__name }}小说</a>&gt;{{ book.name }}全文阅读</div>
-    <div id="sidebar">
+    <div class="sidebar">
       <div id="fmimg">
         <img alt="{{ book.name }}" src="{% if book.cover %}{{ MEDIA_URL }}{{ book.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span>
       </div>
     </div> 
+    <div class="sidebar right">
+      <div class="qrcode">
+        <p>扫到手机阅读</p>
+      </div>
+      <a href="javascript:void('addto_bookrack');" class="btn btn-success btn-add2bookrack">加入书架</a>
+      <a href="javascript:void('addto_bookrack');" class="btn btn-warning btn-add2bookrack">马上阅读</a>
+    </div> 
     <div id="maininfo">
       <div id="info">
-        <h1><a href="javascript:void('addto_bookrack');" class="addto-bookrack">加入书架</a><span class="book-name">{{ book.name }}</span>--<span class="author">{{ book.author }}</span></h1>
+        <h1><span class="book-name">{{ book.name }}</span>--<span class="author">{{ book.author }}</span></h1>
         <div class="divide"></div>
         <div id="intro">
           <p>{{ book.intro }}</p>
         </div>
         <div class="sub-info">
-        <span>最后更新：{{ book.update_date|date:"Y-m-d" }}</span>
-        <b>/</b>
-        <span>状态：{% if book.status %}完结{% else %}连载{% endif %}</span>
-        <b>/</b>
-        <span>字数: {{ book.word_num }}</span>
+          <span>最后更新：{{ book.update_date|date:"Y-m-d" }}</span>
+          <b>/</b>
+          <span>状态：{% if book.status %}完结{% else %}连载{% endif %}</span>
+          <b>/</b>
+          <span>字数: {{ book.word_num }}</span>
+        </div>
+        <div class="share-wrapper">
+          <img src="http://v.t.qq.com/share/images/s/weiboicon24.png" align="absmiddle" border="0" alt="转播到腾讯微博" onclick="postToWb();return false;" title="转播到腾讯微博"/>
+          <script type="text/javascript">
+            function postToWb(){
+              var _url = encodeURIComponent(document.location);
+              var _assname = encodeURI("");//你注册的帐号，不是昵称
+              var _appkey = encodeURI("801443509");//你从腾讯获得的appkey
+              var _pic = encodeURI('');//（例如：var _pic='图片url1|图片url2|图片url3....）
+              var _t = '';//标题和描述信息
+              var metainfo = document.getElementsByTagName("meta");
+              for(var metai = 0;metai < metainfo.length;metai++){
+                if((new RegExp('description','gi')).test(metainfo[metai].getAttribute("name"))){
+                  _t = metainfo[metai].attributes["content"].value;
+                }
+              }
+              _t =  document.title+_t;//请在这里添加你自定义的分享内容
+              if(_t.length > 120){
+                _t= _t.substr(0,117)+'...';
+              }
+              _t = encodeURI(_t);
+
+              var _u = 'http://share.v.t.qq.com/index.php?c=share&a=index&url='+_url+'&appkey='+_appkey+'&pic='+_pic+'&assname='+_assname+'&title='+_t;
+              window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+            }
+          </script>
+          <script type="text/javascript">
+            (function(){
+              var p = {
+                url:location.href,
+                showcount:'1',/*是否显示分享总数,显示：'1'，不显示：'0' */
+                desc:'',/*默认分享理由(可选)*/
+                summary:'',/*分享摘要(可选)*/
+                title:'',/*分享标题(可选)*/
+                site:'',/*分享来源 如：腾讯网(可选)*/
+                pics:'', /*分享图片的路径(可选)*/
+                style:'202',
+                width:105,
+                height:31
+              };
+              var s = [];
+              for(var i in p){
+              s.push(i + '=' + encodeURIComponent(p[i]||''));
+              }
+              document.write(['<a version="1.0" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?',s.join('&'),'" target="_blank">分享</a>'].join(''));
+            })();
+          </script>
+          <script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="box_con">
     <div id="listtj">&nbsp;推荐阅读：
     {% for item in recom_list %}
-    <a target="_blank" href="http://{{ domain}}{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}
+      <a target="_blank" href="http://{{ domain}}{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}
     {% endfor %}
     </div>
   </div>
 </div>
+
 <div class="main">
   <div class="box_con">
 &nbsp;《<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}</a>》是一本<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>。更多精彩的<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>，请关注<a target="_blank" href="http://www.40ye.com/">40页小说网</a>“<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>”专栏。<br/>

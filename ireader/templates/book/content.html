@@ -8,20 +8,6 @@
 <div class="main">
   <div class="box_con">
     <div class="con_top"><a href="/">40页小说</a> &gt; <a href="{% url show-category pk=book.category__pk %}">{{ book.category__name }}小说</a>&gt;{{ book.name }}全文阅读</div>
-    <div id="sidebar">
-      <div id="fmimg">
-        <img alt="{{ book.name }}" src="{% if book.cover %}{{ MEDIA_URL }}{{ book.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span>
-      </div>
-    </div> 
-    <div id="listtj">&nbsp;推荐阅读：
-    {% for item in recom_list %}
-    <a target="_blank" href="http://{{ domain}}{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}
-    {% endfor %}
-    </div>
-  </div>
-</div>
-<div class="main">
-  <div class="box_con">
     <div id="list">
       <dl>
         {% for item in object_list %}
