@@ -130,8 +130,9 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 }
 .con_top { background-color: #efe3cc;overflow:hidden; margin: -10px -10px 0;border-radius:3px 3px 0 0; text-align:left; padding: 0px 10px; line-height:40px; height:40px; }
 .con_top #bdshare{float:right;line-height:20px;padding-right:20px;padding-top:9px;text-align:right;}
-#sidebar{float:left;text-align:left;}
-#maininfo{margin-left: 140px;}
+.sidebar{float:left;text-align:left;text-align:center;}
+.sidebar.right{float:right;width: 160px;}
+#maininfo{margin-left:140px;margin-right:160px;}
 #fmimg{background-color:#ddc6a4;float:left;margin-top:10px;padding:10px;position:relative;}
 #fmimg img{border:medium none;height:150px;width:120px;}
 
@@ -140,13 +141,13 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 #fmimg .b {background-position:0 -294px;} 
 
 
-#info{margin:10px;min-height: 170px; position: relative;}
-#info h1{font-size:20px;font-weight:700;overflow:hidden;margin:0 auto 5px;line-height: 1em;}
+#info{margin:10px;position: relative;}
+#info h1{font-size:20px;font-weight:700;overflow:hidden;margin:15px auto 5px;line-height: 1em;}
 #info h1 .author {color:#6D4600;line-height: 20px;margin-left: 20px;font-size: 14px;font-weight: normal;}
 #info h1 .book-name{margin-right: 20px;}
 #info h1 .addto-bookrack {line-height: 20px;margin-left: 10px;font-size: 13px;font-weight: normal;float: right;}
 #info .sub-info span{height:25px;line-height:25px;padding-top:2px;width:30%;margin:auto;overflow:hidden;}
-.sub-info{color: #085308; position:absolute;left:0;bottom:0;}
+.sub-info{color: #085308;margin:5px 0;}
 #intro{overflow:hidden;line-height:150%;font-size:13px;}
 #intro p{text-indent:2em; margin-top:10px;}
 #list{padding:2px;}
