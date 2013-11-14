@@ -13,28 +13,26 @@
         <img alt="{{ book.name }}" src="{% if book.cover %}{{ MEDIA_URL }}{{ book.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span>
       </div>
     </div> 
+    <div id="maininfo">
+      <div id="info">
+        <h1><a href="javascript:void('addto_bookrack');" class="addto-bookrack">加入书架</a><span class="book-name">{{ book.name }}</span>--<span class="author">{{ book.author }}</span></h1>
+        <div class="divide"></div>
+        <div id="intro">
+          <p>{{ book.intro }}</p>
+        </div>
+        <div class="sub-info">
+        <span>最后更新：{{ book.update_date|date:"Y-m-d" }}</span>
+        <b>/</b>
+        <span>状态：{% if book.status %}完结{% else %}连载{% endif %}</span>
+        <b>/</b>
+        <span>字数: {{ book.word_num }}</span>
+        </div>
+      </div>
+    </div>
     <div id="listtj">&nbsp;推荐阅读：
     {% for item in recom_list %}
     <a target="_blank" href="http://{{ domain}}{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}
     {% endfor %}
-    </div>
-  </div>
-</div>
-<div class="main">
-  <div class="box_con">
-    <div id="list">
-      <dl>
-        {% for item in object_list %}
-          {% for part, chapters in item.iteritems %}
-            {% if part != 'A' %}
-              <dt>{{ part }}</dt>
-            {% endif %}
-            {% for c in chapters %}
-            <dd><a href="{% url show-detail partition c.id %}">{{ c.name }}</a></dd>
-            {% endfor %}
-          {% endfor %}
-        {% endfor %}
-      </dl>
     </div>
   </div>
 </div>

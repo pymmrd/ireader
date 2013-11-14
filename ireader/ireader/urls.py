@@ -6,15 +6,15 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'ireader.views.home', name='home'),
-    # url(r'^ireader/', include('ireader.foo.urls')),
+	# Examples:
+	# url(r'^$', 'ireader.views.home', name='home'),
+	# url(r'^ireader/', include('ireader.foo.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+	# Uncomment the admin/doc line below to enable admin documentation:
+	# url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+	# Uncomment the next line to enable the admin:
+	url(r'^admin/', include(admin.site.urls)),
 	url(r'^book/', include('book.urls')),
 	(r'^$', 'book.views.index', {'tmpl': 'index.html'}, 'index'),
 	(r'^(?P<page>\d+)/$', 'book.views.index', {'tmpl':'index.html'}, 'index'),
@@ -23,7 +23,7 @@ urlpatterns = patterns('',
 
 if settings.DEBUG:
 	urlpatterns += patterns('django.contrib.staticfiles.views',
-	    url(r'^static/(?P<path>.*)$', 'serve'),
+		url(r'^static/(?P<path>.*)$', 'serve'),
 	)
 
 handler404 = 'book.views.page_not_found'
