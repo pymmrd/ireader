@@ -8,11 +8,13 @@
 <div class="main">
   <div class="box_con">
     <div class="con_top">
-      
       <a href="/">40页小说</a> &gt; <a href="{% url show-category pk=object.book__category__id %}">{{ object.book__category__name }}小说</a>&gt; <a href="{% url show-content object.book__id %}">{{ object.book__name }}全文阅读</a>&gt; {{ object.name  }}
     </div>
-
-    <div class="book-con ubuntu-style">
+  </div>
+</div>
+<div class="book-con">
+  <div class="main">
+    <div class="box_con">
       <div class="bottem1 clearfix">
         <div id="page_set">
           <button data-action="full-screen">全屏模式</button>

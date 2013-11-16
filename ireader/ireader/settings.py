@@ -26,9 +26,9 @@ DATABASES = {
         'PASSWORD': 'admin4u',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-		'OPTIONS': {
-		   'init_command': 'SET storage_engine=MyISAM;',
-		   }
+        'OPTIONS': {
+           'init_command': 'SET storage_engine=MyISAM;',
+           }
     }
 }
 
@@ -82,7 +82,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-	pathjoin(PROJECT_PATH, 'static'),
+    pathjoin(PROJECT_PATH, 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -122,8 +122,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-	pathjoin(PROJECT_PATH, 'templates'),
-	'/mnt/data1/book',
+    pathjoin(PROJECT_PATH, 'templates'),
+    '/mnt/data1/book',
     '/data',
 )
 
@@ -134,9 +134,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     #'django.core.context_processors.tz',
-	'django.core.context_processors.request',
+    'django.core.context_processors.request',
     #'django.contrib.messages.context_processors.messages',
-	'ireader.ireader_contexts.ireader',
+    'ireader.ireader_contexts.ireader',
 )
 
 INSTALLED_APPS = (
@@ -150,8 +150,8 @@ INSTALLED_APPS = (
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-	'book',
-#	'crawler',
+    'book',
+#   'crawler',
 )
 
 # A sample logging configuration. The only tangible logging

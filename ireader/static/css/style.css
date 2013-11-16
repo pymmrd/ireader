@@ -11,7 +11,7 @@ body, input, button {
   font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body {
-  background: #c1aa7e url(/static/images/bg.png) repeat;
+  background: #c9b287 url(/static/images/bg.png) repeat;
 }
 input, button, textarea, select {
   border-radius: 3px;
@@ -227,6 +227,20 @@ dd.txt {
 .sidebar .btn {
   padding: 6px 40px;
   margin-bottom: 10px;
+}
+.btn.btn-add2bookrack {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+.btn.btn-read {
+  margin-bottom: 5px;
+}
+.disclaimer {
+  text-indent: 2em;
+  line-height: 2em;
+}
+.list-recomment {
+  line-height: 2em;
 }
 
 /******************************************************************

@@ -126,9 +126,9 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 .novellist li a:visited { COLOR: red; }
 
 .dahengfu{overflow:hidden; width:976px; margin:10px auto;}
-.box_con{border:solid 1px #B49D6D; overflow:hidden;margin:10px;padding:10px;border-radius:3px;background: rgba(238, 215, 169, 0.39);
+.box_con{border:solid 1px #B49D6D; overflow:hidden;margin:10px;padding:10px 20px;border-radius:3px;background: rgba(238, 215, 169, 0.39);
 }
-.con_top { background-color: #efe3cc;overflow:hidden; margin: -10px -10px 0;border-radius:3px 3px 0 0; text-align:left; padding: 0px 10px; line-height:40px; height:40px; }
+.con_top { background-color: #efe3cc;overflow:hidden; margin: -10px -20px 0;border-radius:3px 3px 0 0; text-align:left; padding: 0px 20px; line-height:40px; height:40px; }
 .con_top #bdshare{float:right;line-height:20px;padding-right:20px;padding-top:9px;text-align:right;}
 .sidebar{float:left;text-align:left;text-align:center;}
 .sidebar.right{float:right;width: 160px;}
@@ -157,9 +157,9 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 #list dd a{color:#444;}
 #page_set{ float:left; text-align:left; height:30px; line-height:30px;margin-left: 10px;}
 .box_con #content,.box_con #content div,.box_con #content a{font-size:16px;letter-spacing:0.2em;line-height:1.5em;padding:15px 5px 15px 10px;margin:auto;}
-.book-con {font-size:16px;letter-spacing:0.2em;line-height:1.5em;background:#3c152d;color:#0C6E72;padding:10px 5px 15px 10px;}
+.book-con .box_con {font-size:16px;letter-spacing:0.2em;line-height:1.5em;padding:10px 5px 15px 10px;border: none; background: transparent;}
 .ubuntu-style {font-size:16px;letter-spacing:0.2em;line-height:1.5em;background:#3c152d;color:#0C6E72;padding:10px 5px 15px 10px;}
-.book-con>h1 { line-height: 1em; padding: 20px 0; text-align: center; }
+.book-con .box_con>h1 { line-height: 1em; padding: 20px 0; text-align: center; }
 .box_con #content p div img,.box_con #content p img,.imagecontent,.divimage{text-align:center;margin:auto;}
 .reader_mark0 { width:30px;height:90px;top: 50px; position: fixed; right: 5px; _margin-top:50px; _position:absolute;	_bottom:auto;	_top:expression(eval(document.documentElement.scrollTop)); }
 .reader_mark1 { width:30px;height:90px;top: 50px; position: fixed; left: 5px; _margin-top:50px; _position:absolute;	_bottom:auto;	_top:expression(eval(document.documentElement.scrollTop)); }
@@ -171,7 +171,6 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 .bottem a,.bottem1 a,.bottem2 a{color:#085308;font-size:14px;margin-left:10px;margin-right:10px;}
 .bottem a:hover,.bottem1 a:hover,.bottem2 a:hover{color:#0D5C0D;}
 .bottem a:focus,.bottem1 a:focus,.bottem2 a:focus{color:#0D5C0D;}
-#bdshare { padding:5px 5px  5px 13%; }
 #footer,.footer{overflow:hidden;text-align:center;width:980px;margin:10px auto auto;}
 .footer_link{border-bottom:2px solid #88C6E5;height:25px;line-height:25px;overflow:hidden;width:92%;margin:5px auto;}
 .footer_cont p{color:#B2B2B2;line-height:20px;width:88%;}
