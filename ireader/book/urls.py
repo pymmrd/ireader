@@ -5,4 +5,5 @@ urlpatterns = patterns('book.views',
 	(r'^content/(?P<pk>\d+)/$', 'show_content', {'tmpl': 'book/content.html'}, 'show-content'),
 	(r'^intro/(?P<pk>\d+)/$', 'show_content', {'tmpl': 'book/introduction.html'}, 'show-intro'),
 	(r'^detail/(?P<partition>\d+)/(?P<pk>\d+)/$', 'show_detail', {'tmpl': 'book/detail.html'}, 'show-detail'),
+(r'^s/$', 'search', {'tmpl': 'book/search.html'}, 'search'),
 )

@@ -221,7 +221,6 @@ dd.txt {
 .qrcode {
   width: 140px;
   height: 140px;
-  background: #983;
   margin: 20px auto;
 }
 .sidebar .btn {
@@ -242,7 +241,23 @@ dd.txt {
 .list-recomment {
   line-height: 2em;
 }
+.btn.btn-full {
+  padding: 3px 10px;
+  line-height: 1.5em;
+}
+.full-screen .nav,
+.full-screen .header,
+.full-screen .footer,
+.full-screen .nav-collapse {
+  display: none;
+}
 
+/******************************************************************
+ * Read Area Themes 
+ ****************************************************************/
+.ubuntu-theme {background:#3c152d;color:#0C6E72;padding-top:1px;}
+.ubuntu-theme .box_con { background: transparent; }
+.ubuntu-theme .paginate a { color: #fff; }
 /******************************************************************
   MEDIA QUERIES
  ****************************************************************/
@@ -289,12 +304,21 @@ dd.txt {
   .nav ul li {
     float: none;
   }
+  .sidebar.right {
+    display: none;
+  }
 }
 
 /* for 571px or less */
 @media screen and (max-width: 571px) {
   .h-search form input[type=text] {
     width: 70%;
+  }
+  .bottem1 {
+    height: auto;
+  }
+  #page_set {
+    float: none;
   }
 }
 

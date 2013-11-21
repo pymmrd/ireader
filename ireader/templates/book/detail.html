@@ -5,53 +5,51 @@
 {% block title %}{{ object.name}}，{{ object.book__name}}，{{ object.book__category__name}}小说， 40页小说网 {% endblock %}
 
 {% block content %}
-<div class="main">
-  <div class="box_con">
-    <div class="con_top">
-      <a href="/">40页小说</a> &gt; <a href="{% url show-category pk=object.book__category__id %}">{{ object.book__category__name }}小说</a>&gt; <a href="{% url show-content object.book__id %}">{{ object.book__name }}全文阅读</a>&gt; {{ object.name  }}
-    </div>
-  </div>
-</div>
 <div class="book-con">
   <div class="main">
     <div class="box_con">
+      <div class="con_top">
+        <a href="/">40页小说</a> &gt; <a href="{% url show-category pk=object.book__category__id %}">{{ object.book__category__name }}小说</a>&gt; <a href="{% url show-content object.book__id %}">{{ object.book__name }}全文阅读</a>&gt; {{ object.name  }}
+      </div>
       <div class="bottem1 clearfix">
         <div id="page_set">
-          <button data-action="full-screen">全屏模式</button>
-          <select onchange="javascript:setSize(this.options[this.selectedIndex].value);" id="bcolor" name="bcolor"><option value="#E9FAFF">大小</option><option value="19pt">默认</option><option value="10pt">10pt</option><option value="12pt">12pt</option><option value="14pt">14pt</option><option value="16pt">16pt</option><option value="18pt">18pt</option><option value="20pt">20pt</option><option value="22pt">22pt</option><option value="25pt">25pt</option><option value="30pt">30pt</option></select>
-          <select onchange="javascript:setBGColor(this.options[this.selectedIndex].value);" id="bcolor" name="bcolor">
-            <option value="#E9FAFF">切换主题</option>
-            <option value="#E9FAFF">默认</option>
-            <option value="#FFFFFF">白雪</option>
-            <option value="#000000">漆黑</option>
-            <option value="#FFFFED">明黄</option>
-            <option value="#EEFAEE">淡绿</option>
-            <option value="#CCE8CF">草绿</option>
-            <option value="#FCEFFF">红粉</option>
-            <option value="#EFEFEF">深灰</option>
-            <option value="#F5F5DC">米色</option>
-            <option value="#D2B48C">茶色</option>
-            <option value="#C0C0C0">银色</option>
+          <button class="btn btn-warning btn-full" data-action="full-screen">全屏模式</button>
+          <select name="select-font-size" data-action="fontSize">
+            <option value="12px">超小文字</option>
+            <option value="14px">小文字</option>
+            <option value="16px" selected>默认文字大小</option>
+            <option value="18px">大文字</option>
+            <option value="20px">超大文字</option>
+          </select>
+          <select name="select-theme" data-action="theme">
+            <option value="default" selected>默认主题</option>
+            <option value="ubuntu-theme">ubnutu</option>
           </select>
         </div>
-        <a href="{% url show-content object.book__id %}" title="{{ object.book__name }}">目录</a>
-{% if has_previous %} <a href="{% url show-detail partition previous_to %}">上一章</a> {% endif %}
-        {% if has_next %} <a href="{% url show-detail partition next_to %}">下一章</a> {% endif %} 
+        <div class="paginate">
+          <a href="{% url show-content object.book__id %}" title="{{ object.book__name }}">目录</a>
+  {% if has_previous %} <a href="{% url show-detail partition previous_to %}">上一章</a> {% endif %}
+          {% if has_next %} <a href="{% url show-detail partition next_to %}">下一章</a> {% endif %} 
+        </div>
       </div>
+      <div class="divide"></div>
 
       <h1>{{ object.name }}</h1>
-      <p> {% include object.content %} </p>
+      <p class="main-text"> {% include object.content %} </p>
 
-      <div class="bottem2">
+      <div class="divide"></div>
+      <div class="bottem2 paginate">
         {% if has_previous %} <a href="{% url show-detail partition previous_to %}">上一章</a> {% endif %}
         <a href="{% url show-content object.book__id %}" title="{{ object.book__name }}">目录</a>
         {% if has_next %} <a href="{% url show-detail partition next_to %}">下一章</a> {% endif %}
       </div>
 
     </div>
+  </div>
+</div>
 
-    <div class="divide"></div>
-
+<div class="main">
+  <div class="box_con">
     <div class="lm">热门推荐：
       {% for item in recom_list %}
       <a target="_blank" href="{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}

@@ -49,18 +49,46 @@ $(function () {
   function set_theme(theme_name) {
   }
 
-  var $full_screen_trigger = $('[data-action="full-screen"]');
-  var $theme_setter = $('[data-action="theme"]');
+  var $body = $('body');
+  var $book_con = $('.book-con');
 
   //if data-target exist, it must be a selector of jquery
   //if data-target not exist, it default to be 'body' 
   var $scroll_speed_setter = $('[data-action="scroll"]');
-
   $scroll_speed_setter.change(function(){
     var $this = $(this);
     var target_selector = $this.attr('data-target') || 'body';
     var $scroll_elem = $(target_selector)
     $scroll_elem.start_scroll();
     return false;
+  });
+
+  var $full_screen_trigger = $('[data-action="full-screen"]');
+  $full_screen_trigger.click(function () {
+    var $this = $(this);
+    if ( $body.hasClass('full-screen') ) {
+      $this.html('全屏模式');
+      $body.removeClass('full-screen');
+    } else {
+      $this.html('正常模式');
+      $body.addClass('full-screen');
+    }
+  });
+
+  var $theme_setter = $('[data-action="theme"]');
+  $theme_setter.change(function () {
+    var $this = $(this);
+    var theme = $this.val();
+    if (theme === 'default') {
+      $book_con.removeClass().addClass('book-con');
+    } else {
+      $book_con.addClass(theme);
+    }
+  });
+
+  var $fontSizeSetter = $('[data-action="fontSize"]');
+  $fontSizeSetter.change(function () {
+    var $this = $(this);
+    $book_con.find('.txt').css('font-size', $this.val());
   });
 });

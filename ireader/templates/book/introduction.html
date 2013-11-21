@@ -12,9 +12,9 @@
       <div id="fmimg">
         <img alt="{{ book.name }}" src="{% if book.cover %}{{ MEDIA_URL }}{{ book.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span>
       </div>
-    </div> 
+    </div>
     <div class="sidebar right">
-      <div class="qrcode">
+      <div class="qrcode" data-action="qrcode" data-text="http://{{ request.META.HTTP_HOST }}{% url show-content book.book__id %}">
         <p>扫到手机阅读</p>
       </div>
     </div> 
@@ -90,4 +90,16 @@
 document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
 </script>
 <!-- Baidu script END -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/qrcode.min.js"></script>
+<script type="text/javascript" id="make-qrcode">
+$(function() {
+  var $qrcode = $('[data-action="qrcode"]');
+  if ( !$qrcode.length ) {
+    return;
+  }
+  $qrcode.each(function() {
+    new QRCode(this, $qrcode.attr('data-text'));
+  });
+});
+</script>
 {% endblock %}
