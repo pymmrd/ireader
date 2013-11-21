@@ -1,7 +1,11 @@
-<div class="header">
-	<div class="header_logo">
-		<a href="http://www.40ye.com/"></a>
-	</div>
+<div class="header clearfix">
+    <a class="h-logo" href="http://www.40ye.com/"></a>
+    <div class="h-search">
+    <form action="" method="get">
+        <input type="text" placeholder="输入书名，作者，关键字" name="s">
+        <button type="submit">搜书</button>
+    </form>
+    </div>
     {% comment %}
 	<div class="header_search">
 		<form name="form" action="http://{{ domain }}" id="sform" target="_blank">
