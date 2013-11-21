@@ -89,6 +89,6 @@ $(function () {
   var $fontSizeSetter = $('[data-action="fontSize"]');
   $fontSizeSetter.change(function () {
     var $this = $(this);
-    $book_con.find('.txt').css('font-size', $this.val());
+    $book_con.find('.main-text').css('font-size', $this.val());
   });
 });
