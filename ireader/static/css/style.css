@@ -1,0 +1,236 @@
+/******************************************************************
+    COMMON STYLE 
+ *****************************************************************/
+body, input, button {
+    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body {
+    background: #c1aa7e url(/static/images/bg.png) repeat;
+}
+input, button, textarea, select {
+    border-radius: 3px;
+    transition: all .2s;
+    -moz-transition: all .2s; /* Firefox 4 */
+    -webkit-transition: all .2s; /* Safari 和 Chrome */
+    -o-transition: all .2s; /* Opera */
+}
+.divide {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border-top: solid 1px #78602f;
+    border-bottom: solid 1px #DDC38F;
+}
+
+
+/******************************************************************
+    NORMAL STRUCTURE 
+ *****************************************************************/
+.header {
+    height: 84px;
+    width: 980px;
+    margin: auto;
+}
+.nav {
+    background: url(/static/images/bg-nav.png) repeat-x;
+    height: 50px;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    color: #fffbf2;
+}
+.main {
+    width: 1000px;
+    margin-top: 10px;
+}
+.con {
+    padding: 5px;
+}
+.con>.item {
+    float: left;
+    width: 33.3%;
+}
+.i-con {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 3px;
+}
+#footer, .footer {
+    text-align: center;
+    background: #271804;
+    margin: 20px auto 0;
+    padding: 20px 0;
+    width: 100%;
+}
+.footer_cont p {
+    color: #A57938;
+    line-height: 20px;
+}
+
+
+/******************************************************************
+    NORMAL STYLE 
+ *****************************************************************/
+.h-logo {
+    width: 300px;
+    height: 100%;
+    display: block;
+    background: url(/static/images/icons.png) no-repeat -80px 5px;
+    float: left;
+}
+.h-search {
+    float: right;
+    height: 100%;
+}
+.h-search form {
+    margin-top: 35px;
+}
+.h-search form input[type="text"] {
+    color: #fffbf2;
+    height: 18px;
+    width: 450px;
+    padding: 5px 10px;
+    background: #78602f;
+    border: solid 1px #d1bf9e;
+    /*border-top-color: #47381c;
+    border-bottom-color: #dfd6c0;*/
+}
+.h-search form input[type="text"]:hover {
+    border-color: #dfd6c0;
+}
+.h-search form button {
+    height: 30px;
+    color: #78602f;
+    padding: 5px 20px;
+    background: #ebce94;
+    border: solid 1px #ae8f4e;
+}
+.nav-wrap {
+    width: 980px;
+    margin: 5px auto;
+}
+.nav-collapse {
+    display: none;
+    margin-top: -5px;
+    padding: 20px;
+    background: #271804; 
+}
+.nav ul li {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+}
+.nav ul li a {
+    display: block;
+    color: #fffbf2;
+    font-size: 15px;
+    padding: 0 10px;
+    font-weight: normal;
+}
+.nav ul li a:hover {
+    background-color: #92743a;
+    text-decoration: none;
+}
+.i-con.recom {
+    border: solid 1px #634200;
+    background: #d6bf91;
+    background: rgba(238, 215, 169, 0.39)
+}
+.i-con .image {
+    float: left;
+    height: 125px;
+    overflow: hidden;
+}
+.i-desc {
+    margin-left: 105px;
+    color: #291B01;
+}
+.i-desc dd {
+    word-break: break-all;
+    text-shadow: 0 1px #DDC38F;
+}
+.i-desc dt {
+    font-size: 16px;
+}
+.i-desc dt span {
+    float: right;
+}
+dd.txt {
+    height: 160px;
+    overflow: hidden;
+}
+.i-desc .divide {
+    margin: 5px 0;
+}
+.i-con.novel {
+    background:#FEF9EF;
+}
+.novel .top .image {
+    height: auto;
+}
+
+/******************************************************************
+    MEDIA QUERIES
+ ****************************************************************/
+/* for 1000px or less*/
+@media screen and (max-width: 1000px) {
+    .main {
+        width: 98%;
+    }
+}
+
+/* for 980 or less*/
+@media screen and (max-width: 980px) {
+    .header {
+        width: 98%;
+    } 
+    .nav {
+        width: 100%;
+        height: auto;
+    }
+    .nav-wrap {
+        width: 100%;
+    }
+}
+
+/* for 880 or less*/
+@media screen and (max-width: 880px) {
+    .h-logo {
+        display: none;
+    }
+    .h-search {
+        width: 100%;
+        float: none;
+    }
+    .h-search form {
+        width: 100%;
+        text-align: center;
+    }
+    .con>.item {
+        width: 50%;
+    }
+}
+
+/* for 650px or less */
+@media screen and (max-width: 650px) {
+    .con>.item {
+        width: 100%;
+    }
+    .nav ul {
+        display: none;
+    }
+}
+
+/* for 571px or less */
+@media screen and (max-width: 571px) {
+    .h-search form input[type=text] {
+        width: 70%;
+    }
+}
+
+/* for 480px or less */
+@media screen and (max-width: 480px) {
+    .h-search form input[type=text] {
+        width: 60%;
+    }
+}

@@ -18,7 +18,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ireader.settings'
 from book.models import Book, FeatureBook
 from django.db.models import Q
 
-CATEGORY_FEATURE_NUM = 6
+CATEGORY_FEATURE_NUM = 8
 INDEX_FEATURE_NUM = 6
 INDEX_CATEGORY_NUM = 13
 
@@ -35,6 +35,7 @@ def gen_feature_books(ids, page):
 	books = Book.objects.filter(id__in=ids)
 	for b in books:
 		fbook = FeatureBook()
+		fbook.id = b.id
 		fbook.book = b
 		fbook.page = page
 		fbook.save()
@@ -66,6 +67,22 @@ def init_feature(pk):
 	index_features = random.sample(object_list, INDEX_CATEGORY_NUM)
 	gen_feature_books(index_features, index_pk)
 
+def init_hot_book(i):
+	FeatureBook.objects.filter(page=i).delete()
+	cat = i % 100
+	init_ids = list(FeatureBook.objects.values_list('id', flat=True))
+	books = Book.objects.values_list('id', flat=True).exclude(id__in=init_ids)
+	if cat:
+		books = list(books.filter(category__id=cat))
+	new_books = random.sample(books, 25)
+	gen_feature_books(new_books, i)
+
+
+def get_hot_book():
+	for i in xrange(100, 110):
+		init_hot_book(i)
+
+
 def init():
 	for i in xrange(1, 10):
 		init_feature(i)
@@ -79,6 +96,7 @@ def init():
 	feature_book()
 
 if __name__ == "__main__":
-	init()
-	
+    init()
+    get_hot_book()
+
 

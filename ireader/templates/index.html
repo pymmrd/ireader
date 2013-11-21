@@ -1,175 +1,30 @@
 {% extends "base_site.html" %}
-{% load paginate %}
 {% load book_filters %}
+{% load book_tags %}
+{% load paginate %}
 
 {% block content %}
-<div id="main">
-	<div id="hotcontent">
-		{% include "tags/feature_book.html" %} 
-		<div class="clear"></div>
+<div class="main">
+    {% include "tags/feature_book.html" %} 
+</div>
+<div class="divide" style="margin-top: 10px;"></div>
+<div class="main">
+	<div class="novelslist con clearfix">
+        {% list_render magic_books "玄幻小说" %}
+        {% list_render sord_books "武侠小说" %}
+        {% list_render dushi_books "都市小说" %}
 	</div>
-	<div class="novelslist">
-		<div class="content">
-			<h2>玄幻小说</h2>
-			{% with object=magic_books.0 %}
-			<div class="top">
-				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
-				<div class="clear"></div>
-			</div>
-			{% endwith %}
-			<ul>
-				{% for object in magic_books %}
-					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="content">
-			<h2>武侠小说</h2>
-			{% with object=sord_books.0 %}
-			<div class="top">
-				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
-				<div class="clear"></div>
-			</div>
-			{% endwith %}
-			<ul>
-				{% for object in sord_books %}
-					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="content border">
-			<h2>都市小说</h2>
-			{% with object=dushi_books.0 %}
-			<div class="top">
-				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
-				<div class="clear"></div>
-			</div>
-			{% endwith %}
-			<ul>
-				{% for object in dushi_books %}
-					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="clear"></div>
+	<div class="novelslist con clearfix">
+        {% list_render lover_books "言情小说" %}
+        {% list_render time_travel_books "穿越小说" %}
+        {% list_render game_books "网游小说" %}
 	</div>
-	<div class="novelslist">
-		<div class="content">
-			<h2>言情小说</h2>
-			{% with object=lover_books.0 %}
-			<div class="top">
-				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
-				<div class="clear"></div>
-			</div>
-			{% endwith %}
-			<ul>
-				{% for object in lover_books %}
-					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="content">
-			<h2>穿越小说</h2>
-			{% with object=time_travel_books.0 %}
-			<div class="top">
-				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
-				<div class="clear"></div>
-			</div>
-			{% endwith %}
-			<ul>
-				{% for object in time_travel_books %}
-					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="content border">
-			<h2>网游小说</h2>
-			{% with object=game_books.0 %}
-			<div class="top">
-				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
-				<div class="clear"></div>
-			</div>
-			{% endwith %}
-			<ul>
-				{% for object in game_books %}
-					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="clear"></div>
+	<div class="novelslist con clearfix">
+        {% list_render mnst_books "惊恐小说" %}
+        {% list_render scnc_books "科幻小说" %}
+        {% list_render other_books "其它小说" %}
 	</div>
-	<div class="novelslist">
-		<div class="content">
-			<h2>惊恐小说</h2>
-			{% with object=mnst_books.0 %}
-			<div class="top">
-				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
-				<div class="clear"></div>
-			</div>
-			{% endwith %}
-			<ul>
-				{% for object in mnst_books %}
-					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="content">
-			<h2>科幻小说</h2>
-			{% with object=scnc_books.0 %}
-			<div class="top">
-				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
-				<div class="clear"></div>
-			</div>
-			{% endwith %}
-			<ul>
-				{% for object in scnc_books %}
-					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-content  object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="content border">
-			<h2>其它小说</h2>
-			{% with object=other_books.0 %}
-			<div class="top">
-				<div class="image"><img src="{% if object.book__cover %}{{ MEDIA_URL }}{{ object.book__cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" alt="{{ object.book__name }}" height="82" width="67"></div>
-				<dl><dt><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a></dt><dd>{{ object.book__intro }}</dd></dl>
-				<div class="clear"></div>
-			</div>
-			{% endwith %}
-			<ul>
-				{% for object in other_books %}
-					{% if forloop.counter0 != 0 %}
-				<li><a href="{% url show-content object.book__id %}" target="_blank">{{ object.book__name }}</a>/{{ object.book__author }}</li>
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="clear"></div>
-	</div>
+    {% comment %}
 	<div id="newscontent">
 		<div class="l">
 			<h2>全站小说列表</h2>
@@ -197,5 +52,6 @@
 		</div>
 		<div class="clear"></div>
 	</div>
+    {% endcomment %}
 </div>
 {% endblock %}

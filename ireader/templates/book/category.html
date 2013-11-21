@@ -40,7 +40,7 @@
 			<h2>热度{{ name }}小说列表</h2>
 			<ul>
 				{% for object in hot_list %}
-				<li><span class="s2"><a href="{% url show-content object.id %}" target="_blank">{{ object.book__name }}</a></span><span class="s5">{{ object.book_author }}</span></li>
+				<li><span class="s2"><a href="{% url show-content object.id %}" target="_blank">{{ object.book__name }}</a></span><span class="s5">{{ object.book__author }}</span></li>
 				{% endfor %}
 			</ul>
 		</div>
