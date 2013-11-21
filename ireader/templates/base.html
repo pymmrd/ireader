@@ -7,35 +7,38 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-		<title>{% block title %}40页小说网，免费小说，免费小说阅读网{% endblock %}</title>
-		<meta name="keywords" content="{% block keywords %}40页小说网， 免费小说， 免费小说阅读网{% endblock %}">
-		<meta name="description" content="{% block description %}40页小说网是免费小说阅读网站.40页小说网是提供完结小说,玄幻小说,都市小说,穿越小说,言情小说,武侠小说,网游小说等免费小说阅读的免费小说阅读网站.{% endblock %}">
-		<meta name="viewport" content="width=device-width">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link rel="stylesheet" href="{{ STATIC_URL}}vendor/bootstrap/css/reset.css">
-		<link rel="stylesheet" href="{{ STATIC_URL}}css/40ye.css">
-		<link rel="stylesheet" href="{{ STATIC_URL}}css/40yestyle.css">
-		<link rel="stylesheet" href="{{ STATIC_URL}}css/style.css">
+    <title>{% block title %}40页小说网，免费小说，免费小说阅读网{% endblock %}</title>
+    <meta name="keywords" content="{% block keywords %}40页小说网， 免费小说， 免费小说阅读网{% endblock %}">
+    <meta name="description" content="{% block description %}40页小说网是免费小说阅读网站.40页小说网是提供完结小说,玄幻小说,都市小说,穿越小说,言情小说,武侠小说,网游小说等免费小说阅读的免费小说阅读网站.{% endblock %}">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}images/40ye.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL}}vendor/bootstrap/css/reset.css">
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/40ye.css">
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/style.css">
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/interactive_style.css">
         <!--[if lt IE 9]>
             <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
         <![endif]-->
-	</head>
-	<body>
-		<div id="wrapper">
-			{% block beam %}{% endblock %}
-			{% block header %}{% endblock %}
-			{% block nav %} {% endblock %}
-			{% block content %} {% endblock %}
-		</div>
-		{% block footer %}
-		{% include "tags/footer.html" %}
-		{% endblock %}
-		
-		<!--[if lt IE 7]>
-			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]-->
-		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
-		{% block script %}
-		{% endblock %}
-	</body>
+  </head>
+  <body>
+    <div id="wrapper">
+      {% block beam %}{% endblock %}
+      {% block header %}{% endblock %}
+      {% block nav %} {% endblock %}
+      {% block content %} {% endblock %}
+    </div>
+    {% block footer %}
+    {% include "tags/footer.html" %}
+    {% endblock %}
+    
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery_ease.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/index.js"></script>
+    {% block script %}
+    {% endblock %}
+  </body>
 </html>

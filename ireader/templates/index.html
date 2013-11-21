@@ -5,53 +5,28 @@
 
 {% block content %}
 <div class="main">
-    {% include "tags/feature_book.html" %} 
+  {% include "tags/feature_book.html" %} 
 </div>
 <div class="divide" style="margin-top: 10px;"></div>
 <div class="main">
-	<div class="novelslist con clearfix">
-        {% list_render magic_books "玄幻小说" %}
-        {% list_render sord_books "武侠小说" %}
-        {% list_render dushi_books "都市小说" %}
-	</div>
-	<div class="novelslist con clearfix">
-        {% list_render lover_books "言情小说" %}
-        {% list_render time_travel_books "穿越小说" %}
-        {% list_render game_books "网游小说" %}
-	</div>
-	<div class="novelslist con clearfix">
-        {% list_render mnst_books "惊恐小说" %}
-        {% list_render scnc_books "科幻小说" %}
-        {% list_render other_books "其它小说" %}
-	</div>
-    {% comment %}
-	<div id="newscontent">
-		<div class="l">
-			<h2>全站小说列表</h2>
-			<ul>
-				<li><span class="s2">分类</span><span class="s2">书名</span><span class="s2">作者</span><span class="s2">更新时间</span><span class="s2">状态</span></li>
-				{% for object in result_list %}
-				<li>
-					<span class="s2"><a href="{% url show-category object.category__id %}">{{ object.category__name }}</a></span>
-					<span class="s2"><a href="{% url show-content object.id %}" target="_blank">《{{ object.name }}》</a></span>
-					<span class="s2">{{ object.author }}</span>
-					<span class="s2">{{ object.update_date|date:"Y-m-d" }}</span>
-					<span class="s2">{% if object.status %}完结{% else %}连载{% endif %}</span>
-				</li>
-				{% endfor %}
-			</ul>
-			{% more_paginator request paginator %}
-		</div>
-		<div class="r">
-			<h2>经典小说推荐</h2>
-			<ul>
-				{% for object in hot_books %}
-				<li><span class="s2"><a href="{% url show-content object.id %}" target="_blank">{{ object.book__name }}</a></span><span class="s5">{{ object.book__author }}</span></li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="clear"></div>
-	</div>
-    {% endcomment %}
+  <div class="novelslist con clearfix">
+    {% list_render magic_books "玄幻小说" %}
+    {% list_render sord_books "武侠小说" %}
+    {% list_render dushi_books "都市小说" %}
+  </div>
+  <div class="novelslist con clearfix">
+    {% list_render lover_books "言情小说" %}
+    {% list_render time_travel_books "穿越小说" %}
+    {% list_render game_books "网游小说" %}
+  </div>
+  <div class="novelslist con clearfix">
+    {% list_render mnst_books "惊恐小说" %}
+    {% list_render scnc_books "科幻小说" %}
+    {% list_render other_books "其它小说" %}
+  </div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/index.js"></script>
 {% endblock %}

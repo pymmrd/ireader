@@ -7,8 +7,9 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 
 #from project
-from book.handlers import handler_index, handler_show_content, \
-						handler_show_detail, handler_show_category
+from book.handlers import (handler_index, handler_show_content,
+                           handler_show_detail, handler_search,
+                           handler_show_category)
 from commons.smart_convert import convert_int
 
 def index(request, page=1, tmpl='index.html'):
@@ -39,6 +40,7 @@ def index(request, page=1, tmpl='index.html'):
 def show_content(request, pk, tmpl="book/content.html"):
 	pk = convert_int(pk, exct=True)
 	book, object_list, partition, recom_list= handler_show_content(pk)
+	book['book__id'] = pk
 	return render_to_response(tmpl, context_instance=RequestContext(request, {
 		'book': book,
 		'object_list': object_list,
@@ -81,9 +83,9 @@ def show_category(request, pk, page=1, tmpl="book/category.html"):
 
 def search(request, tmpl="book/search.html"):
 	result_list = []
-	paginaotr = None
+	paginator = None
 	keyword = request.GET.get('keyword', '')
-	page = request,GET.get('page', 1)
+	page = request.GET.get('page', 1)
 	page = convert_int(page)
 	if keyword:
 		result_list, paginator, page = handler_search(keyword, page)

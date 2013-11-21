@@ -21,7 +21,9 @@
         </li>
         {% endfor %}
       </ul>
+      {% if paginator %}
       {% more_paginator request paginator %}
+      {% endif %}
     </div>
     <div class="r">
       <h2>热度{{ name }}小说列表</h2>

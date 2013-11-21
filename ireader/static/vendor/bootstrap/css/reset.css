@@ -1,4 +1,4 @@
-.cearfix {
+.clearfix {
   *zoom: 1;
 }
 
@@ -12,7 +12,6 @@
 .clearfix:after {
   clear: both;
 }
-
 html,body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,table,td,th,img,div,dl,dt,dd,input,select,form,fieldset {
     margin:auto;padding:0;
 }
@@ -218,9 +217,9 @@ textarea {
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
+  font-size: 13px;
+  line-height: 1.5em;
+  color: #362300;
   background-color: #ffffff;
 }
 

@@ -5,50 +5,32 @@
 {% block title %}{{ book.name }}全文阅读，{{ book.name }}最新章节，{{ book.name }}，尽在40页小说网{% endblock %}
 
 {% block content %}
-	<div class="box_con">
-		<div class="con_top"><a href="http://{{ domain }}/">40页</a> &gt; <a href="http://{{ domain }}{% url show-category pk=book.category__pk %}">{{ book.category__name }}小说</a>&gt;{{ book.name }}全文阅读</div>
-		<div id="maininfo">
-			<div id="info">
-				<h1>{{ book.name }}全文阅读</h1>
-				<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：{{ book.author }}</p>
-				<p>动&nbsp;&nbsp;&nbsp;&nbsp;作：<a href="javascript:;">加入书架</a></p>
-				<p>最后更新：{{ book.update_date|date:"Y-m-d" }}</p>
-				<p>状态：{% if book.status %}完结{% else %}连载{% endif %}</p>
-				<p>字数: {{ book.word_num }}</p>
-			</div>
-			<div id="intro">
-				<p>{{ book.intro }}</p>
-			</div>
-		</div>
-		<div id="sidebar"><div id="fmimg"><img alt="{{ book.name }}" src="{% if book.cover %}{{ MEDIA_URL }}{{ book.cover }}{% else %}{{ STATIC_URL }}images/dft.png{% endif %}" height="150" width="120"><span class="b"></span></div></div> 
-		<div id="listtj">&nbsp;推荐阅读：
-		{% for item in recom_list %}
-		<a target="_blank" href="http://{{ domain}}{% url show-content item.id %}"><b>{{ item.name }}</b>{% if item.status %}（完）{% endif %}</a>{% if not forloop.last %}、{% endif %}
-		{% endfor %}
-		</div>
-	</div>
-	<div class="box_con">
-		<div id="list">
-			<dl>
-				{% for item in object_list %}
-					{% for part, chapters in item.iteritems %}
-						{% if part != 'A' %}
-							<dt>{{ part }}</dt>
-						{% endif %}
-						{% for c in chapters %}
-						<dd><a href="http://{{ domain }}{% url show-detail partition c.id %}">{{ c.name }}</a></dd>
-						{% endfor %}
-					{% endfor %}
-				{% endfor %}
-			</dl>
-		</div>
-	</div>
-	<div class="box_con">
+<div class="main">
+  <div class="box_con">
+    <div class="con_top"><a href="/">40页小说</a> &gt; <a href="{% url show-category pk=book.category__pk %}">{{ book.category__name }}小说</a>&gt;{{ book.name }}全文阅读</div>
+    <div id="list">
+      <dl>
+        {% for item in object_list %}
+          {% for part, chapters in item.iteritems %}
+            {% if part != 'A' %}
+              <dt>{{ part }}</dt>
+            {% endif %}
+            {% for c in chapters %}
+            <dd><a href="{% url show-detail partition c.id %}">{{ c.name }}</a></dd>
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+      </dl>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="box_con">
 &nbsp;《<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}</a>》是一本<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>。更多精彩的<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>，请关注<a target="_blank" href="http://www.40ye.com/">40页小说网</a>“<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>”专栏。<br/>
         <br/>
 &nbsp;如果您发现<a href="http://www.40ye.com">免费小说</a><a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全文阅读</a>章节有错误，请及时通知我们。您的热心是对<a target="_blank" href="http://www.40ye.com/">40页小说</a>网最大的支持。<br/>
         <br/>
-&nbsp;<a target="_blank" href="http://www.40ye.com">40页小说网</a>是<a target="_blank" href="http://www.40ye.com/">40页小说阅读网</a>站，提供<a href="http://{{ domain }}{% url show-content book.id %}">{{ book.name }}</a>，<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全文阅读</a>，<a href="http://{{ domain }}{%url  show-content book.id %}">{{ book.name }}最新章节</a>。<br/>
+&nbsp;<a target="_blank" href="http://www.40ye.com">40页小说网</a>是<a target="_blank" href="http://www.40ye.com/">40页小说阅读网</a>站，提供<a href="{% url show-content book.id %}">{{ book.name }}</a>，<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全文阅读</a>，<a href="{%url  show-content book.id %}">{{ book.name }}最新章节</a>。<br/>
         <br/>
 &nbsp;<a target="_blank" href="http://www.40ye.com/">免费小说</a><a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全文阅读</a>的所有章节均为网友更新，属发布者个人行为，与<a target="_blank" href="http://www.40ye.com/">40页小说</a>网（<a target="_blank" href="http://www.40ye.com/">www.40ye.com</a>）立场无关。<br/>
         <br />
@@ -56,6 +38,7 @@
         <br/>
 &nbsp;【40页小说网分类导航】<a target="_blank" href="http://www.40ye.com/book/01/">全本玄幻小说</a> <a target="_blank" href="http://www.40ye.com/boo/02/">全本武侠小说</a> <a target="_blank" href="http://www.40ye.com/book/03/">全本都市小说</a> <a target="_blank" href="http://www.40ye.com/book/04/">全本言情小说</a> <a target="_blank" href="http://www.40ye.com/book/05/">全本穿越小说</a> <a target="_blank" href="http://www.40ye.com/book/06/">全本网游小说</a> <a target="_blank" href="http://www.40ye.com/book/07/">全本恐怖小说</a> <a target="_blank" href="http://www.40ye.com/book/08/">全本科幻小说</a> <a target="_blank" href="http://www.40ye.com/book/09/">其他全本小说</a><br/>
         <br />
-&nbsp;搜索关键字&mdash;&mdash;<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}</a> <a href="http://{{ domain }}{% url show-content book.id %}">{{ book.name }}全文阅读</a> <a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全集</a>
+&nbsp;搜索关键字&mdash;&mdash;<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}</a> <a href="{% url show-content book.id %}">{{ book.name }}全文阅读</a> <a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全集</a>
+  </div>
 </div>
 {% endblock %}
