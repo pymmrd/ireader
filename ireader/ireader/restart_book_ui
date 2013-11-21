@@ -4,7 +4,7 @@ if [ "$pids" ];then
         kill -9 $pids
 fi
 echo 'stop end...'
-cd /opt/zhanzhang/physical/ui/physical
+cd /var/www/wwwroot/ireader/ireader/ireader
 uwsgi --ini ui-wsgi.ini
 echo 'restart end...'
 
