@@ -1,6 +1,9 @@
 # -*- coding:utf-8 -*-
 
-from book.utils import category_feature_books, category_books, category_hot_books, get_book_chapters, get_bookitem, process_index_items
+from book.utils import (category_feature_books, category_books,
+                        category_hot_books, get_book_chapters,
+                        get_bookitem, process_index_items,
+                        get_search_result)
 
 def handler_index(page=1):
     (feature_list, magic_books,

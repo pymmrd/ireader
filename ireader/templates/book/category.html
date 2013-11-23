@@ -1,8 +1,8 @@
 {% extends "base_site.html" %}
 {% load paginate %}
 
-{% block keywords %}{{ name}}小说，免费{{ name }}小说网，免费小说阅读网{% endblock %}
-{% block title %}{{ name }}小说，免费{{name }}小说网，免费小说阅读网{% endblock %}
+{% block title %}《{{ name }}》免费在线阅读-{{ block.super }}{% endblock %}
+{% block keywords %}{{ name}},{{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="main">

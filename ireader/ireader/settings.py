@@ -189,7 +189,7 @@ BOOKITEM_PARTITION = 10
 ###################PAGINATION########################
 CATEGORY_BOOKS_PER_PAGE = 24
 CATEGORY_FEATURE_BOOKS = 6
-SEARCH_PRE_PAGE = 24
+SEARCH_PER_PAGE = 24
 
 ###################BOOk DIRECTORY###################
 BOOK_DIR = '/home/zg163/data'
