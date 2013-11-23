@@ -14,7 +14,7 @@
           <dd class="divide"></dd>
           <dd class="txt">
             <span class="i-author">{{ object.book__author }}：</span>
-            {{ object.book__intro|cut:"</br>"|cut:"<br>"|cut:"※"|truncatechars:65 }}<p class="i-detail"></p>
+            {{ object.book__intro|cut:"<br/>"|cut:"<br>"|cut:"※"|truncatechars:65 }}<p class="i-detail"></p>
           </dd>
         </dl>
       </div>
