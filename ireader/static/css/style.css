@@ -12,6 +12,9 @@ body, input, button {
 }
 body {
   background: #c9b287 url(/static/images/bg.png) repeat;
+  font-size: 13px;
+  line-height: 1.5em;
+  color: #362300;
 }
 input, button, textarea, select {
   border-radius: 3px;
@@ -94,7 +97,7 @@ input, button, textarea, select {
 }
 .h-search form input[type="text"] {
   color: #fffbf2;
-  height: 18px;
+  height: 30px;
   width: 450px;
   padding: 5px 10px;
   background: #78602f;
@@ -223,6 +226,9 @@ dd.txt {
   height: 140px;
   margin: 20px auto;
 }
+.qrcode img {
+  width: 100%;
+}
 .sidebar .btn {
   padding: 6px 40px;
   margin-bottom: 10px;
@@ -250,6 +256,15 @@ dd.txt {
 .full-screen .footer,
 .full-screen .nav-collapse {
   display: none;
+}
+#bdshare span.bds_more,
+#bdshare.bds_tools a {
+  height: 22px;
+  line-height: 15px;
+}
+#bdshare.bds_tools a.shareCount {
+  width: 43px;
+  line-height: 17px;
 }
 
 /******************************************************************
