@@ -71,14 +71,14 @@ def show_category(request, pk, page=1, tmpl="book/category.html"):
     pk = convert_int(pk)
     page = convert_int(page)
     feature_list, object_list, hot_list, paginator, name = handler_show_category(pk, page)
-    return render_to_response(tmpl, context_instance=RequestContext(request, {
-        'hot_list': hot_list,
-        'feature_list': feature_list,
-        'object_list': object_list,
-        'paginator': paginator,
-        'name': name,
-
-    }))
+    return render_to_response(tmpl,
+        context_instance=RequestContext(request, {
+            'hot_list': hot_list,
+            'feature_list': feature_list,
+            'object_list': object_list,
+            'paginator': paginator,
+            'name': name,
+        }))
 
 def search(request, tmpl="book/search.html"):
     result_list = []
