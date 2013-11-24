@@ -117,12 +117,6 @@ class Category(models.Model):
 
 
 class Book(models.Model):
-    FINISHED = 1
-    UNFINISHED = 2
-    BOOK_STATUS = (
-        (FINISHED, u'已完结'),
-        (UNFINISHED, u'连载中'),
-    )
     category = models.ForeignKey(Category, verbose_name=u'分类')
     name = models.CharField(max_length=100)
     author = models.CharField(max_length=30)
@@ -143,6 +137,11 @@ class Book(models.Model):
 
     def __unicode__(self):
         return '%s--->%s' % (self.category.name, self.name)
+
+    def __get_status_cn(self):
+        return u'已完结' if self.status else u'连载中'
+
+    status_cn = property(__get_status_cn)
 
 class BookPart(models.Model):
     book = models.ForeignKey(Book, verbose_name=u'书籍')

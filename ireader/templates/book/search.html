@@ -22,7 +22,7 @@
           <span class="s2"><a href="{% url show-intro result.id %}">{{ result.name }}</a></span>
           <span class="s2">{{ result.author }}</span>
           <span class="s2">{{ result.update_date|date:'Y-m-d' }}</span>
-          <span class="s2">{% if result.status %}已完结{% else %}连载中{% endif %}</span>
+          <span class="s2">{{ result.status_cn }}</span>
         </li>
         {% endfor %}
       </ul>
