@@ -50,35 +50,37 @@ def show_content(request, pk, tmpl="book/content.html"):
 def show_detail(request, partition, pk, tmpl="book/detail.html"):
     pk = convert_int(pk, exct=True)
     partition = convert_int(partition, exct=True)
-    (item,
-        has_next,
-        has_previous,
-        next_to,
-        previous_to,
-        recom_list, book) = handler_show_detail(partition, pk)
-    return render_to_response(tmpl, context_instance=RequestContext(request, {
-        'book': book,
-        'object': item,
-        'next_to': next_to,
-        'has_next': has_next,
-        'partition': partition,
-        'recom_list': recom_list,
-        'previous_to': previous_to,
-        'has_previous': has_previous,
-    }))
+    (item, has_next, has_previous,
+     next_to, previous_to, recom_list,
+     book) = handler_show_detail(partition, pk)
+    return render_to_response(
+        tmpl,
+        context_instance=RequestContext(request, {
+            'book': book,
+            'object': item,
+            'next_to': next_to,
+            'has_next': has_next,
+            'partition': partition,
+            'recom_list': recom_list,
+            'previous_to': previous_to,
+            'has_previous': has_previous,
+        })
+    )
 
 def show_category(request, pk, page=1, tmpl="book/category.html"):
     pk = convert_int(pk)
     page = convert_int(page)
     feature_list, object_list, hot_list, paginator, name = handler_show_category(pk, page)
-    return render_to_response(tmpl,
+    return render_to_response(
+        tmpl,
         context_instance=RequestContext(request, {
-            'hot_list': hot_list,
-            'feature_list': feature_list,
-            'object_list': object_list,
-            'paginator': paginator,
             'name': name,
-        }))
+            'hot_list': hot_list,
+            'paginator': paginator,
+            'object_list': object_list,
+            'feature_list': feature_list,
+        })
+    )
 
 def search(request, tmpl="book/search.html"):
     result_list = []
