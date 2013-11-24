@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from django import template
 
-import urllib 
+import urllib
 register = template.Library()
 
 DOT = '.'
@@ -27,55 +27,48 @@ def smart_page_range(pages, page_num, show_all_pages=10, on_each_side=3, on_ends
     fun = lambda x : x!= DOT and x + 1 or x
     return [fun(i) for i in page_range]
 
-@register.inclusion_tag("tags/more_pagination.html")
-def more_paginator(request, paginator):
-	raw_params = request.GET.copy()
-	path = request.path
-	if path == '/':
-		sub_path = '/'
-		page = 1
-	else:
-		sub_path, page, slash = path.rsplit('/', 2)
-		if page.startswith('0'):
-			page = 1
-			sub_path = path
-		else:
-			page = int(page)
-			sub_path = '%s/' % sub_path
-	page = 1 if page > paginator.num_pages else page
-	p = paginator.page(page)
-	page_range = smart_page_range(paginator.num_pages, page)
-	return {'page_range': page_range,
-			'p': p,
-			'page': page,
-			'sub_path': sub_path,
-			}
+@register.inclusion_tag("tags/pagination_template.html")
+def paginate(request, paginator):
+    path = request.path
+    raw_params = request.GET.copy()
+    keyword = raw_params.get('keyword', '')
+    current_page = int(raw_params.get('page', u'1'))
+
+    current_page = 1 if current_page > paginator.num_pages else current_page
+    paginator_info = paginator.page(current_page)
+    page_range = smart_page_range(paginator.num_pages, current_page)
+    return {
+        'keyword': keyword,
+        'page_range': page_range,
+        'current_page': current_page,
+        'paginator_info': paginator_info,
+    }
 
 @register.inclusion_tag("tags/smart_paginator.html")
 def smart_paginator(request, page, num_pages):
     sub_path = request.path.rsplit('/', 2)[0]
     raw_params = request.GET.copy()
     if num_pages == 1:
-        page = 1 
+        page = 1
         has_other_pages = False
         has_previous = False
         has_next = False
     else:
         has_other_pages = True
         if page > num_pages:
-            page = 1 
+            page = 1
             has_previous = False
             has_next = True
-            next_page_number = page + 1 
+            next_page_number = page + 1
         elif page == num_pages:
             has_previous = True
             has_next = False
-            previous_page_number = page - 1 
+            previous_page_number = page - 1
         else:
             has_next = True
             has_previous = True
-            previous_page_number = page - 1 
-            next_page_number = page + 1 
+            previous_page_number = page - 1
+            next_page_number = page + 1
     page_range = smart_page_range(num_pages, page)
     params = urllib.urlencode(raw_params)
     return locals()

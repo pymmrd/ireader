@@ -1,0 +1,21 @@
+<p class="pagination">
+  {% if paginator_info.has_other_pages %}
+    {% if paginator_info.has_previous %}
+      <a class="prev page" href="{{ path }}?keyword={{ keyword }}&page={{ paginator_info.previous_page_number }}">上一页</a>
+    {% endif %}
+    {% for page_num in page_range %}
+      {% ifequal page_num "." %}
+        <span>...</span>
+      {% else %}
+        {% ifequal page_num current_page %}
+          <span class='current page'>{{ page_num }}</span>
+        {% else %}
+          <a class="page" href="{{ path }}?keyword={{ keyword }}&page={{ page_num }}">{{ page_num }}</a>
+        {% endifequal %}
+      {% endifequal %}
+    {% endfor %}
+    {% if paginator_info.has_next %}
+      <a class="next page" href="{{ path }}?keyword={{ keyword }}&page={{ paginator_info.next_page_number }}">下一页</a>
+    {% endif %}
+  {% endif %}
+</p>

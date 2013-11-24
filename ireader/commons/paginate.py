@@ -1,12 +1,12 @@
 # -*- coding:utf-8 -*-
-from django.core.paginator import Paginator,\
-                            InvalidPage, EmptyPage
+from django.core.paginator import (Paginator, InvalidPage,
+                                   EmptyPage)
 
 def paginate_util(obj_list, page, page_size):
     try:
         page = int(page)
     except (ValueError, TypeError):
-        page = 1 
+        page = 1
     #generate the paginator object
     paginator = Paginator(obj_list, page_size)
     try:
