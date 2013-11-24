@@ -1,7 +1,7 @@
 html,body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,table,td,th,img,div,dl,dt,dd,input,select,form,fieldset{margin:auto;padding:0;}
 ul li{list-style:none outside none;}
 a{color:#071E97;text-decoration:none;}
-a:hover {text-decoration:underline; top:-1px;}
+a:hover {text-decoration:underline;}
 .clear{clear:both;}
 .header_logo a{background:url(/static/images/logo.png) no-repeat scroll 0 0 transparent;}
 .ywtop{background-color:#E1ECED;border-bottom:1px solid #A6D3E8;color:gray;height:28px;min-width:950px;width:100%;}
@@ -79,7 +79,7 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 .novelslist .content dl dt{ height:25px; line-height:25px; overflow:hidden;}
 .novelslist .content dl dd{ line-height:20px; height:60px; overflow:hidden;}
 .novelslist .content ul{ padding:10px 0px 0px 0px;}
-.novelslist .content ul li{ height:20px; line-height:20px; font-size:12px; overflow:hidden; }
+.novelslist .content ul li{ height:30px; line-height:20px; font-size:12px; overflow:hidden; }
 .novelslist .content ul li a{ color:#291B01;font-size:15px;}
 .novelslist .border{ border:0px;}
 .novelslist ul{ padding:10px;}
@@ -138,7 +138,7 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 
 #fmimg span{top:8px;right:8px;width:88px;height:88px;position:absolute;display:block;z-index:999;}
 #fmimg .a {background-position:0 -206px;}
-#fmimg .b {background-position:0 -294px;} 
+#fmimg .b {background-position:0 -294px;}
 
 
 #info{margin:10px;position: relative;}
@@ -169,7 +169,7 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 .reader_mark0 a{ width:30px;height:90px;display:block;background-position:0px -116px;}
 .reader_mark1 a{ width:30px;height:90px;display:block;background-position:-30px -116px;}
 .content_read{overflow:hidden;width:980px;margin:10px auto auto;}
-.bottem1, .bottem2 {padding:10px 0;text-align: right;background: #bbb;background: rgba(255, 255, 255, 0.62);height:30px;line-height:30px;margin:0 5px 0 0;}
+.bottem1, .bottem2 {padding:10px 0;text-align: right;background: #bbb;background: rgba(255, 255, 255, 0.62);line-height:30px;margin:0 5px 0 0;}
 .bottem2{margin-top: 10px;}
 .bottem a,.bottem1 a,.bottem2 a{color:#085308;font-size:14px;margin-left:10px;margin-right:10px;}
 .bottem a:hover,.bottem1 a:hover,.bottem2 a:hover{color:#0D5C0D;}

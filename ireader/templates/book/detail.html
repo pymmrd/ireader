@@ -1,8 +1,8 @@
 {% extends "base_site.html" %}
 
-{% block keywords %}{{object.book__name}}，{{ object.name }}{% endblock %}
-{% block description %}{{ object.name }}， {{ object.book__name }}最新章节，尽在40页小说网 {% endblock %}
-{% block title %}{{ object.name}}，{{ object.book__name}}，{{ object.book__category__name}}小说， 40页小说网 {% endblock %}
+{% block title %}《{{ object.book__name }}》免费在线阅读-{{ block.super }}{% endblock %}
+{% block keywords %}{{ object.book__name}},{{ object.name }},{{ block.super }}{% endblock %}
+{% block description %}《{{ object.book__name}}》，{{ object.name }}{% endblock %}
 
 {% block content %}
 <div class="book-con">

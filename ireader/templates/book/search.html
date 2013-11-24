@@ -1,39 +1,35 @@
 {% extends "base_site.html" %}
 {% load paginate %}
 
-{% block keywords %}{{ name}}小说，免费{{ name }}小说网，免费小说阅读网{% endblock %}
-{% block title %}{{ name }}小说，免费{{name }}小说网，免费小说阅读网{% endblock %}
+{% block keywords %}搜{{ request.GET.keyword }},搜小说,找小说,{{ block.super }}{% endblock %}
+{% block title %}小说搜索-{{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="main">
-  {% include "tags/feature_book.html" %} 
+  {% include "tags/feature_book.html" %}
   <div id="newscontent">
     <div class="l">
-      <h2>{{ name }}小说列表</h2>
+      <h2>小说列表</h2>
       <ul>
-        <li><span class="s2">书名</span><span class="s2">作者</span><span class="s2">更新时间</span><span class="s2">状态</span></li>
-        {% for object in object_list %}
         <li>
-          <span class="s2"><a href="{% url show-content object.id %}" target="_blank">《{{ object.name }}》</a></span>
-          <span class="s2">{{ object.author }}</span>
-          <span class="s2">{{ object.update_date|date:"Y-m-d" }}</span>
-          <span class="s2">{% if object.status %}完结{% else %}连载{% endif %}</span>
+          <span class="s2">书名</span>
+          <span class="s2">作者</span>
+          <span class="s2">更新时间</span>
+          <span class="s2">状态</span>
+        </li>
+        {% for result in result_list %}
+        <li>
+          <span class="s2"><a href="{% url show-intro result.id %}">{{ result.name }}</a></span>
+          <span class="s2">{{ result.author }}</span>
+          <span class="s2">{{ result.update_date|date:'Y-m-d' }}</span>
+          <span class="s2">{% if result.status %}已完结{% else %}连载中{% endif %}</span>
         </li>
         {% endfor %}
       </ul>
       {% if paginator %}
-      {% more_paginator request paginator %}
+      {% paginate_search request paginator %}
       {% endif %}
     </div>
-    <div class="r">
-      <h2>热度{{ name }}小说列表</h2>
-      <ul>
-        {% for object in hot_list %}
-        <li><span class="s2"><a href="{% url show-content object.id %}" target="_blank">{{ object.name }}</a></span><span class="s5">{{ object.author }}</span></li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="clear"></div>
   </div>
 </div>
 {% endblock %}

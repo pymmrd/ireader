@@ -9,7 +9,7 @@ abspath = os.path.abspath
 dirname = os.path.dirname
 pathjoin = os.path.join
 
-CURRENT_PATH  = abspath(dirname(__file__)).encode('utf-8').replace('\\', '/') 
+CURRENT_PATH  = abspath(dirname(__file__)).encode('utf-8').replace('\\', '/')
 PROJECT_PATH = abspath(dirname(CURRENT_PATH))
 
 ADMINS = (
@@ -60,7 +60,7 @@ USE_TZ = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = pathjoin(PROJECT_PATH, 'media') 
+MEDIA_ROOT = pathjoin(PROJECT_PATH, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -189,7 +189,7 @@ BOOKITEM_PARTITION = 10
 ###################PAGINATION########################
 CATEGORY_BOOKS_PER_PAGE = 24
 CATEGORY_FEATURE_BOOKS = 6
-SEARCH_PRE_PAGE = 24
+SEARCH_PER_PAGE = 24
 
 ###################BOOk DIRECTORY###################
 BOOK_DIR = '/home/zg163/data'
