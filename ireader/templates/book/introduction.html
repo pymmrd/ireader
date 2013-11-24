@@ -23,7 +23,7 @@
         <h1><span class="book-name">{{ book.name }}</span>--<span class="author">{{ book.author }}</span></h1>
         <div class="divide"></div>
         <div id="intro">
-          <p>{{ book.intro }}</p>
+          <p>{{ book.intro|cut:"<br/>"|cut:"<br>"|cut:"※" }}</p>
         </div>
         <div class="sub-info">
           <span>最后更新：{{ book.update_date|date:"Y-m-d" }}</span>
