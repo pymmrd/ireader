@@ -71,6 +71,7 @@ table.grid td { background-color: #FFFFFF !important; border: 1px solid #C3DFEA;
 #hotcontent .r li a {color: #6F78A7;}
 .novelslist{ margin: 0 auto -10px; }
 .novelslist .content h2{background-color: rgba(248, 238, 220, 0.8);font-size:14px; font-weight:bold; padding-left:10px; line-height:2.2em; height:2.2em; overflow:hidden; margin: -10px -10px 0;border-radius:3px 3px 0 0;}
+.novelslist .content h2 a{float: right;padding-right:10px;}
 .novelslist .content .image{ padding:10px 0 0; float:left; width:65px;}
 .novelslist .content .image img{ width:65px; height:82px;padding:1px;}
 .novelslist .content .i-desc{ margin-left:75px;}

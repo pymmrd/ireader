@@ -2,7 +2,7 @@
 
 <div class="content item">
   <div class="i-con novel">
-    <h2>{{ title }}<a href="">更多</a></h2>
+    <h2><a href="{% url show-category category_index %}">更多</a>{{ title }}</h2>
     {% with object=list.0 %}
     <div class="top">
       <div class="image">
