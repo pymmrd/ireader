@@ -1,7 +1,8 @@
 {% extends "base_site.html" %}
 
-{% block title %}《{{ book.name }}》免费在线阅读-{{ block.super }}{% endblock %}
-{% block keywords %}{{ book.name}},{{ block.super }}{% endblock %}
+{% block title %}免费小说， {{ book.name }}， {{book.name}}最新章节，{{ book.name}}最新更新， {{book.name}}全文阅读{% endblock %}
+{% block keywords %}
+免费小说， {{ book.name }}， {{book.name}}最新章节，{{ book.name}}最新更新， {{book.name}}全本阅读{% endblock %}
 {% block description %}《{{ book.name}}》，{{ book.intro }}{% endblock %}
 
 {% block content %}
@@ -26,7 +27,7 @@
 </div>
 <div class="main">
   <div class="box_con">
-&nbsp;《<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}</a>》是一本<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>。更多精彩的<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>，请关注<a target="_blank" href="http://www.40ye.com/">40页小说网</a>“<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>”专栏。<br/>
+&nbsp;《<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}</a>》是一本<a href="http://{{domain }}{% url show-category book.category__pk %}">免费{{ book.category__name }}小说</a>。更多精彩的<a href="http://{{domain }}{% url show-category book.category__pk %}">免费{{ book.category__name }}小说</a>，请关注<a target="_blank" href="http://www.40ye.com/">40页小说网</a>“<a href="http://{{domain }}{% url show-category book.category__pk %}">{{ book.category__name }}小说</a>”专栏。<br/>
         <br/>
 &nbsp;如果您发现<a href="http://www.40ye.com">免费小说</a><a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全文阅读</a>章节有错误，请及时通知我们。您的热心是对<a target="_blank" href="http://www.40ye.com/">40页小说</a>网最大的支持。<br/>
         <br/>
