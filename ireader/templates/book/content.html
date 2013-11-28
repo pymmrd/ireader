@@ -1,8 +1,7 @@
 {% extends "base_site.html" %}
 
 {% block title %}免费小说， {{ book.name }}， {{book.name}}最新章节，{{ book.name}}最新更新， {{book.name}}全文阅读{% endblock %}
-{% block keywords %}
-免费小说， {{ book.name }}， {{book.name}}最新章节，{{ book.name}}最新更新， {{book.name}}全本阅读{% endblock %}
+{% block keywords %}免费小说， {{ book.name }}， {{book.name}}最新章节，{{ book.name}}最新更新， {{book.name}}全本阅读{% endblock %}
 {% block description %}《{{ book.name}}》，{{ book.intro }}{% endblock %}
 
 {% block content %}
@@ -36,10 +35,13 @@
 &nbsp;<a target="_blank" href="http://www.40ye.com/">免费小说</a><a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全文阅读</a>的所有章节均为网友更新，属发布者个人行为，与<a target="_blank" href="http://www.40ye.com/">40页小说</a>网（<a target="_blank" href="http://www.40ye.com/">www.40ye.com</a>）立场无关。<br/>
         <br />
 &nbsp;如果您对<a target="_blank" href="http://www.40ye.com/">完结小说</a><a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全集</a>的作品版权、内容等方面有质疑，请及时与我们联系，我们将在第一时间进行处理，谢谢！<br/>
-        <br/>
-&nbsp;【40页小说网分类导航】<a target="_blank" href="http://www.40ye.com/book/01/">全本玄幻小说</a> <a target="_blank" href="http://www.40ye.com/boo/02/">全本武侠小说</a> <a target="_blank" href="http://www.40ye.com/book/03/">全本都市小说</a> <a target="_blank" href="http://www.40ye.com/book/04/">全本言情小说</a> <a target="_blank" href="http://www.40ye.com/book/05/">全本穿越小说</a> <a target="_blank" href="http://www.40ye.com/book/06/">全本网游小说</a> <a target="_blank" href="http://www.40ye.com/book/07/">全本恐怖小说</a> <a target="_blank" href="http://www.40ye.com/book/08/">全本科幻小说</a> <a target="_blank" href="http://www.40ye.com/book/09/">其他全本小说</a><br/>
+&nbsp;如果您喜欢<a target="_blank" href="http://www.40ye.com">免费小说</a><a href="http://{{ domain }}{% url show-content book.id %}">{{book.name}}</a>，请用手机扫描<a target="_blank" href="http://www.40ye.com">免费小说</a><a href="http://{{domain }}{% url show-content book.id %}">{{ book.name}}</a>二维码，以便您能第一时间阅读<a target="_blank" href="http://{{domain}}{% url show-content book.id %}">{{book.name}}最新章节</a>和<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name}}最新更新</a>。您还能在40页小说网把<a target="_blank" href="http://www.40ye.com/">免费小说<a href="http://{{domain}}{% url show-content book.id %}">{{book.name}}</a>分享给您的朋友，以便优秀的小说<a href="http://{{ domain }}{% url show-content book.id %}">{{ book.name}}</a>获得更多的人鉴赏。
         <br />
-&nbsp;搜索关键字&mdash;&mdash;<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}</a> <a href="{% url show-content book.id %}">{{ book.name }}全文阅读</a> <a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全集</a>
+&nbsp;您在阅读<a target="_blank" href="http://www.40ye.com/">免费小说</a><a href="http://{{domain }}{% ull show-conetnt book.id %}">{{ book.name}}</a>时，同时我们也欢迎您提供<a href="http://{{ domain }}{% url show-content book.id%}">{{book.name}}最新章节</a>和<a href="http://{{ domain }}{% url show-content book.id %}">{{ book.name}}最新更新</a>的上传，营造一个好的文化交流平台。
+        <br/>
+&nbsp;【40页小说网分类导航】<a target="_blank" href="http://www.40ye.com/book/01/">免费玄幻小说</a> <a target="_blank" href="http://www.40ye.com/boo/02/">免费武侠小说</a> <a target="_blank" href="http://www.40ye.com/book/03/">免费都市小说</a> <a target="_blank" href="http://www.40ye.com/book/04/">免费言情小说</a> <a target="_blank" href="http://www.40ye.com/book/05/">免费穿越小说</a> <a target="_blank" href="http://www.40ye.com/book/06/">免费网游小说</a> <a target="_blank" href="http://www.40ye.com/book/07/">免费恐怖小说</a> <a target="_blank" href="http://www.40ye.com/book/08/">免费科幻小说</a> <a target="_blank" href="http://www.40ye.com/book/09/">其他免费小说</a><br/>
+        <br />
+&nbsp;搜索关键字&mdash;&mdash;<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}</a>&nbsp;&nbsp;<a href="{% url show-content book.id %}">{{ book.name }}最新章节</a>&nbsp;&nbsp;<a href="{% url show-content book.id %}">{{ book.name }}最新更新 &nbsp;&nbsp;<a href="http://{{ domain }}{% url show-content book.id %}">{{ book.name}}最新章节</a>&nbsp;&nbsp;<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}全文阅读</a>&nbsp;&nbsp;<a href="http://{{domain }}{% url show-content book.id %}">{{ book.name }}免费小说</a>
   </div>
 </div>
 {% endblock %}
